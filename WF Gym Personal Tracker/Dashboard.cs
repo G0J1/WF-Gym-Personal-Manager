@@ -6,5 +6,6 @@ namespace WF_Gym_Personal_Tracker
         {
             InitializeComponent();
         }
+
     }
 }

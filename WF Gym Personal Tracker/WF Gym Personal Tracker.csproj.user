@@ -1,7 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Compile Update="CurrentWorkout.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Dashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ProgressTracker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="WorkoutBuilder.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

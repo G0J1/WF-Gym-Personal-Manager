@@ -28,12 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            welcomeTxt = new Label();
+            SuspendLayout();
+            // 
+            // label1
+            // 
+            welcomeTxt.AutoSize = true;
+            welcomeTxt.Location = new Point(317, 29);
+            welcomeTxt.Name = "label1";
+            welcomeTxt.Size = new Size(38, 15);
+            welcomeTxt.TabIndex = 0;
+            welcomeTxt.Text = "Welcome";
+            // 
+            // Dashboard
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(welcomeTxt);
+            Name = "Dashboard";
+            Text = "Form1";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private Label welcomeTxt;
     }
 }
