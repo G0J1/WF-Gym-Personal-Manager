@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WF Gym Personal Tracker")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+23df3d2d48777a35d82094e374b64c883b37d4c2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7caf01444555d52b3a186478d0a8f4404e833da4")]
 [assembly: System.Reflection.AssemblyProductAttribute("WF Gym Personal Tracker")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WF Gym Personal Tracker")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

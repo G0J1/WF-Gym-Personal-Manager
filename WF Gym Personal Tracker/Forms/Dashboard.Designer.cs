@@ -31,12 +31,14 @@
             welcomeTxt = new Label();
             SuspendLayout();
             // 
-            // label1
+            // welcomeTxt
             // 
             welcomeTxt.AutoSize = true;
-            welcomeTxt.Location = new Point(317, 29);
-            welcomeTxt.Name = "label1";
-            welcomeTxt.Size = new Size(38, 15);
+            welcomeTxt.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            welcomeTxt.ForeColor = Color.FromArgb(64, 64, 64);
+            welcomeTxt.Location = new Point(351, 9);
+            welcomeTxt.Name = "welcomeTxt";
+            welcomeTxt.Size = new Size(99, 28);
             welcomeTxt.TabIndex = 0;
             welcomeTxt.Text = "Welcome";
             // 
