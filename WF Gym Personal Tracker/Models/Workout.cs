@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 namespace WF_Gym_Personal_Tracker.Models
 {
     // A collection of exercises, created by the user and categorised into leg day, pull day, etc
-    internal class Workout
+    public class Workout
     {
+        public string name { get; set; }
+        public List<Exercise> exercise { get; set; }
     }
 }
