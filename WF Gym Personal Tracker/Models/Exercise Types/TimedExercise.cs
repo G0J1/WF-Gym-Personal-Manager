@@ -8,6 +8,6 @@ namespace WF_Gym_Personal_Tracker.Models
 {
     public class TimedExercise : Exercise
     {
-        public TimeSpan time { get; set; }
+        public TimeSpan targetedTime { get; set; }
     }
 }

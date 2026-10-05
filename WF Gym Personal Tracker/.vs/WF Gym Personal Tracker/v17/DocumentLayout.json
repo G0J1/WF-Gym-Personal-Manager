@@ -3,32 +3,40 @@
   "WorkspaceRootPath": "C:\\GitHub Projects\\WF Gym Personal Manager\\WF Gym Personal Tracker\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{891587F6-B38B-437A-A1BD-FE1EF61032EF}|WF Gym Personal Tracker.csproj|C:\\GitHub Projects\\WF Gym Personal Manager\\WF Gym Personal Tracker\\forms\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{891587F6-B38B-437A-A1BD-FE1EF61032EF}|WF Gym Personal Tracker.csproj|solutionrelative:forms\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{891587F6-B38B-437A-A1BD-FE1EF61032EF}|WF Gym Personal Tracker.csproj|c:\\github projects\\wf gym personal manager\\wf gym personal tracker\\models\\exercise.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{891587F6-B38B-437A-A1BD-FE1EF61032EF}|WF Gym Personal Tracker.csproj|solutionrelative:models\\exercise.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{891587F6-B38B-437A-A1BD-FE1EF61032EF}|WF Gym Personal Tracker.csproj|c:\\github projects\\wf gym personal manager\\wf gym personal tracker\\forms\\dashboard.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{891587F6-B38B-437A-A1BD-FE1EF61032EF}|WF Gym Personal Tracker.csproj|solutionrelative:forms\\dashboard.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{891587F6-B38B-437A-A1BD-FE1EF61032EF}|WF Gym Personal Tracker.csproj|c:\\github projects\\wf gym personal manager\\wf gym personal tracker\\models\\logs\\workoutlog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{891587F6-B38B-437A-A1BD-FE1EF61032EF}|WF Gym Personal Tracker.csproj|solutionrelative:models\\logs\\workoutlog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{891587F6-B38B-437A-A1BD-FE1EF61032EF}|WF Gym Personal Tracker.csproj|c:\\github projects\\wf gym personal manager\\wf gym personal tracker\\models\\logs\\exerciselog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{891587F6-B38B-437A-A1BD-FE1EF61032EF}|WF Gym Personal Tracker.csproj|solutionrelative:models\\logs\\exerciselog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{891587F6-B38B-437A-A1BD-FE1EF61032EF}|WF Gym Personal Tracker.csproj|c:\\github projects\\wf gym personal manager\\wf gym personal tracker\\models\\workout.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{891587F6-B38B-437A-A1BD-FE1EF61032EF}|WF Gym Personal Tracker.csproj|solutionrelative:models\\workout.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{891587F6-B38B-437A-A1BD-FE1EF61032EF}|WF Gym Personal Tracker.csproj|c:\\github projects\\wf gym personal manager\\wf gym personal tracker\\models\\exercise.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{891587F6-B38B-437A-A1BD-FE1EF61032EF}|WF Gym Personal Tracker.csproj|solutionrelative:models\\exercise.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{891587F6-B38B-437A-A1BD-FE1EF61032EF}|WF Gym Personal Tracker.csproj|c:\\github projects\\wf gym personal manager\\wf gym personal tracker\\models\\exercise types\\timedexercise.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{891587F6-B38B-437A-A1BD-FE1EF61032EF}|WF Gym Personal Tracker.csproj|solutionrelative:models\\exercise types\\timedexercise.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{891587F6-B38B-437A-A1BD-FE1EF61032EF}|WF Gym Personal Tracker.csproj|c:\\github projects\\wf gym personal manager\\wf gym personal tracker\\models\\exercise types\\cardioexercise.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{891587F6-B38B-437A-A1BD-FE1EF61032EF}|WF Gym Personal Tracker.csproj|solutionrelative:models\\exercise types\\cardioexercise.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{891587F6-B38B-437A-A1BD-FE1EF61032EF}|WF Gym Personal Tracker.csproj|c:\\github projects\\wf gym personal manager\\wf gym personal tracker\\models\\exercise types\\strengthexercise.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{891587F6-B38B-437A-A1BD-FE1EF61032EF}|WF Gym Personal Tracker.csproj|solutionrelative:models\\exercise types\\strengthexercise.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{891587F6-B38B-437A-A1BD-FE1EF61032EF}|WF Gym Personal Tracker.csproj|c:\\github projects\\wf gym personal manager\\wf gym personal tracker\\models\\exercise types\\cardioexercise.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{891587F6-B38B-437A-A1BD-FE1EF61032EF}|WF Gym Personal Tracker.csproj|solutionrelative:models\\exercise types\\cardioexercise.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{891587F6-B38B-437A-A1BD-FE1EF61032EF}|WF Gym Personal Tracker.csproj|c:\\github projects\\wf gym personal manager\\wf gym personal tracker\\models\\exercise types\\timedexercise.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{891587F6-B38B-437A-A1BD-FE1EF61032EF}|WF Gym Personal Tracker.csproj|solutionrelative:models\\exercise types\\timedexercise.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{891587F6-B38B-437A-A1BD-FE1EF61032EF}|WF Gym Personal Tracker.csproj|c:\\github projects\\wf gym personal manager\\wf gym personal tracker\\forms\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{891587F6-B38B-437A-A1BD-FE1EF61032EF}|WF Gym Personal Tracker.csproj|solutionrelative:forms\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{891587F6-B38B-437A-A1BD-FE1EF61032EF}|WF Gym Personal Tracker.csproj|c:\\github projects\\wf gym personal manager\\wf gym personal tracker\\forms\\dashboard.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{891587F6-B38B-437A-A1BD-FE1EF61032EF}|WF Gym Personal Tracker.csproj|solutionrelative:forms\\dashboard.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{891587F6-B38B-437A-A1BD-FE1EF61032EF}|WF Gym Personal Tracker.csproj|c:\\github projects\\wf gym personal manager\\wf gym personal tracker\\wf gym personal tracker.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
@@ -62,55 +70,82 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
+              "Title": "ExerciseLog.cs",
+              "DocumentMoniker": "C:\\GitHub Projects\\WF Gym Personal Manager\\WF Gym Personal Tracker\\Models\\Logs\\ExerciseLog.cs",
+              "RelativeDocumentMoniker": "Models\\Logs\\ExerciseLog.cs",
+              "ToolTip": "C:\\GitHub Projects\\WF Gym Personal Manager\\WF Gym Personal Tracker\\Models\\Logs\\ExerciseLog.cs",
+              "RelativeToolTip": "Models\\Logs\\ExerciseLog.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-05T04:32:21.78Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "WorkoutLog.cs",
+              "DocumentMoniker": "C:\\GitHub Projects\\WF Gym Personal Manager\\WF Gym Personal Tracker\\Models\\Logs\\WorkoutLog.cs",
+              "RelativeDocumentMoniker": "Models\\Logs\\WorkoutLog.cs",
+              "ToolTip": "C:\\GitHub Projects\\WF Gym Personal Manager\\WF Gym Personal Tracker\\Models\\Logs\\WorkoutLog.cs",
+              "RelativeToolTip": "Models\\Logs\\WorkoutLog.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-05T04:31:03.528Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "TimedExercise.cs",
               "DocumentMoniker": "C:\\GitHub Projects\\WF Gym Personal Manager\\WF Gym Personal Tracker\\Models\\Exercise Types\\TimedExercise.cs",
               "RelativeDocumentMoniker": "Models\\Exercise Types\\TimedExercise.cs",
               "ToolTip": "C:\\GitHub Projects\\WF Gym Personal Manager\\WF Gym Personal Tracker\\Models\\Exercise Types\\TimedExercise.cs",
               "RelativeToolTip": "Models\\Exercise Types\\TimedExercise.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-10-05T00:27:56.786Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 4,
               "Title": "CardioExercise.cs",
               "DocumentMoniker": "C:\\GitHub Projects\\WF Gym Personal Manager\\WF Gym Personal Tracker\\Models\\Exercise Types\\CardioExercise.cs",
               "RelativeDocumentMoniker": "Models\\Exercise Types\\CardioExercise.cs",
               "ToolTip": "C:\\GitHub Projects\\WF Gym Personal Manager\\WF Gym Personal Tracker\\Models\\Exercise Types\\CardioExercise.cs",
               "RelativeToolTip": "Models\\Exercise Types\\CardioExercise.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-05T00:27:54.523Z"
+              "WhenOpened": "2026-10-05T00:27:54.523Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "Exercise.cs",
               "DocumentMoniker": "C:\\GitHub Projects\\WF Gym Personal Manager\\WF Gym Personal Tracker\\Models\\Exercise.cs",
               "RelativeDocumentMoniker": "Models\\Exercise.cs",
               "ToolTip": "C:\\GitHub Projects\\WF Gym Personal Manager\\WF Gym Personal Tracker\\Models\\Exercise.cs",
               "RelativeToolTip": "Models\\Exercise.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAbAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-10-04T00:17:53.043Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Workout.cs",
               "DocumentMoniker": "C:\\GitHub Projects\\WF Gym Personal Manager\\WF Gym Personal Tracker\\Models\\Workout.cs",
               "RelativeDocumentMoniker": "Models\\Workout.cs",
               "ToolTip": "C:\\GitHub Projects\\WF Gym Personal Manager\\WF Gym Personal Tracker\\Models\\Workout.cs",
               "RelativeToolTip": "Models\\Workout.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-10-04T00:17:25.903Z",
               "EditorCaption": ""
@@ -118,19 +153,6 @@
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "Dashboard.cs",
-              "DocumentMoniker": "C:\\GitHub Projects\\WF Gym Personal Manager\\WF Gym Personal Tracker\\Forms\\Dashboard.cs",
-              "RelativeDocumentMoniker": "Forms\\Dashboard.cs",
-              "ToolTip": "C:\\GitHub Projects\\WF Gym Personal Manager\\WF Gym Personal Tracker\\Forms\\Dashboard.cs",
-              "RelativeToolTip": "Forms\\Dashboard.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-04T00:05:35.427Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "Dashboard.Designer.cs",
               "DocumentMoniker": "C:\\GitHub Projects\\WF Gym Personal Manager\\WF Gym Personal Tracker\\Forms\\Dashboard.Designer.cs",
               "RelativeDocumentMoniker": "Forms\\Dashboard.Designer.cs",
@@ -143,7 +165,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\GitHub Projects\\WF Gym Personal Manager\\WF Gym Personal Tracker\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -155,7 +177,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "WF Gym Personal Tracker.csproj",
               "DocumentMoniker": "C:\\GitHub Projects\\WF Gym Personal Manager\\WF Gym Personal Tracker\\WF Gym Personal Tracker.csproj",
               "RelativeDocumentMoniker": "WF Gym Personal Tracker.csproj",
@@ -166,12 +188,34 @@
               "WhenOpened": "2026-10-04T00:03:33.922Z"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "StrengthExercise.cs",
+              "DocumentMoniker": "C:\\GitHub Projects\\WF Gym Personal Manager\\WF Gym Personal Tracker\\Models\\Exercise Types\\StrengthExercise.cs",
+              "RelativeDocumentMoniker": "Models\\Exercise Types\\StrengthExercise.cs",
+              "ToolTip": "C:\\GitHub Projects\\WF Gym Personal Manager\\WF Gym Personal Tracker\\Models\\Exercise Types\\StrengthExercise.cs",
+              "RelativeToolTip": "Models\\Exercise Types\\StrengthExercise.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-05T00:27:55.746Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 10,
+              "Title": "Dashboard.cs",
+              "DocumentMoniker": "C:\\GitHub Projects\\WF Gym Personal Manager\\WF Gym Personal Tracker\\Forms\\Dashboard.cs",
+              "RelativeDocumentMoniker": "Forms\\Dashboard.cs",
+              "ToolTip": "C:\\GitHub Projects\\WF Gym Personal Manager\\WF Gym Personal Tracker\\Forms\\Dashboard.cs",
+              "RelativeToolTip": "Forms\\Dashboard.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-04T00:05:35.427Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "Dashboard.cs [Design]",
               "DocumentMoniker": "C:\\GitHub Projects\\WF Gym Personal Manager\\WF Gym Personal Tracker\\Forms\\Dashboard.cs",
               "RelativeDocumentMoniker": "Forms\\Dashboard.cs",
@@ -182,20 +226,12 @@
               "EditorCaption": " [Design]"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "StrengthExercise.cs",
-              "DocumentMoniker": "C:\\GitHub Projects\\WF Gym Personal Manager\\WF Gym Personal Tracker\\Models\\Exercise Types\\StrengthExercise.cs",
-              "RelativeDocumentMoniker": "Models\\Exercise Types\\StrengthExercise.cs",
-              "ToolTip": "C:\\GitHub Projects\\WF Gym Personal Manager\\WF Gym Personal Tracker\\Models\\Exercise Types\\StrengthExercise.cs",
-              "RelativeToolTip": "Models\\Exercise Types\\StrengthExercise.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-05T00:27:55.746Z"
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "ProgressTracker.cs [Design]",
               "DocumentMoniker": "C:\\GitHub Projects\\WF Gym Personal Manager\\WF Gym Personal Tracker\\ProgressTracker.cs",
               "RelativeDocumentMoniker": "ProgressTracker.cs",
@@ -206,7 +242,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "WorkoutBuilder.cs [Design]",
               "DocumentMoniker": "C:\\GitHub Projects\\WF Gym Personal Manager\\WF Gym Personal Tracker\\WorkoutBuilder.cs",
               "RelativeDocumentMoniker": "WorkoutBuilder.cs",
@@ -217,7 +253,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "CurrentWorkout.cs [Design]",
               "DocumentMoniker": "C:\\GitHub Projects\\WF Gym Personal Manager\\WF Gym Personal Tracker\\CurrentWorkout.cs",
               "RelativeDocumentMoniker": "CurrentWorkout.cs",

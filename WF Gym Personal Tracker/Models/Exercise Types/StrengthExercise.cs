@@ -8,8 +8,8 @@ namespace WF_Gym_Personal_Tracker.Models
 {
     public class StrengthExercise : Exercise
     {
-        public int sets { get; set; }
-        public int reps { get; set; }
-        public double weight { get; set; }
+        public int targetedSets { get; set; }
+        public int targetedReps { get; set; }
+        public double targetedWeight { get; set; }
     }
 }
