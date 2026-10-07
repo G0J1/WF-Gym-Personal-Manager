@@ -7,6 +7,12 @@
     <Compile Update="Forms\Dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\ExerciseBuilder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\ExerciseSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\ProgressTracker.cs">
       <SubType>Form</SubType>
     </Compile>

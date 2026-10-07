@@ -18,3 +18,5 @@ C:\GitHub Projects\WF Gym Personal Manager\WF Gym Personal Tracker\obj\Debug\net
 C:\GitHub Projects\WF Gym Personal Manager\WF Gym Personal Tracker\obj\Debug\net9.0-windows\WF Gym Personal Tracker.pdb
 C:\GitHub Projects\WF Gym Personal Manager\WF Gym Personal Tracker\obj\Debug\net9.0-windows\WF Gym Personal Tracker.genruntimeconfig.cache
 C:\GitHub Projects\WF Gym Personal Manager\WF Gym Personal Tracker\obj\Debug\net9.0-windows\ref\WF Gym Personal Tracker.dll
+C:\GitHub Projects\WF Gym Personal Manager\WF Gym Personal Tracker\obj\Debug\net9.0-windows\WF_Gym_Personal_Tracker.Forms.ExerciseBuilder.resources
+C:\GitHub Projects\WF Gym Personal Manager\WF Gym Personal Tracker\obj\Debug\net9.0-windows\WF_Gym_Personal_Tracker.Forms.ExerciseSelector.resources
