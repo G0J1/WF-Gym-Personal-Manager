@@ -11,5 +11,10 @@ namespace WF_Gym_Personal_Tracker.Models
         public double targetedDistance { get; set; }
         public TimeSpan targetedTime { get; set; }
 
+        public CardioExercise(string n): base(n)
+        {
+
+        }
+
     }
 }

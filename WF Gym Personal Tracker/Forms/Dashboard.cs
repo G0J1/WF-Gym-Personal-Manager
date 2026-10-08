@@ -1,3 +1,6 @@
+using WF_Gym_Personal_Tracker.Models;
+using WF_Gym_Personal_Tracker.Forms;
+
 namespace WF_Gym_Personal_Tracker
 {
     public partial class Dashboard : Form
@@ -14,7 +17,17 @@ namespace WF_Gym_Personal_Tracker
 
         private void workoutBuilderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Application.Run(new Dashboard());
+            FormControls.OpenNewForm(this, new WorkoutBuilder());
+        }
+
+        private void dashboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormControls.OpenNewForm(this, new Dashboard());
+        }
+
+        private void progressTrackerMenuItem_Click(object sender, EventArgs e)
+        {
+            FormControls.OpenNewForm(this, new ProgressTracker());
         }
     }
 }
