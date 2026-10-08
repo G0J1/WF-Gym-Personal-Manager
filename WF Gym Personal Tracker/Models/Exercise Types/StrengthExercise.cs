@@ -11,5 +11,12 @@ namespace WF_Gym_Personal_Tracker.Models
         public int targetedSets { get; set; }
         public int targetedReps { get; set; }
         public double targetedWeight { get; set; }
+
+        public StrengthExercise(string n, int s, int r, double w) : base(n) 
+        {
+            targetedReps = r;
+            targetedWeight = w;
+            targetedSets = s;
+        }
     }
 }

@@ -9,8 +9,9 @@ namespace WF_Gym_Personal_Tracker.Models.Logs
     public class WorkoutLog
     {
         public Workout workout { get; set; }
-
         public List<ExerciseLog> exerciseLogs { get; set; }
+        public bool completed { get; set; }
+        public DateOnly completionDate { get; set; }
 
         public WorkoutLog() 
         {

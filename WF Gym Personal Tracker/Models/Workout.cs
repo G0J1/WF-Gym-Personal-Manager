@@ -12,9 +12,10 @@ namespace WF_Gym_Personal_Tracker.Models
         public string name { get; set; }
         public List<Exercise> exercises { get; set; }
 
-        public Workout() 
+        public Workout(string n) 
         {
             exercises = new List<Exercise>();
+            name = n;
         }
     }
 }

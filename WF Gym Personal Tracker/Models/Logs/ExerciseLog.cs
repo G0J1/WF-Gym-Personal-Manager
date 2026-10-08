@@ -14,5 +14,7 @@ namespace WF_Gym_Personal_Tracker.Models.Logs
         public int recordedSets { get; set; }
         public double recordedWeight { get; set; }
         public TimeSpan recordedTime { get; set; }
+        public bool completed { get; set; }
+        public DateOnly completionDate { get; set; }
     }
 }
