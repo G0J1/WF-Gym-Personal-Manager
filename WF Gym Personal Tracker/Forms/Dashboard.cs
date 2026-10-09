@@ -29,5 +29,10 @@ namespace WF_Gym_Personal_Tracker
         {
             FormControls.OpenNewForm(this, new ProgressTracker());
         }
+
+        private void todaysWorkoutTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
