@@ -36,7 +36,7 @@ namespace WF_Gym_Personal_Tracker
 
             Workout fullBody = new Workout("Full Body Day");
             fullBody.exercises.Add(pushUp);
-            fullBody.exercises.Add(pullUp);
+            fullBody.exercises.Add(squat);
 
             workouts.Add(armDay);
             workouts.Add(legDay);
@@ -58,6 +58,11 @@ namespace WF_Gym_Personal_Tracker
 
 
             return "0";
+        }
+
+        public static List<Exercise> GetExercises(int index)
+        {
+            return workouts[index].exercises;
         }
     }
 }

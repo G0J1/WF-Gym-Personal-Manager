@@ -38,15 +38,15 @@
             previousBtn = new Button();
             button3 = new Button();
             todaysWorkoutTable = new DataGridView();
+            WorkoutNameLabel = new Label();
+            groupBox1 = new GroupBox();
+            workoutLogBindingSource = new BindingSource(components);
             ExerciseName = new DataGridViewTextBoxColumn();
             Sets = new DataGridViewTextBoxColumn();
             Reps = new DataGridViewTextBoxColumn();
             Weight = new DataGridViewTextBoxColumn();
             Duration = new DataGridViewTextBoxColumn();
             Completed = new DataGridViewCheckBoxColumn();
-            WorkoutNameLabel = new Label();
-            groupBox1 = new GroupBox();
-            workoutLogBindingSource = new BindingSource(components);
             ((System.ComponentModel.ISupportInitialize)todaysWorkoutTable).BeginInit();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)workoutLogBindingSource).BeginInit();
@@ -132,39 +132,6 @@
             todaysWorkoutTable.Name = "todaysWorkoutTable";
             todaysWorkoutTable.Size = new Size(643, 163);
             todaysWorkoutTable.TabIndex = 0;
-            todaysWorkoutTable.CellContentClick += todaysWorkoutTable_CellContentClick;
-            // 
-            // ExerciseName
-            // 
-            ExerciseName.HeaderText = "Exercise Name";
-            ExerciseName.Name = "ExerciseName";
-            // 
-            // Sets
-            // 
-            Sets.HeaderText = "Sets";
-            Sets.Name = "Sets";
-            // 
-            // Reps
-            // 
-            Reps.HeaderText = "Reps";
-            Reps.Name = "Reps";
-            // 
-            // Weight
-            // 
-            Weight.HeaderText = "Weight";
-            Weight.Name = "Weight";
-            // 
-            // Duration
-            // 
-            Duration.HeaderText = "Duration";
-            Duration.Name = "Duration";
-            // 
-            // Completed
-            // 
-            Completed.HeaderText = "Completed";
-            Completed.Name = "Completed";
-            Completed.Resizable = DataGridViewTriState.True;
-            Completed.SortMode = DataGridViewColumnSortMode.Automatic;
             // 
             // WorkoutNameLabel
             // 
@@ -188,9 +155,43 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Today's Workout";
             // 
-            // workoutLogBindingSource
+            // ExerciseName
             // 
-            workoutLogBindingSource.DataSource = typeof(Models.Logs.WorkoutLog);
+            ExerciseName.DataPropertyName = "name";
+            ExerciseName.HeaderText = "Exercise Name";
+            ExerciseName.Name = "ExerciseName";
+            // 
+            // Sets
+            // 
+            Sets.DataPropertyName = "targetedSets";
+            Sets.HeaderText = "Sets";
+            Sets.Name = "Sets";
+            // 
+            // Reps
+            // 
+            Reps.DataPropertyName = "targetedReps";
+            Reps.HeaderText = "Reps";
+            Reps.Name = "Reps";
+            // 
+            // Weight
+            // 
+            Weight.DataPropertyName = "targetedWeight";
+            Weight.HeaderText = "Weight";
+            Weight.Name = "Weight";
+            // 
+            // Duration
+            // 
+            Duration.DataPropertyName = "targetedDuration";
+            Duration.HeaderText = "Duration";
+            Duration.Name = "Duration";
+            // 
+            // Completed
+            // 
+            Completed.HeaderText = "Completed";
+            Completed.Name = "Completed";
+            Completed.ReadOnly = true;
+            Completed.Resizable = DataGridViewTriState.True;
+            Completed.SortMode = DataGridViewColumnSortMode.Automatic;
             // 
             // Dashboard
             // 
@@ -228,14 +229,14 @@
         private Button previousBtn;
         private Button button3;
         private DataGridView todaysWorkoutTable;
+        private Label WorkoutNameLabel;
+        private GroupBox groupBox1;
+        private BindingSource workoutLogBindingSource;
         private DataGridViewTextBoxColumn ExerciseName;
         private DataGridViewTextBoxColumn Sets;
         private DataGridViewTextBoxColumn Reps;
         private DataGridViewTextBoxColumn Weight;
         private DataGridViewTextBoxColumn Duration;
         private DataGridViewCheckBoxColumn Completed;
-        private Label WorkoutNameLabel;
-        private GroupBox groupBox1;
-        private BindingSource workoutLogBindingSource;
     }
 }

@@ -33,14 +33,15 @@ namespace WF_Gym_Personal_Tracker
             FormControls.OpenNewForm(this, new ProgressTracker());
         }
 
-        private void todaysWorkoutTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void RefreshWorkoutList()
         {
+            var exercises = WorkoutService.GetExercises(currentWorkoutIndex);
+
             setWorkoutNameText(WorkoutService.GetWorkoutName(currentWorkoutIndex));
+            todaysWorkoutTable.DataSource = null;
+            todaysWorkoutTable.AutoGenerateColumns = false;
+            todaysWorkoutTable.DataSource = WorkoutService.GetExercises(currentWorkoutIndex);
+
         }
 
         private void setWorkoutNameText(string text)
