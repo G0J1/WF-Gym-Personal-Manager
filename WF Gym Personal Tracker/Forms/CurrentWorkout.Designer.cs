@@ -28,18 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
+            menuBar1 = new WF_Gym_Personal_Tracker.UI.MenuBar();
             SuspendLayout();
+            // 
+            // menuBar1
+            // 
+            menuBar1.Location = new Point(0, -1);
+            menuBar1.Name = "menuBar1";
+            menuBar1.Size = new Size(560, 36);
+            menuBar1.TabIndex = 0;
             // 
             // CurrentWorkout
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(560, 270);
+            Controls.Add(menuBar1);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "CurrentWorkout";
             Text = "CurrentWorkout";
             ResumeLayout(false);
         }
 
         #endregion
+
+        private UI.MenuBar menuBar1;
     }
 }

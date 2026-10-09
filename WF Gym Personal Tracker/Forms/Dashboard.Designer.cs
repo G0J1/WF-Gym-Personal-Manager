@@ -33,11 +33,7 @@
             monthCalendar1 = new MonthCalendar();
             progressBar1 = new ProgressBar();
             label1 = new Label();
-            DashBoardMenuItem = new ToolStripMenuItem();
-            workoutBuilderMenuItem = new ToolStripMenuItem();
-            progressTrackerMenuItem = new ToolStripMenuItem();
-            menuStrip1 = new MenuStrip();
-            menuStrip1.SuspendLayout();
+            menuBar1 = new WF_Gym_Personal_Tracker.UI.MenuBar();
             SuspendLayout();
             // 
             // welcomeTxt
@@ -87,55 +83,27 @@
             label1.TabIndex = 5;
             label1.Text = "quote";
             // 
-            // DashBoardMenuItem
+            // menuBar1
             // 
-            DashBoardMenuItem.Name = "DashBoardMenuItem";
-            DashBoardMenuItem.Size = new Size(76, 22);
-            DashBoardMenuItem.Text = "Dashboard";
-            DashBoardMenuItem.Click += dashboardToolStripMenuItem_Click;
-            // 
-            // workoutBuilderMenuItem
-            // 
-            workoutBuilderMenuItem.Name = "workoutBuilderMenuItem";
-            workoutBuilderMenuItem.Size = new Size(105, 22);
-            workoutBuilderMenuItem.Text = "Workout Builder";
-            workoutBuilderMenuItem.Click += workoutBuilderToolStripMenuItem_Click;
-            // 
-            // progressTrackerMenuItem
-            // 
-            progressTrackerMenuItem.Name = "progressTrackerMenuItem";
-            progressTrackerMenuItem.Size = new Size(105, 22);
-            progressTrackerMenuItem.Text = "Progress Tracker";
-            progressTrackerMenuItem.Click += progressTrackerMenuItem_Click;
-            // 
-            // menuStrip1
-            // 
-            menuStrip1.ImageScalingSize = new Size(24, 24);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { DashBoardMenuItem, workoutBuilderMenuItem, progressTrackerMenuItem });
-            menuStrip1.Location = new Point(0, 0);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.Padding = new Padding(4, 1, 0, 1);
-            menuStrip1.Size = new Size(783, 24);
-            menuStrip1.TabIndex = 1;
-            menuStrip1.Text = "menuStrip1";
+            menuBar1.Location = new Point(-1, -1);
+            menuBar1.Name = "menuBar1";
+            menuBar1.Size = new Size(785, 36);
+            menuBar1.TabIndex = 6;
             // 
             // Dashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(783, 450);
+            Controls.Add(menuBar1);
             Controls.Add(label1);
             Controls.Add(progressBar1);
             Controls.Add(welcomeTxt);
             Controls.Add(groupBox1);
             Controls.Add(monthCalendar1);
-            Controls.Add(menuStrip1);
-            MainMenuStrip = menuStrip1;
             Name = "Dashboard";
             Text = "Form1";
             Load += Dashboard_Load;
-            menuStrip1.ResumeLayout(false);
-            menuStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -147,9 +115,6 @@
         private MonthCalendar monthCalendar1;
         private ProgressBar progressBar1;
         private Label label1;
-        private ToolStripMenuItem DashBoardMenuItem;
-        private ToolStripMenuItem workoutBuilderMenuItem;
-        private ToolStripMenuItem progressTrackerMenuItem;
-        private MenuStrip menuStrip1;
+        private UI.MenuBar menuBar1;
     }
 }
