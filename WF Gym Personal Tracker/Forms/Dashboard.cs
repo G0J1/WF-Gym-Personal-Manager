@@ -5,9 +5,12 @@ namespace WF_Gym_Personal_Tracker
 {
     public partial class Dashboard : Form
     {
+        private int currentWorkoutIndex = 0;
+
         public Dashboard()
         {
             InitializeComponent();
+            RefreshWorkoutList();
         }
 
         private void Dashboard_Load(object sender, EventArgs e)
@@ -33,6 +36,36 @@ namespace WF_Gym_Personal_Tracker
         private void todaysWorkoutTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void RefreshWorkoutList()
+        {
+            setWorkoutNameText(WorkoutService.GetWorkoutName(currentWorkoutIndex));
+        }
+
+        private void setWorkoutNameText(string text)
+        {
+            WorkoutNameLabel.Text = text;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            currentWorkoutIndex++;
+            if (currentWorkoutIndex > (WorkoutService.maxIndex))
+            {
+                currentWorkoutIndex = 0;
+            }
+            RefreshWorkoutList();
+        }
+
+        private void previousBtn_Click(object sender, EventArgs e)
+        {
+            currentWorkoutIndex--;
+            if (currentWorkoutIndex < 0)
+            {
+                currentWorkoutIndex = WorkoutService.maxIndex;
+            }
+            RefreshWorkoutList();
         }
     }
 }

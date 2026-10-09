@@ -28,26 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             welcomeTxt = new Label();
             monthCalendar1 = new MonthCalendar();
             progressBar1 = new ProgressBar();
             label1 = new Label();
             menuBar1 = new WF_Gym_Personal_Tracker.UI.MenuBar();
-            button1 = new Button();
-            button2 = new Button();
+            nextBtn = new Button();
+            previousBtn = new Button();
             button3 = new Button();
             todaysWorkoutTable = new DataGridView();
-            Completed = new DataGridViewCheckBoxColumn();
-            Duration = new DataGridViewTextBoxColumn();
-            Weight = new DataGridViewTextBoxColumn();
-            Reps = new DataGridViewTextBoxColumn();
-            Sets = new DataGridViewTextBoxColumn();
             ExerciseName = new DataGridViewTextBoxColumn();
-            label2 = new Label();
-            label3 = new Label();
+            Sets = new DataGridViewTextBoxColumn();
+            Reps = new DataGridViewTextBoxColumn();
+            Weight = new DataGridViewTextBoxColumn();
+            Duration = new DataGridViewTextBoxColumn();
+            Completed = new DataGridViewCheckBoxColumn();
+            WorkoutNameLabel = new Label();
             groupBox1 = new GroupBox();
+            workoutLogBindingSource = new BindingSource(components);
             ((System.ComponentModel.ISupportInitialize)todaysWorkoutTable).BeginInit();
             groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)workoutLogBindingSource).BeginInit();
             SuspendLayout();
             // 
             // welcomeTxt
@@ -93,23 +95,25 @@
             menuBar1.Size = new Size(908, 36);
             menuBar1.TabIndex = 6;
             // 
-            // button1
+            // nextBtn
             // 
-            button1.Location = new Point(784, 195);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 7;
-            button1.Text = "Next";
-            button1.UseVisualStyleBackColor = true;
+            nextBtn.Location = new Point(784, 195);
+            nextBtn.Name = "nextBtn";
+            nextBtn.Size = new Size(75, 23);
+            nextBtn.TabIndex = 7;
+            nextBtn.Text = "Next";
+            nextBtn.UseVisualStyleBackColor = true;
+            nextBtn.Click += button1_Click;
             // 
-            // button2
+            // previousBtn
             // 
-            button2.Location = new Point(25, 195);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 8;
-            button2.Text = "Previous";
-            button2.UseVisualStyleBackColor = true;
+            previousBtn.Location = new Point(25, 195);
+            previousBtn.Name = "previousBtn";
+            previousBtn.Size = new Size(75, 23);
+            previousBtn.TabIndex = 8;
+            previousBtn.Text = "Previous";
+            previousBtn.UseVisualStyleBackColor = true;
+            previousBtn.Click += previousBtn_Click;
             // 
             // button3
             // 
@@ -124,11 +128,36 @@
             // 
             todaysWorkoutTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             todaysWorkoutTable.Columns.AddRange(new DataGridViewColumn[] { ExerciseName, Sets, Reps, Weight, Duration, Completed });
-            todaysWorkoutTable.Location = new Point(5, 75);
+            todaysWorkoutTable.Location = new Point(5, 55);
             todaysWorkoutTable.Name = "todaysWorkoutTable";
             todaysWorkoutTable.Size = new Size(643, 163);
             todaysWorkoutTable.TabIndex = 0;
             todaysWorkoutTable.CellContentClick += todaysWorkoutTable_CellContentClick;
+            // 
+            // ExerciseName
+            // 
+            ExerciseName.HeaderText = "Exercise Name";
+            ExerciseName.Name = "ExerciseName";
+            // 
+            // Sets
+            // 
+            Sets.HeaderText = "Sets";
+            Sets.Name = "Sets";
+            // 
+            // Reps
+            // 
+            Reps.HeaderText = "Reps";
+            Reps.Name = "Reps";
+            // 
+            // Weight
+            // 
+            Weight.HeaderText = "Weight";
+            Weight.Name = "Weight";
+            // 
+            // Duration
+            // 
+            Duration.HeaderText = "Duration";
+            Duration.Name = "Duration";
             // 
             // Completed
             // 
@@ -137,53 +166,18 @@
             Completed.Resizable = DataGridViewTriState.True;
             Completed.SortMode = DataGridViewColumnSortMode.Automatic;
             // 
-            // Duration
+            // WorkoutNameLabel
             // 
-            Duration.HeaderText = "Duration";
-            Duration.Name = "Duration";
-            // 
-            // Weight
-            // 
-            Weight.HeaderText = "Weight";
-            Weight.Name = "Weight";
-            // 
-            // Reps
-            // 
-            Reps.HeaderText = "Reps";
-            Reps.Name = "Reps";
-            // 
-            // Sets
-            // 
-            Sets.HeaderText = "Sets";
-            Sets.Name = "Sets";
-            // 
-            // ExerciseName
-            // 
-            ExerciseName.HeaderText = "Exercise Name";
-            ExerciseName.Name = "ExerciseName";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(276, 18);
-            label2.Name = "label2";
-            label2.Size = new Size(96, 15);
-            label2.TabIndex = 1;
-            label2.Text = "Today's Workout";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(280, 43);
-            label3.Name = "label3";
-            label3.Size = new Size(88, 15);
-            label3.TabIndex = 2;
-            label3.Text = "Workout Name";
+            WorkoutNameLabel.AutoSize = true;
+            WorkoutNameLabel.Location = new Point(276, 27);
+            WorkoutNameLabel.Name = "WorkoutNameLabel";
+            WorkoutNameLabel.Size = new Size(88, 15);
+            WorkoutNameLabel.TabIndex = 2;
+            WorkoutNameLabel.Text = "Workout Name";
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(label3);
-            groupBox1.Controls.Add(label2);
+            groupBox1.Controls.Add(WorkoutNameLabel);
             groupBox1.Controls.Add(todaysWorkoutTable);
             groupBox1.Location = new Point(114, 52);
             groupBox1.Margin = new Padding(2);
@@ -194,14 +188,18 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Today's Workout";
             // 
+            // workoutLogBindingSource
+            // 
+            workoutLogBindingSource.DataSource = typeof(Models.Logs.WorkoutLog);
+            // 
             // Dashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(904, 579);
             Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(previousBtn);
+            Controls.Add(nextBtn);
             Controls.Add(menuBar1);
             Controls.Add(label1);
             Controls.Add(progressBar1);
@@ -214,6 +212,7 @@
             ((System.ComponentModel.ISupportInitialize)todaysWorkoutTable).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)workoutLogBindingSource).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -225,8 +224,8 @@
         private ProgressBar progressBar1;
         private Label label1;
         private UI.MenuBar menuBar1;
-        private Button button1;
-        private Button button2;
+        private Button nextBtn;
+        private Button previousBtn;
         private Button button3;
         private DataGridView todaysWorkoutTable;
         private DataGridViewTextBoxColumn ExerciseName;
@@ -235,8 +234,8 @@
         private DataGridViewTextBoxColumn Weight;
         private DataGridViewTextBoxColumn Duration;
         private DataGridViewCheckBoxColumn Completed;
-        private Label label2;
-        private Label label3;
+        private Label WorkoutNameLabel;
         private GroupBox groupBox1;
+        private BindingSource workoutLogBindingSource;
     }
 }

@@ -8,6 +8,8 @@ namespace WF_Gym_Personal_Tracker.Models
 {
     public static class FormControls
     {
+        public static int currentWorkoutIndex = 0;
+
         public static void OpenNewForm(Form parent, Form child)
         {
             child.Show();
