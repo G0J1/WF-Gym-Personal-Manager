@@ -37,7 +37,15 @@ namespace WF_Gym_Personal_Tracker
 
         private void LoadExerciseNames()
         {
+            if (cmbWorkout.SelectedItem == null)
+            {
+                return;
+            }
+
+            string selectedWorkout = cmbWorkout.SelectedItem.ToString();
+
             var exerciseNames = WorkoutService.GetWorkouts()
+                .Where(w => w.name == selectedWorkout)
                 .SelectMany(w => w.exercises)
                 .Select(e => e.name)
                 .Distinct()
@@ -63,6 +71,13 @@ namespace WF_Gym_Personal_Tracker
 
             if (exerciseLogs.Count == 0)
             {
+                lblMaxWeight.Text = "-";
+                lblMaxReps.Text = "-";
+                lblAverageReps.Text = "-";
+                lblTotalVolume.Text = "-"; 
+                lblSessions.Text = "-";
+                lblBestSet.Text = "-";
+
                 return;
             }
 
@@ -72,6 +87,30 @@ namespace WF_Gym_Personal_Tracker
 
             double totalVolume = exerciseLogs
                 .Sum(e => e.recordedWeight * e.recordedReps * e.recordedSets);
+
+            int sessions = exerciseLogs
+                .Select(e => e.completionDate)
+                .Distinct()
+                .Count();
+
+            var bestSet = exerciseLogs
+                .OrderByDescending(e => e.recordedWeight)
+                .ThenByDescending(e => e.recordedReps)
+                .First();
+
+            lblMaxWeight.Text = maxWeight.ToString("0.0" + " kg");
+            lblMaxReps.Text = maxReps.ToString();
+            lblAverageReps.Text = averageReps.ToString("0.0");
+            lblTotalVolume.Text = totalVolume.ToString("0.0") + " kg";
+            lblSessions.Text = sessions.ToString();
+
+            lblBestSet.Text = bestSet.recordedWeight.ToString("0.0") + " kg x " + bestSet.recordedReps;
+
+
+        }
+        private void cmbWorkout_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadExerciseNames();
         }
 
         private void cmbExercise_SelectedIndexChanged(object sender, EventArgs e)
@@ -85,6 +124,11 @@ namespace WF_Gym_Personal_Tracker
         }
 
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
+        {
+
+        }
+
+        private void grpProgress_Enter(object sender, EventArgs e)
         {
 
         }
