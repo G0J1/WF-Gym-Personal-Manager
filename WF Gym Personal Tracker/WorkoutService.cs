@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WF_Gym_Personal_Tracker.Models;
+using WF_Gym_Personal_Tracker.Models.Logs;
 
 namespace WF_Gym_Personal_Tracker
 {
     public static class WorkoutService
     {
         private static List<Workout> workouts = new List<Workout>();
+        private static List<WorkoutLog> workoutLogs = new List<WorkoutLog>();
 
         public static int maxIndex => workouts.Count - 1;
 
@@ -64,5 +66,16 @@ namespace WF_Gym_Personal_Tracker
         {
             return workouts[index].exercises;
         }
+
+        public static List<WorkoutLog> GetWorkoutLogs()
+        {
+            return workoutLogs;
+        }
+
+        public static void AddWorkLog(WorkoutLog log)
+        {
+            workoutLogs.Add(log);
+        }
+
     }
 }
