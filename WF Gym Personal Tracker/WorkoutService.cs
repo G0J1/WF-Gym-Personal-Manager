@@ -11,6 +11,7 @@ namespace WF_Gym_Personal_Tracker
     public static class WorkoutService
     {
         private static List<Workout> workouts = new List<Workout>();
+        private static List<Exercise> exercises = new List<Exercise>();
         private static List<WorkoutLog> workoutLogs = new List<WorkoutLog>();
 
         public static int maxIndex => workouts.Count - 1;
@@ -27,18 +28,44 @@ namespace WF_Gym_Personal_Tracker
             Workout armDay = new Workout("Arm Day");
             StrengthExercise pushUp = new StrengthExercise("Push Ups", 3, 3, 20.0f);
             StrengthExercise pullUp = new StrengthExercise("Pull Ups", 3, 3, 20.0f);
+            StrengthExercise bicepCurls = new StrengthExercise("Bicep Curls", 3, 3, 20.0f);
+            StrengthExercise bench = new StrengthExercise("Bench", 3, 3, 20.0f);
+            StrengthExercise skullCrushes = new StrengthExercise("Skull Crushers", 3, 3, 20.0f);
             armDay.exercises.Add(pushUp);
             armDay.exercises.Add(pullUp);
+            armDay.exercises.Add(bicepCurls);
+            armDay.exercises.Add(bench);
+            armDay.exercises.Add(skullCrushes);
+
 
             Workout legDay = new Workout("Leg Day");
             StrengthExercise squat = new StrengthExercise("Weighted Squats", 3, 3, 20.0f);
             StrengthExercise forLunge = new StrengthExercise("Forward Lunges", 3, 3, 20.0f);
+            StrengthExercise sideLunge = new StrengthExercise("Side Lunges", 3, 3, 20.0f);
+            StrengthExercise bulgSquats = new StrengthExercise("Bulgarian Squats", 3, 3, 20.0f);
+            StrengthExercise deadLift = new StrengthExercise("Dead Lift", 3, 3, 20.0f);
             legDay.exercises.Add(squat);
             legDay.exercises.Add(forLunge);
+            legDay.exercises.Add(sideLunge);
+            legDay.exercises.Add(bulgSquats);
+            legDay.exercises.Add(deadLift);
+
+            exercises.Add(pushUp);
+            exercises.Add(pullUp);
+            exercises.Add(bicepCurls);
+            exercises.Add(bench);
+            exercises.Add(skullCrushes);
+            exercises.Add(squat);
+            exercises.Add(forLunge);
+            exercises.Add(sideLunge);
+            exercises.Add(bulgSquats);
+            exercises.Add(deadLift);
 
             Workout fullBody = new Workout("Full Body Day");
-            fullBody.exercises.Add(pushUp);
-            fullBody.exercises.Add(squat);
+            foreach (Exercise e in  exercises)
+            {
+                fullBody.exercises.Add(e);
+            }
 
             workouts.Add(armDay);
             workouts.Add(legDay);
