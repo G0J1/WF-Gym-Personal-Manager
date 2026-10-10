@@ -35,13 +35,14 @@ namespace WF_Gym_Personal_Tracker
 
         private void RefreshWorkoutList()
         {
-            var exercises = WorkoutService.GetExercises(currentWorkoutIndex);
+            var exercises = WorkoutService.GetExercises(currentWorkoutIndex).OfType<StrengthExercise>().ToList();
+
+            
 
             setWorkoutNameText(WorkoutService.GetWorkoutName(currentWorkoutIndex));
             todaysWorkoutTable.DataSource = null;
             todaysWorkoutTable.AutoGenerateColumns = false;
-            todaysWorkoutTable.DataSource = WorkoutService.GetExercises(currentWorkoutIndex);
-
+            todaysWorkoutTable.DataSource = exercises;
         }
 
         private void setWorkoutNameText(string text)

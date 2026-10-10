@@ -130,6 +130,7 @@
             todaysWorkoutTable.Columns.AddRange(new DataGridViewColumn[] { ExerciseName, Sets, Reps, Weight, Duration, Completed });
             todaysWorkoutTable.Location = new Point(5, 55);
             todaysWorkoutTable.Name = "todaysWorkoutTable";
+            todaysWorkoutTable.ReadOnly = true;
             todaysWorkoutTable.Size = new Size(643, 163);
             todaysWorkoutTable.TabIndex = 0;
             // 
@@ -160,30 +161,35 @@
             ExerciseName.DataPropertyName = "name";
             ExerciseName.HeaderText = "Exercise Name";
             ExerciseName.Name = "ExerciseName";
+            ExerciseName.ReadOnly = true;
             // 
             // Sets
             // 
             Sets.DataPropertyName = "targetedSets";
             Sets.HeaderText = "Sets";
             Sets.Name = "Sets";
+            Sets.ReadOnly = true;
             // 
             // Reps
             // 
             Reps.DataPropertyName = "targetedReps";
             Reps.HeaderText = "Reps";
             Reps.Name = "Reps";
+            Reps.ReadOnly = true;
             // 
             // Weight
             // 
             Weight.DataPropertyName = "targetedWeight";
             Weight.HeaderText = "Weight";
             Weight.Name = "Weight";
+            Weight.ReadOnly = true;
             // 
             // Duration
             // 
             Duration.DataPropertyName = "targetedDuration";
             Duration.HeaderText = "Duration";
             Duration.Name = "Duration";
+            Duration.ReadOnly = true;
             // 
             // Completed
             // 
