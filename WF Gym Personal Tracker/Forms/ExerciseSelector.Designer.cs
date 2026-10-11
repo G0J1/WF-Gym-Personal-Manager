@@ -34,21 +34,23 @@
             button3 = new Button();
             label1 = new Label();
             menuBar1 = new WF_Gym_Personal_Tracker.UI.MenuBar();
+            listBox2 = new ListBox();
             SuspendLayout();
             // 
             // listBox1
             // 
             listBox1.FormattingEnabled = true;
-            listBox1.Location = new Point(25, 68);
-            listBox1.Margin = new Padding(2, 2, 2, 2);
+            listBox1.Location = new Point(26, 83);
+            listBox1.Margin = new Padding(2);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(178, 169);
+            listBox1.Size = new Size(95, 169);
             listBox1.TabIndex = 0;
+            listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
             // button1
             // 
             button1.Location = new Point(302, 134);
-            button1.Margin = new Padding(2, 2, 2, 2);
+            button1.Margin = new Padding(2);
             button1.Name = "button1";
             button1.Size = new Size(105, 27);
             button1.TabIndex = 1;
@@ -58,7 +60,7 @@
             // button2
             // 
             button2.Location = new Point(302, 83);
-            button2.Margin = new Padding(2, 2, 2, 2);
+            button2.Margin = new Padding(2);
             button2.Name = "button2";
             button2.Size = new Size(105, 27);
             button2.TabIndex = 2;
@@ -68,7 +70,7 @@
             // button3
             // 
             button3.Location = new Point(302, 191);
-            button3.Margin = new Padding(2, 2, 2, 2);
+            button3.Margin = new Padding(2);
             button3.Name = "button3";
             button3.Size = new Size(105, 23);
             button3.TabIndex = 8;
@@ -93,18 +95,28 @@
             menuBar1.Size = new Size(562, 36);
             menuBar1.TabIndex = 10;
             // 
+            // listBox2
+            // 
+            listBox2.FormattingEnabled = true;
+            listBox2.Location = new Point(168, 83);
+            listBox2.Margin = new Padding(2);
+            listBox2.Name = "listBox2";
+            listBox2.Size = new Size(95, 169);
+            listBox2.TabIndex = 11;
+            // 
             // ExerciseSelector
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(560, 290);
+            Controls.Add(listBox2);
             Controls.Add(menuBar1);
             Controls.Add(label1);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(listBox1);
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "ExerciseSelector";
             Text = "ExerciseBuilder";
             ResumeLayout(false);
@@ -119,5 +131,6 @@
         private Button button3;
         private Label label1;
         private UI.MenuBar menuBar1;
+        private ListBox listBox2;
     }
 }
