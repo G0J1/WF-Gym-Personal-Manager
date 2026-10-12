@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,6 +15,34 @@ namespace WF_Gym_Personal_Tracker.Models
         {
             child.Show();
             parent.Hide();
+        }
+
+        public static int ReturnTextBoxInt(TextBox tb)
+        {
+            try
+            {
+                int val = Convert.ToInt32(tb.Text);
+                return val;
+            }
+            catch (Exception ex)
+            {
+                /*MessageBox.Show("Invalid Input!");*/
+            }
+            return -1;
+        }
+
+        public static double ReturnTextBoxDoub(TextBox tb)
+        {
+            try
+            {
+                double val = Convert.ToDouble(tb.Text);
+                return val;
+            }
+            catch (Exception ex)
+            {
+                /*MessageBox.Show("Invalid Input!");*/
+            }
+            return -1;
         }
     }
 }

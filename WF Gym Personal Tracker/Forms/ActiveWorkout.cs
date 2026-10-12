@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.Logging;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,6 +20,10 @@ namespace WF_Gym_Personal_Tracker.Forms
         private WorkoutLog loggedWorkout;
         private int currentExerciseIndex = 0;
 
+        private int enteredSets = -1;
+        private int enteredReps = -1;
+        private double enteredWeight = -1;
+
 
         public ActiveWorkout(Workout w)
         {
@@ -38,10 +43,18 @@ namespace WF_Gym_Personal_Tracker.Forms
         public void RefreshScreen()
         {
             exerciseLabel.Text = activeWorkout.exercises[currentExerciseIndex].name;
+            setsBox.Clear();
+            repsBox.Clear();
+            weightBox.Clear();
         }
 
         public void NextPage()
         {
+            if (LogExercise() == false)
+            {
+                return;
+            }
+            
             if (currentExerciseIndex < (activeWorkout.exercises.Count - 1))
             {
                 currentExerciseIndex++;
@@ -49,8 +62,9 @@ namespace WF_Gym_Personal_Tracker.Forms
             }
             else
             {
-                WorkoutService.AddWorkLog(loggedWorkout);
+                LogWorkout();
                 FormControls.OpenNewForm(this, new Dashboard());
+
 
             }
         }
@@ -72,6 +86,47 @@ namespace WF_Gym_Personal_Tracker.Forms
         private void button1_Click(object sender, EventArgs e)
         {
             PreviousPage();
+        }
+        private ExerciseLog GetCurrentExercise()
+        {
+            return loggedWorkout.exerciseLogs[currentExerciseIndex];
+        }
+
+        private void setsBox_TextChanged(object sender, EventArgs e)
+        {
+            /*enteredSets = FormControls.ReturnTextBoxInt(setsBox);*/
+        }
+
+        private void repsBox_TextChanged(object sender, EventArgs e)
+        {
+           /* enteredReps = FormControls.ReturnTextBoxInt(repsBox);*/
+        }
+
+        private void weightBox_TextChanged(object sender, EventArgs e)
+        {
+/*            enteredWeight = FormControls.ReturnTextBoxDoub(weightBox);*/
+        }
+
+        private void LogWorkout()
+        {
+            WorkoutService.AddWorkLog(loggedWorkout);
+        }
+
+        private bool LogExercise()
+        {
+            enteredSets = FormControls.ReturnTextBoxInt(setsBox);
+            enteredReps = FormControls.ReturnTextBoxInt(repsBox);
+            enteredWeight = FormControls.ReturnTextBoxDoub(weightBox);
+
+            if (enteredWeight == -1 ||  enteredSets == -1 || enteredReps == -1)
+            {
+                MessageBox.Show("Invalid Input!");
+                return false;
+            }
+            GetCurrentExercise().recordedSets = enteredSets;
+            GetCurrentExercise().recordedReps = enteredReps;
+            GetCurrentExercise().recordedWeight = enteredWeight;
+            return true;
         }
     }
 }

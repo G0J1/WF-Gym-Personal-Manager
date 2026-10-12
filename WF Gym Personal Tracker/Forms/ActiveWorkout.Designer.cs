@@ -34,6 +34,11 @@
             exerciseLabel = new Label();
             button1 = new Button();
             button2 = new Button();
+            panel1 = new Panel();
+            weightBox = new TextBox();
+            repsBox = new TextBox();
+            setsBox = new TextBox();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // menuBar1
@@ -54,7 +59,7 @@
             // 
             // progressBar1
             // 
-            progressBar1.Location = new Point(204, 212);
+            progressBar1.Location = new Point(205, 254);
             progressBar1.Name = "progressBar1";
             progressBar1.Size = new Size(370, 23);
             progressBar1.TabIndex = 2;
@@ -70,7 +75,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(204, 183);
+            button1.Location = new Point(205, 225);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 4;
@@ -80,7 +85,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(499, 183);
+            button2.Location = new Point(500, 225);
             button2.Name = "button2";
             button2.Size = new Size(75, 23);
             button2.TabIndex = 5;
@@ -88,11 +93,46 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
+            // panel1
+            // 
+            panel1.Controls.Add(weightBox);
+            panel1.Controls.Add(repsBox);
+            panel1.Controls.Add(setsBox);
+            panel1.Location = new Point(234, 109);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(341, 100);
+            panel1.TabIndex = 6;
+            // 
+            // weightBox
+            // 
+            weightBox.Location = new Point(249, 51);
+            weightBox.Name = "weightBox";
+            weightBox.Size = new Size(61, 23);
+            weightBox.TabIndex = 2;
+            weightBox.TextChanged += weightBox_TextChanged;
+            // 
+            // repsBox
+            // 
+            repsBox.Location = new Point(133, 51);
+            repsBox.Name = "repsBox";
+            repsBox.Size = new Size(61, 23);
+            repsBox.TabIndex = 1;
+            repsBox.TextChanged += repsBox_TextChanged;
+            // 
+            // setsBox
+            // 
+            setsBox.Location = new Point(22, 51);
+            setsBox.Name = "setsBox";
+            setsBox.Size = new Size(61, 23);
+            setsBox.TabIndex = 0;
+            setsBox.TextChanged += setsBox_TextChanged;
+            // 
             // ActiveWorkout
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(panel1);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(exerciseLabel);
@@ -102,6 +142,8 @@
             Name = "ActiveWorkout";
             Text = "ActiveWorkout";
             Load += ActiveWorkout_Load;
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -114,5 +156,9 @@
         private Label exerciseLabel;
         private Button button1;
         private Button button2;
+        private Panel panel1;
+        private TextBox weightBox;
+        private TextBox repsBox;
+        private TextBox setsBox;
     }
 }
