@@ -38,6 +38,9 @@
             weightBox = new TextBox();
             repsBox = new TextBox();
             setsBox = new TextBox();
+            label1 = new Label();
+            label2 = new Label();
+            label3 = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -95,6 +98,9 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(label3);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(label1);
             panel1.Controls.Add(weightBox);
             panel1.Controls.Add(repsBox);
             panel1.Controls.Add(setsBox);
@@ -126,6 +132,33 @@
             setsBox.Size = new Size(61, 23);
             setsBox.TabIndex = 0;
             setsBox.TextChanged += setsBox_TextChanged;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(36, 33);
+            label1.Name = "label1";
+            label1.Size = new Size(28, 15);
+            label1.TabIndex = 3;
+            label1.Text = "Sets";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(146, 33);
+            label2.Name = "label2";
+            label2.Size = new Size(32, 15);
+            label2.TabIndex = 4;
+            label2.Text = "Reps";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(249, 33);
+            label3.Name = "label3";
+            label3.Size = new Size(45, 15);
+            label3.TabIndex = 5;
+            label3.Text = "Weight";
             // 
             // ActiveWorkout
             // 
@@ -160,5 +193,8 @@
         private TextBox weightBox;
         private TextBox repsBox;
         private TextBox setsBox;
+        private Label label3;
+        private Label label2;
+        private Label label1;
     }
 }

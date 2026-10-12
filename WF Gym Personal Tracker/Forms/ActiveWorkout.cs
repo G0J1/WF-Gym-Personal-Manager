@@ -42,10 +42,36 @@ namespace WF_Gym_Personal_Tracker.Forms
 
         public void RefreshScreen()
         {
+            ExerciseLog log = GetCurrentExercise();
+
             exerciseLabel.Text = activeWorkout.exercises[currentExerciseIndex].name;
-            setsBox.Clear();
-            repsBox.Clear();
-            weightBox.Clear();
+            if (log.recordedReps >= 0)
+            {
+                setsBox.Text = log.recordedSets.ToString();
+            }
+            else
+            {
+                setsBox.Clear();
+            }
+            
+
+            if (log.recordedReps >= 0)
+            {
+                repsBox.Text = log.recordedReps.ToString();
+            }
+            else
+            {
+                repsBox.Clear();
+            }
+
+            if (log.recordedWeight >= 0)
+            {
+                weightBox.Text = log.recordedWeight.ToString();
+            }
+            else
+            {
+                weightBox.Clear();
+            }
         }
 
         public void NextPage()
