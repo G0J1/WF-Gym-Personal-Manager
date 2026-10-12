@@ -35,6 +35,8 @@
             label1 = new Label();
             menuBar1 = new WF_Gym_Personal_Tracker.UI.MenuBar();
             listBox2 = new ListBox();
+            label2 = new Label();
+            label3 = new Label();
             SuspendLayout();
             // 
             // listBox1
@@ -104,11 +106,31 @@
             listBox2.Size = new Size(95, 169);
             listBox2.TabIndex = 11;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(17, 66);
+            label2.Name = "label2";
+            label2.Size = new Size(104, 15);
+            label2.TabIndex = 12;
+            label2.Text = "Available Exercises";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(159, 66);
+            label3.Name = "label3";
+            label3.Size = new Size(96, 15);
+            label3.TabIndex = 13;
+            label3.Text = "Current Exercises";
+            // 
             // ExerciseSelector
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(560, 290);
+            Controls.Add(label3);
+            Controls.Add(label2);
             Controls.Add(listBox2);
             Controls.Add(menuBar1);
             Controls.Add(label1);
@@ -132,5 +154,7 @@
         private Label label1;
         private UI.MenuBar menuBar1;
         private ListBox listBox2;
+        private Label label2;
+        private Label label3;
     }
 }

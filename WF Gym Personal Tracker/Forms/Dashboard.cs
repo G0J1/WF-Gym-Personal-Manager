@@ -1,16 +1,17 @@
 using WF_Gym_Personal_Tracker.Models;
 using WF_Gym_Personal_Tracker.Forms;
+using WF_Gym_Personal_Tracker.Models.Interfaces;
 
 namespace WF_Gym_Personal_Tracker
 {
-    public partial class Dashboard : Form
+    public partial class Dashboard : Form, INavigateable
     {
         private int currentWorkoutIndex = 0;
 
         public Dashboard()
         {
             InitializeComponent();
-            RefreshWorkoutList();
+            RefreshScreen();
         }
 
         private void Dashboard_Load(object sender, EventArgs e)
@@ -33,7 +34,28 @@ namespace WF_Gym_Personal_Tracker
             FormControls.OpenNewForm(this, new ProgressTracker());
         }
 
-        private void RefreshWorkoutList()
+        private void setWorkoutNameText(string text)
+        {
+            WorkoutNameLabel.Text = text;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            NextPage();
+        }
+
+        private void previousBtn_Click(object sender, EventArgs e)
+        {
+            PreviousPage();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Workout w = WorkoutService.GetWorkouts()[currentWorkoutIndex];
+            FormControls.OpenNewForm(this, new ActiveWorkout(w));
+        }
+
+        public void RefreshScreen()
         {
             var dataRows = WorkoutService.GetExercises(currentWorkoutIndex).OfType<StrengthExercise>().ToList();
 
@@ -43,29 +65,24 @@ namespace WF_Gym_Personal_Tracker
             todaysWorkoutTable.DataSource = dataRows;
         }
 
-        private void setWorkoutNameText(string text)
-        {
-            WorkoutNameLabel.Text = text;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
+        public void NextPage()
         {
             currentWorkoutIndex++;
             if (currentWorkoutIndex > (WorkoutService.maxIndex))
             {
                 currentWorkoutIndex = 0;
             }
-            RefreshWorkoutList();
+            RefreshScreen();
         }
 
-        private void previousBtn_Click(object sender, EventArgs e)
+        public void PreviousPage()
         {
             currentWorkoutIndex--;
             if (currentWorkoutIndex < 0)
             {
                 currentWorkoutIndex = WorkoutService.maxIndex;
             }
-            RefreshWorkoutList();
+            RefreshScreen();
         }
     }
 }

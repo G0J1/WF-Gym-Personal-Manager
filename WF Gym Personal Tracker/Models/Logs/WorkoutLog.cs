@@ -13,9 +13,14 @@ namespace WF_Gym_Personal_Tracker.Models.Logs
         public bool completed { get; set; }
         public DateOnly completionDate { get; set; }
 
-        public WorkoutLog() 
+        public WorkoutLog(Workout w) 
         {
             exerciseLogs = new List<ExerciseLog>();
+            workout = w;
+            foreach (Exercise e in workout.exercises)
+            {
+                exerciseLogs.Add(new ExerciseLog(e));
+            }
         }
         
     }
