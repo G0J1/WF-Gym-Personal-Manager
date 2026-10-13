@@ -135,6 +135,8 @@ namespace WF_Gym_Personal_Tracker.Forms
 
         private void LogWorkout()
         {
+            loggedWorkout.completed = true;
+            loggedWorkout.completionDate = new DateOnly();
             WorkoutService.AddWorkLog(loggedWorkout);
         }
 
@@ -149,9 +151,11 @@ namespace WF_Gym_Personal_Tracker.Forms
                 MessageBox.Show("Invalid Input!");
                 return false;
             }
+            GetCurrentExercise().completionDate = new DateOnly();
             GetCurrentExercise().recordedSets = enteredSets;
             GetCurrentExercise().recordedReps = enteredReps;
             GetCurrentExercise().recordedWeight = enteredWeight;
+            GetCurrentExercise().completed = true;
             return true;
         }
     }
