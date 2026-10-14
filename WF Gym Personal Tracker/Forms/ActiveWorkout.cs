@@ -56,6 +56,12 @@ namespace WF_Gym_Personal_Tracker.Forms
         {
             exerciseLabel.Text = activeWorkout.exercises[currentExerciseIndex].name;
 
+            // progress bar
+            progressBar1.Maximum = Math.Max(1, loggedWorkout.exerciseLogs.Count);
+
+            progressBar1.Value = loggedWorkout.exerciseLogs
+                .Count(e => e.completed);
+
             ExerciseLog log = GetCurrentExercise();
             if (log.loggedExercise is StrengthExercise)
             {

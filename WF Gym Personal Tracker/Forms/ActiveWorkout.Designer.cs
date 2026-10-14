@@ -42,9 +42,9 @@
             repsBox = new TextBox();
             setsBox = new TextBox();
             timeBasedPanel = new Panel();
-            label4 = new Label();
-            toggleTimerBtn = new Button();
             timeLbl = new Label();
+            toggleTimerBtn = new Button();
+            label4 = new Label();
             strengthPanel.SuspendLayout();
             timeBasedPanel.SuspendLayout();
             SuspendLayout();
@@ -73,6 +73,8 @@
             progressBar1.Margin = new Padding(4, 5, 4, 5);
             progressBar1.Name = "progressBar1";
             progressBar1.Size = new Size(529, 38);
+            progressBar1.Step = 1;
+            progressBar1.Style = ProgressBarStyle.Continuous;
             progressBar1.TabIndex = 2;
             // 
             // exerciseLabel
@@ -188,14 +190,14 @@
             timeBasedPanel.Size = new Size(487, 167);
             timeBasedPanel.TabIndex = 6;
             // 
-            // label4
+            // timeLbl
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(209, 3);
-            label4.Name = "label4";
-            label4.Size = new Size(56, 25);
-            label4.TabIndex = 0;
-            label4.Text = "Timer";
+            timeLbl.AutoSize = true;
+            timeLbl.Location = new Point(212, 44);
+            timeLbl.Name = "timeLbl";
+            timeLbl.Size = new Size(47, 25);
+            timeLbl.TabIndex = 2;
+            timeLbl.Text = "time";
             // 
             // toggleTimerBtn
             // 
@@ -207,14 +209,14 @@
             toggleTimerBtn.UseVisualStyleBackColor = true;
             toggleTimerBtn.Click += toggleTimerBtn_Click;
             // 
-            // timeLbl
+            // label4
             // 
-            timeLbl.AutoSize = true;
-            timeLbl.Location = new Point(212, 44);
-            timeLbl.Name = "timeLbl";
-            timeLbl.Size = new Size(47, 25);
-            timeLbl.TabIndex = 2;
-            timeLbl.Text = "time";
+            label4.AutoSize = true;
+            label4.Location = new Point(209, 3);
+            label4.Name = "label4";
+            label4.Size = new Size(56, 25);
+            label4.TabIndex = 0;
+            label4.Text = "Timer";
             // 
             // ActiveWorkout
             // 
