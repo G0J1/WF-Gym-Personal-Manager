@@ -28,59 +28,57 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
+            btnArmDay = new Button();
+            btnLegDay = new Button();
+            btnFullBody = new Button();
             menuBar1 = new WF_Gym_Personal_Tracker.UI.MenuBar();
             SuspendLayout();
             // 
-            // button1
+            // btnArmDay
             // 
-            button1.Location = new Point(209, 41);
-            button1.Margin = new Padding(2, 2, 2, 2);
-            button1.Name = "button1";
-            button1.Size = new Size(116, 37);
-            button1.TabIndex = 0;
-            button1.Text = "Arm Day";
-            button1.UseVisualStyleBackColor = true;
+            btnArmDay.Location = new Point(299, 68);
+            btnArmDay.Name = "btnArmDay";
+            btnArmDay.Size = new Size(166, 62);
+            btnArmDay.TabIndex = 0;
+            btnArmDay.Text = "Arm Day";
+            btnArmDay.UseVisualStyleBackColor = true;
+            btnArmDay.Click += btnArmDay_Click;
             // 
-            // button2
+            // btnLegDay
             // 
-            button2.Location = new Point(209, 95);
-            button2.Margin = new Padding(2, 2, 2, 2);
-            button2.Name = "button2";
-            button2.Size = new Size(116, 40);
-            button2.TabIndex = 1;
-            button2.Text = "Leg Day";
-            button2.UseVisualStyleBackColor = true;
+            btnLegDay.Location = new Point(299, 158);
+            btnLegDay.Name = "btnLegDay";
+            btnLegDay.Size = new Size(166, 67);
+            btnLegDay.TabIndex = 1;
+            btnLegDay.Text = "Leg Day";
+            btnLegDay.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnFullBody
             // 
-            button3.Location = new Point(209, 152);
-            button3.Margin = new Padding(2, 2, 2, 2);
-            button3.Name = "button3";
-            button3.Size = new Size(116, 38);
-            button3.TabIndex = 2;
-            button3.Text = "Full Body";
-            button3.UseVisualStyleBackColor = true;
+            btnFullBody.Location = new Point(299, 253);
+            btnFullBody.Name = "btnFullBody";
+            btnFullBody.Size = new Size(166, 63);
+            btnFullBody.TabIndex = 2;
+            btnFullBody.Text = "Full Body";
+            btnFullBody.UseVisualStyleBackColor = true;
             // 
             // menuBar1
             // 
             menuBar1.Location = new Point(-1, 0);
+            menuBar1.Margin = new Padding(6, 8, 6, 8);
             menuBar1.Name = "menuBar1";
-            menuBar1.Size = new Size(562, 36);
+            menuBar1.Size = new Size(803, 60);
             menuBar1.TabIndex = 3;
             // 
             // WorkoutBuilder
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(560, 209);
+            ClientSize = new Size(800, 348);
             Controls.Add(menuBar1);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Margin = new Padding(2, 2, 2, 2);
+            Controls.Add(btnFullBody);
+            Controls.Add(btnLegDay);
+            Controls.Add(btnArmDay);
             Name = "WorkoutBuilder";
             Text = "WorkoutBuilder";
             ResumeLayout(false);
@@ -88,9 +86,9 @@
 
         #endregion
 
-        private Button button1;
-        private Button button2;
-        private Button button3;
+        private Button btnArmDay;
+        private Button btnLegDay;
+        private Button btnFullBody;
         private UI.MenuBar menuBar1;
     }
 }
