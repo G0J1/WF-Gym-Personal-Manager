@@ -13,6 +13,9 @@ namespace WF_Gym_Personal_Tracker
             InitializeComponent();
             RefreshScreen();
             dateLabel.Text = DateOnly.FromDateTime(DateTime.Now).ToString();
+
+            string userName = Environment.UserName;
+            welcomeTxt.Text = "Welcome " + userName + "!";
         }
 
         private void Dashboard_Load(object sender, EventArgs e)
