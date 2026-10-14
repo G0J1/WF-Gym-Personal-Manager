@@ -58,11 +58,13 @@ namespace WF_Gym_Personal_Tracker
         public void RefreshScreen()
         {
             var dataRows = WorkoutService.GetExercises(currentWorkoutIndex).OfType<StrengthExercise>().ToList();
+            
+            var dataRows2 = WorkoutService.GetExercises(currentWorkoutIndex).Select(e => new DashboardRow(e)).ToList();
 
             setWorkoutNameText(WorkoutService.GetWorkoutName(currentWorkoutIndex));
             todaysWorkoutTable.DataSource = null;
             todaysWorkoutTable.AutoGenerateColumns = false;
-            todaysWorkoutTable.DataSource = dataRows;
+            todaysWorkoutTable.DataSource = dataRows2;
         }
 
         public void NextPage()

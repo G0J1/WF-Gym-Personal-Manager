@@ -50,6 +50,9 @@ namespace WF_Gym_Personal_Tracker
             legDay.exercises.Add(bulgSquats);
             legDay.exercises.Add(deadLift);
 
+
+            TimedExercise deadHang = new TimedExercise("Dead Hang", new TimeSpan(0,1,0));
+
             exercises.Add(pushUp);
             exercises.Add(pullUp);
             exercises.Add(bicepCurls);
@@ -60,6 +63,7 @@ namespace WF_Gym_Personal_Tracker
             exercises.Add(sideLunge);
             exercises.Add(bulgSquats);
             exercises.Add(deadLift);
+            exercises.Add(deadHang);
 
             Workout fullBody = new Workout("Full Body Day");
             foreach (Exercise e in  exercises)

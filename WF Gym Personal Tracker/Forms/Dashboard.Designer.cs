@@ -38,15 +38,15 @@
             previousBtn = new Button();
             button3 = new Button();
             todaysWorkoutTable = new DataGridView();
+            WorkoutNameLabel = new Label();
+            groupBox1 = new GroupBox();
+            workoutLogBindingSource = new BindingSource(components);
             ExerciseName = new DataGridViewTextBoxColumn();
             Sets = new DataGridViewTextBoxColumn();
             Reps = new DataGridViewTextBoxColumn();
             Weight = new DataGridViewTextBoxColumn();
             Duration = new DataGridViewTextBoxColumn();
             Completed = new DataGridViewCheckBoxColumn();
-            WorkoutNameLabel = new Label();
-            groupBox1 = new GroupBox();
-            workoutLogBindingSource = new BindingSource(components);
             ((System.ComponentModel.ISupportInitialize)todaysWorkoutTable).BeginInit();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)workoutLogBindingSource).BeginInit();
@@ -57,49 +57,50 @@
             welcomeTxt.AutoSize = true;
             welcomeTxt.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             welcomeTxt.ForeColor = Color.FromArgb(64, 64, 64);
-            welcomeTxt.Location = new Point(402, 25);
+            welcomeTxt.Location = new Point(574, 53);
+            welcomeTxt.Margin = new Padding(4, 0, 4, 0);
             welcomeTxt.Name = "welcomeTxt";
-            welcomeTxt.Size = new Size(99, 28);
+            welcomeTxt.Size = new Size(147, 41);
             welcomeTxt.TabIndex = 0;
             welcomeTxt.Text = "Welcome";
             // 
             // monthCalendar1
             // 
-            monthCalendar1.Location = new Point(322, 368);
-            monthCalendar1.Margin = new Padding(6, 5, 6, 5);
+            monthCalendar1.Location = new Point(460, 613);
+            monthCalendar1.Margin = new Padding(9, 8, 9, 8);
             monthCalendar1.Name = "monthCalendar1";
             monthCalendar1.TabIndex = 3;
             // 
             // progressBar1
             // 
-            progressBar1.Location = new Point(303, 534);
-            progressBar1.Margin = new Padding(2);
+            progressBar1.Location = new Point(433, 890);
             progressBar1.Name = "progressBar1";
-            progressBar1.Size = new Size(253, 15);
+            progressBar1.Size = new Size(361, 25);
             progressBar1.TabIndex = 4;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(410, 551);
-            label1.Margin = new Padding(2, 0, 2, 0);
+            label1.Location = new Point(586, 918);
             label1.Name = "label1";
-            label1.Size = new Size(38, 15);
+            label1.Size = new Size(59, 25);
             label1.TabIndex = 5;
             label1.Text = "quote";
             // 
             // menuBar1
             // 
-            menuBar1.Location = new Point(-1, -1);
+            menuBar1.Location = new Point(-1, -2);
+            menuBar1.Margin = new Padding(6, 8, 6, 8);
             menuBar1.Name = "menuBar1";
-            menuBar1.Size = new Size(908, 36);
+            menuBar1.Size = new Size(1297, 60);
             menuBar1.TabIndex = 6;
             // 
             // nextBtn
             // 
-            nextBtn.Location = new Point(784, 195);
+            nextBtn.Location = new Point(1120, 325);
+            nextBtn.Margin = new Padding(4, 5, 4, 5);
             nextBtn.Name = "nextBtn";
-            nextBtn.Size = new Size(75, 23);
+            nextBtn.Size = new Size(107, 38);
             nextBtn.TabIndex = 7;
             nextBtn.Text = "Next";
             nextBtn.UseVisualStyleBackColor = true;
@@ -107,9 +108,10 @@
             // 
             // previousBtn
             // 
-            previousBtn.Location = new Point(25, 195);
+            previousBtn.Location = new Point(36, 325);
+            previousBtn.Margin = new Padding(4, 5, 4, 5);
             previousBtn.Name = "previousBtn";
-            previousBtn.Size = new Size(75, 23);
+            previousBtn.Size = new Size(107, 38);
             previousBtn.TabIndex = 8;
             previousBtn.Text = "Previous";
             previousBtn.UseVisualStyleBackColor = true;
@@ -117,9 +119,10 @@
             // 
             // button3
             // 
-            button3.Location = new Point(390, 326);
+            button3.Location = new Point(557, 543);
+            button3.Margin = new Padding(4, 5, 4, 5);
             button3.Name = "button3";
-            button3.Size = new Size(100, 34);
+            button3.Size = new Size(143, 57);
             button3.TabIndex = 9;
             button3.Text = "Start Workout";
             button3.UseVisualStyleBackColor = true;
@@ -129,61 +132,21 @@
             // 
             todaysWorkoutTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             todaysWorkoutTable.Columns.AddRange(new DataGridViewColumn[] { ExerciseName, Sets, Reps, Weight, Duration, Completed });
-            todaysWorkoutTable.Location = new Point(5, 55);
+            todaysWorkoutTable.Location = new Point(7, 92);
+            todaysWorkoutTable.Margin = new Padding(4, 5, 4, 5);
             todaysWorkoutTable.Name = "todaysWorkoutTable";
             todaysWorkoutTable.ReadOnly = true;
-            todaysWorkoutTable.Size = new Size(643, 163);
+            todaysWorkoutTable.RowHeadersWidth = 62;
+            todaysWorkoutTable.Size = new Size(919, 272);
             todaysWorkoutTable.TabIndex = 0;
-            // 
-            // ExerciseName
-            // 
-            ExerciseName.DataPropertyName = "name";
-            ExerciseName.HeaderText = "Exercise Name";
-            ExerciseName.Name = "ExerciseName";
-            ExerciseName.ReadOnly = true;
-            // 
-            // Sets
-            // 
-            Sets.DataPropertyName = "targetedSets";
-            Sets.HeaderText = "Sets";
-            Sets.Name = "Sets";
-            Sets.ReadOnly = true;
-            // 
-            // Reps
-            // 
-            Reps.DataPropertyName = "targetedReps";
-            Reps.HeaderText = "Reps";
-            Reps.Name = "Reps";
-            Reps.ReadOnly = true;
-            // 
-            // Weight
-            // 
-            Weight.DataPropertyName = "targetedWeight";
-            Weight.HeaderText = "Weight";
-            Weight.Name = "Weight";
-            Weight.ReadOnly = true;
-            // 
-            // Duration
-            // 
-            Duration.DataPropertyName = "targetedDuration";
-            Duration.HeaderText = "Duration";
-            Duration.Name = "Duration";
-            Duration.ReadOnly = true;
-            // 
-            // Completed
-            // 
-            Completed.HeaderText = "Completed";
-            Completed.Name = "Completed";
-            Completed.ReadOnly = true;
-            Completed.Resizable = DataGridViewTriState.True;
-            Completed.SortMode = DataGridViewColumnSortMode.Automatic;
             // 
             // WorkoutNameLabel
             // 
             WorkoutNameLabel.AutoSize = true;
-            WorkoutNameLabel.Location = new Point(276, 27);
+            WorkoutNameLabel.Location = new Point(394, 45);
+            WorkoutNameLabel.Margin = new Padding(4, 0, 4, 0);
             WorkoutNameLabel.Name = "WorkoutNameLabel";
-            WorkoutNameLabel.Size = new Size(88, 15);
+            WorkoutNameLabel.Size = new Size(133, 25);
             WorkoutNameLabel.TabIndex = 2;
             WorkoutNameLabel.Text = "Workout Name";
             // 
@@ -191,20 +154,74 @@
             // 
             groupBox1.Controls.Add(WorkoutNameLabel);
             groupBox1.Controls.Add(todaysWorkoutTable);
-            groupBox1.Location = new Point(114, 52);
-            groupBox1.Margin = new Padding(2);
+            groupBox1.Location = new Point(163, 87);
             groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new Padding(2);
-            groupBox1.Size = new Size(658, 269);
+            groupBox1.Size = new Size(940, 448);
             groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
             groupBox1.Text = "Today's Workout";
             // 
+            // ExerciseName
+            // 
+            ExerciseName.DataPropertyName = "name";
+            ExerciseName.HeaderText = "Exercise Name";
+            ExerciseName.MinimumWidth = 8;
+            ExerciseName.Name = "ExerciseName";
+            ExerciseName.ReadOnly = true;
+            ExerciseName.Width = 150;
+            // 
+            // Sets
+            // 
+            Sets.DataPropertyName = "sets";
+            Sets.HeaderText = "Sets";
+            Sets.MinimumWidth = 8;
+            Sets.Name = "Sets";
+            Sets.ReadOnly = true;
+            Sets.Width = 150;
+            // 
+            // Reps
+            // 
+            Reps.DataPropertyName = "reps";
+            Reps.HeaderText = "Reps";
+            Reps.MinimumWidth = 8;
+            Reps.Name = "Reps";
+            Reps.ReadOnly = true;
+            Reps.Width = 150;
+            // 
+            // Weight
+            // 
+            Weight.DataPropertyName = "weight";
+            Weight.HeaderText = "Weight";
+            Weight.MinimumWidth = 8;
+            Weight.Name = "Weight";
+            Weight.ReadOnly = true;
+            Weight.Width = 150;
+            // 
+            // Duration
+            // 
+            Duration.DataPropertyName = "duration";
+            Duration.HeaderText = "Duration";
+            Duration.MinimumWidth = 8;
+            Duration.Name = "Duration";
+            Duration.ReadOnly = true;
+            Duration.Width = 150;
+            // 
+            // Completed
+            // 
+            Completed.DataPropertyName = "completed";
+            Completed.HeaderText = "Completed";
+            Completed.MinimumWidth = 8;
+            Completed.Name = "Completed";
+            Completed.ReadOnly = true;
+            Completed.Resizable = DataGridViewTriState.True;
+            Completed.SortMode = DataGridViewColumnSortMode.Automatic;
+            Completed.Width = 150;
+            // 
             // Dashboard
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(904, 579);
+            ClientSize = new Size(1291, 965);
             Controls.Add(button3);
             Controls.Add(previousBtn);
             Controls.Add(nextBtn);
@@ -214,6 +231,7 @@
             Controls.Add(welcomeTxt);
             Controls.Add(groupBox1);
             Controls.Add(monthCalendar1);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "Dashboard";
             Text = "Dashboard";
             Load += Dashboard_Load;
