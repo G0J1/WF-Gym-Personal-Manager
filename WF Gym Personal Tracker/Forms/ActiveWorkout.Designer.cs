@@ -34,53 +34,58 @@
             exerciseLabel = new Label();
             button1 = new Button();
             button2 = new Button();
-            panel1 = new Panel();
+            strengthPanel = new Panel();
+            label3 = new Label();
+            label2 = new Label();
+            label1 = new Label();
             weightBox = new TextBox();
             repsBox = new TextBox();
             setsBox = new TextBox();
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            panel1.SuspendLayout();
+            strengthPanel.SuspendLayout();
             SuspendLayout();
             // 
             // menuBar1
             // 
-            menuBar1.Location = new Point(0, 1);
+            menuBar1.Location = new Point(0, 2);
+            menuBar1.Margin = new Padding(6, 8, 6, 8);
             menuBar1.Name = "menuBar1";
-            menuBar1.Size = new Size(804, 36);
+            menuBar1.Size = new Size(1149, 60);
             menuBar1.TabIndex = 0;
             // 
             // workoutName
             // 
             workoutName.AutoSize = true;
-            workoutName.Location = new Point(353, 40);
+            workoutName.Location = new Point(504, 67);
+            workoutName.Margin = new Padding(4, 0, 4, 0);
             workoutName.Name = "workoutName";
-            workoutName.Size = new Size(88, 15);
+            workoutName.Size = new Size(133, 25);
             workoutName.TabIndex = 1;
             workoutName.Text = "Workout Name";
             // 
             // progressBar1
             // 
-            progressBar1.Location = new Point(205, 254);
+            progressBar1.Location = new Point(293, 423);
+            progressBar1.Margin = new Padding(4, 5, 4, 5);
             progressBar1.Name = "progressBar1";
-            progressBar1.Size = new Size(370, 23);
+            progressBar1.Size = new Size(529, 38);
             progressBar1.TabIndex = 2;
             // 
             // exerciseLabel
             // 
             exerciseLabel.AutoSize = true;
-            exerciseLabel.Location = new Point(353, 82);
+            exerciseLabel.Location = new Point(504, 137);
+            exerciseLabel.Margin = new Padding(4, 0, 4, 0);
             exerciseLabel.Name = "exerciseLabel";
-            exerciseLabel.Size = new Size(91, 15);
+            exerciseLabel.Size = new Size(136, 25);
             exerciseLabel.TabIndex = 3;
             exerciseLabel.Text = "Current Exercise";
             // 
             // button1
             // 
-            button1.Location = new Point(205, 225);
+            button1.Location = new Point(293, 375);
+            button1.Margin = new Padding(4, 5, 4, 5);
             button1.Name = "button1";
-            button1.Size = new Size(75, 23);
+            button1.Size = new Size(107, 38);
             button1.TabIndex = 4;
             button1.Text = "Previous Exercise";
             button1.UseVisualStyleBackColor = true;
@@ -88,95 +93,104 @@
             // 
             // button2
             // 
-            button2.Location = new Point(500, 225);
+            button2.Location = new Point(714, 375);
+            button2.Margin = new Padding(4, 5, 4, 5);
             button2.Name = "button2";
-            button2.Size = new Size(75, 23);
+            button2.Size = new Size(107, 38);
             button2.TabIndex = 5;
             button2.Text = "Log";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
-            // panel1
+            // strengthPanel
             // 
-            panel1.Controls.Add(label3);
-            panel1.Controls.Add(label2);
-            panel1.Controls.Add(label1);
-            panel1.Controls.Add(weightBox);
-            panel1.Controls.Add(repsBox);
-            panel1.Controls.Add(setsBox);
-            panel1.Location = new Point(234, 109);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(341, 100);
-            panel1.TabIndex = 6;
+            strengthPanel.Controls.Add(label3);
+            strengthPanel.Controls.Add(label2);
+            strengthPanel.Controls.Add(label1);
+            strengthPanel.Controls.Add(weightBox);
+            strengthPanel.Controls.Add(repsBox);
+            strengthPanel.Controls.Add(setsBox);
+            strengthPanel.Location = new Point(334, 182);
+            strengthPanel.Margin = new Padding(4, 5, 4, 5);
+            strengthPanel.Name = "strengthPanel";
+            strengthPanel.Size = new Size(487, 167);
+            strengthPanel.TabIndex = 6;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(356, 55);
+            label3.Margin = new Padding(4, 0, 4, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(68, 25);
+            label3.TabIndex = 5;
+            label3.Text = "Weight";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(209, 55);
+            label2.Margin = new Padding(4, 0, 4, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(50, 25);
+            label2.TabIndex = 4;
+            label2.Text = "Reps";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(51, 55);
+            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(45, 25);
+            label1.TabIndex = 3;
+            label1.Text = "Sets";
             // 
             // weightBox
             // 
-            weightBox.Location = new Point(249, 51);
+            weightBox.Location = new Point(356, 85);
+            weightBox.Margin = new Padding(4, 5, 4, 5);
             weightBox.Name = "weightBox";
-            weightBox.Size = new Size(61, 23);
+            weightBox.Size = new Size(85, 31);
             weightBox.TabIndex = 2;
             weightBox.TextChanged += weightBox_TextChanged;
             // 
             // repsBox
             // 
-            repsBox.Location = new Point(133, 51);
+            repsBox.Location = new Point(190, 85);
+            repsBox.Margin = new Padding(4, 5, 4, 5);
             repsBox.Name = "repsBox";
-            repsBox.Size = new Size(61, 23);
+            repsBox.Size = new Size(85, 31);
             repsBox.TabIndex = 1;
             repsBox.TextChanged += repsBox_TextChanged;
             // 
             // setsBox
             // 
-            setsBox.Location = new Point(22, 51);
+            setsBox.Location = new Point(31, 85);
+            setsBox.Margin = new Padding(4, 5, 4, 5);
             setsBox.Name = "setsBox";
-            setsBox.Size = new Size(61, 23);
+            setsBox.Size = new Size(85, 31);
             setsBox.TabIndex = 0;
             setsBox.TextChanged += setsBox_TextChanged;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(36, 33);
-            label1.Name = "label1";
-            label1.Size = new Size(28, 15);
-            label1.TabIndex = 3;
-            label1.Text = "Sets";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(146, 33);
-            label2.Name = "label2";
-            label2.Size = new Size(32, 15);
-            label2.TabIndex = 4;
-            label2.Text = "Reps";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(249, 33);
-            label3.Name = "label3";
-            label3.Size = new Size(45, 15);
-            label3.TabIndex = 5;
-            label3.Text = "Weight";
-            // 
             // ActiveWorkout
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(panel1);
+            ClientSize = new Size(1143, 750);
+            Controls.Add(strengthPanel);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(exerciseLabel);
             Controls.Add(progressBar1);
             Controls.Add(workoutName);
             Controls.Add(menuBar1);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "ActiveWorkout";
             Text = "ActiveWorkout";
             Load += ActiveWorkout_Load;
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            strengthPanel.ResumeLayout(false);
+            strengthPanel.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -189,7 +203,7 @@
         private Label exerciseLabel;
         private Button button1;
         private Button button2;
-        private Panel panel1;
+        private Panel strengthPanel;
         private TextBox weightBox;
         private TextBox repsBox;
         private TextBox setsBox;
