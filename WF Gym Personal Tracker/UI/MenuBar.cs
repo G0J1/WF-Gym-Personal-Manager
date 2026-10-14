@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WF_Gym_Personal_Tracker.Models;
 
 namespace WF_Gym_Personal_Tracker.UI
 {

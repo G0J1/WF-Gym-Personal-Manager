@@ -12,6 +12,7 @@ namespace WF_Gym_Personal_Tracker.Models
     {
         public string name { get; set; }
 
+
         public Exercise(string n)
         {
             name = n;

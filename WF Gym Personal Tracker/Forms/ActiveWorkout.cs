@@ -136,7 +136,7 @@ namespace WF_Gym_Personal_Tracker.Forms
         private void LogWorkout()
         {
             loggedWorkout.completed = true;
-            loggedWorkout.completionDate = new DateOnly();
+            loggedWorkout.completionDate = DateOnly.FromDateTime(DateTime.Now);
             WorkoutService.AddWorkLog(loggedWorkout);
         }
 
@@ -151,7 +151,7 @@ namespace WF_Gym_Personal_Tracker.Forms
                 MessageBox.Show("Invalid Input!");
                 return false;
             }
-            GetCurrentExercise().completionDate = new DateOnly();
+            GetCurrentExercise().completionDate = DateOnly.FromDateTime(DateTime.Now);
             GetCurrentExercise().recordedSets = enteredSets;
             GetCurrentExercise().recordedReps = enteredReps;
             GetCurrentExercise().recordedWeight = enteredWeight;
