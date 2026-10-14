@@ -41,7 +41,12 @@
             weightBox = new TextBox();
             repsBox = new TextBox();
             setsBox = new TextBox();
+            timeBasedPanel = new Panel();
+            label4 = new Label();
+            toggleTimerBtn = new Button();
+            timeLbl = new Label();
             strengthPanel.SuspendLayout();
+            timeBasedPanel.SuspendLayout();
             SuspendLayout();
             // 
             // menuBar1
@@ -173,11 +178,50 @@
             setsBox.TabIndex = 0;
             setsBox.TextChanged += setsBox_TextChanged;
             // 
+            // timeBasedPanel
+            // 
+            timeBasedPanel.Controls.Add(timeLbl);
+            timeBasedPanel.Controls.Add(toggleTimerBtn);
+            timeBasedPanel.Controls.Add(label4);
+            timeBasedPanel.Location = new Point(334, 179);
+            timeBasedPanel.Name = "timeBasedPanel";
+            timeBasedPanel.Size = new Size(487, 167);
+            timeBasedPanel.TabIndex = 6;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(209, 3);
+            label4.Name = "label4";
+            label4.Size = new Size(56, 25);
+            label4.TabIndex = 0;
+            label4.Text = "Timer";
+            // 
+            // toggleTimerBtn
+            // 
+            toggleTimerBtn.Location = new Point(181, 88);
+            toggleTimerBtn.Name = "toggleTimerBtn";
+            toggleTimerBtn.Size = new Size(112, 34);
+            toggleTimerBtn.TabIndex = 1;
+            toggleTimerBtn.Text = "Start";
+            toggleTimerBtn.UseVisualStyleBackColor = true;
+            toggleTimerBtn.Click += toggleTimerBtn_Click;
+            // 
+            // timeLbl
+            // 
+            timeLbl.AutoSize = true;
+            timeLbl.Location = new Point(212, 44);
+            timeLbl.Name = "timeLbl";
+            timeLbl.Size = new Size(47, 25);
+            timeLbl.TabIndex = 2;
+            timeLbl.Text = "time";
+            // 
             // ActiveWorkout
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1143, 750);
+            Controls.Add(timeBasedPanel);
             Controls.Add(strengthPanel);
             Controls.Add(button2);
             Controls.Add(button1);
@@ -191,6 +235,8 @@
             Load += ActiveWorkout_Load;
             strengthPanel.ResumeLayout(false);
             strengthPanel.PerformLayout();
+            timeBasedPanel.ResumeLayout(false);
+            timeBasedPanel.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -210,5 +256,9 @@
         private Label label3;
         private Label label2;
         private Label label1;
+        private Panel timeBasedPanel;
+        private Button toggleTimerBtn;
+        private Label label4;
+        private Label timeLbl;
     }
 }

@@ -23,6 +23,12 @@ namespace WF_Gym_Personal_Tracker.Forms
         private int enteredSets = -1;
         private int enteredReps = -1;
         private double enteredWeight = -1;
+        private int enteredTime = -1;
+
+        private bool timerActive = false;
+        private System.Windows.Forms.Timer timer;
+
+        private int currentSecs = 0;
 
 
         public ActiveWorkout(Workout w)
@@ -31,6 +37,12 @@ namespace WF_Gym_Personal_Tracker.Forms
             activeWorkout = w;
             workoutName.Text = activeWorkout.name;
             loggedWorkout = new WorkoutLog(w);
+            strengthPanel.Visible = false;
+            timeBasedPanel.Visible = false;
+
+            SetToggleTimerBtnLabel();
+
+
             RefreshScreen();
         }
 
@@ -42,36 +54,52 @@ namespace WF_Gym_Personal_Tracker.Forms
 
         public void RefreshScreen()
         {
-            ExerciseLog log = GetCurrentExercise();
-
             exerciseLabel.Text = activeWorkout.exercises[currentExerciseIndex].name;
-            if (log.recordedReps >= 0)
-            {
-                setsBox.Text = log.recordedSets.ToString();
-            }
-            else
-            {
-                setsBox.Clear();
-            }
-            
 
-            if (log.recordedReps >= 0)
+            ExerciseLog log = GetCurrentExercise();
+            if (log.loggedExercise is StrengthExercise)
             {
-                repsBox.Text = log.recordedReps.ToString();
+                strengthPanel.Visible = true;
+                if (log.recordedReps >= 0)
+                {
+                    setsBox.Text = log.recordedSets.ToString();
+                }
+                else
+                {
+                    setsBox.Clear();
+                }
+
+
+                if (log.recordedReps >= 0)
+                {
+                    repsBox.Text = log.recordedReps.ToString();
+                }
+                else
+                {
+                    repsBox.Clear();
+                }
+
+                if (log.recordedWeight >= 0)
+                {
+                    weightBox.Text = log.recordedWeight.ToString();
+                }
+                else
+                {
+                    weightBox.Clear();
+                }
             }
-            else
+            else if (log.loggedExercise is TimedExercise)
             {
-                repsBox.Clear();
+                timeBasedPanel.Visible = true;
+                timer = new System.Windows.Forms.Timer();
+                timer.Interval= 1000;
+                timer.Tick += OnTimerTick;
+                UpdateTimeLbl();
+                currentSecs = 0;
             }
 
-            if (log.recordedWeight >= 0)
-            {
-                weightBox.Text = log.recordedWeight.ToString();
-            }
-            else
-            {
-                weightBox.Clear();
-            }
+
+
         }
 
         public void NextPage()
@@ -80,7 +108,7 @@ namespace WF_Gym_Personal_Tracker.Forms
             {
                 return;
             }
-            
+
             if (currentExerciseIndex < (activeWorkout.exercises.Count - 1))
             {
                 currentExerciseIndex++;
@@ -125,12 +153,12 @@ namespace WF_Gym_Personal_Tracker.Forms
 
         private void repsBox_TextChanged(object sender, EventArgs e)
         {
-           /* enteredReps = FormControls.ReturnTextBoxInt(repsBox);*/
+            /* enteredReps = FormControls.ReturnTextBoxInt(repsBox);*/
         }
 
         private void weightBox_TextChanged(object sender, EventArgs e)
         {
-/*            enteredWeight = FormControls.ReturnTextBoxDoub(weightBox);*/
+            /*            enteredWeight = FormControls.ReturnTextBoxDoub(weightBox);*/
         }
 
         private void LogWorkout()
@@ -142,11 +170,32 @@ namespace WF_Gym_Personal_Tracker.Forms
 
         private bool LogExercise()
         {
+            if (GetCurrentExercise().loggedExercise is StrengthExercise)
+            {
+                if (LogStrengthExercise() == false)
+                {
+                    return false;
+                }
+            }
+            else if (GetCurrentExercise().loggedExercise is TimedExercise)
+            {
+                if (LogTimeExercise() == false)
+                {
+                    return false;
+                }
+            }
+            GetCurrentExercise().completionDate = DateOnly.FromDateTime(DateTime.Now);
+            GetCurrentExercise().completed = true;
+            return true;
+        }
+
+        private bool LogStrengthExercise()
+        {
             enteredSets = FormControls.ReturnTextBoxInt(setsBox);
             enteredReps = FormControls.ReturnTextBoxInt(repsBox);
             enteredWeight = FormControls.ReturnTextBoxDoub(weightBox);
 
-            if (enteredWeight == -1 ||  enteredSets == -1 || enteredReps == -1)
+            if (enteredWeight == -1 || enteredSets == -1 || enteredReps == -1)
             {
                 MessageBox.Show("Invalid Input!");
                 return false;
@@ -157,6 +206,76 @@ namespace WF_Gym_Personal_Tracker.Forms
             GetCurrentExercise().recordedWeight = enteredWeight;
             GetCurrentExercise().completed = true;
             return true;
+        }
+
+        private bool LogTimeExercise()
+        {
+            if (currentSecs == 0)
+            {
+                MessageBox.Show("Exercise not started!");
+                return false;
+            }
+
+            GetCurrentExercise().recordedTime = TimeSpan.FromSeconds(currentSecs);
+            return true;
+        }
+
+
+
+        private void toggleTimerBtn_Click(object sender, EventArgs e)
+        {
+            timerActive = !timerActive;
+            SetToggleTimerBtnLabel();
+            HandleTimer();
+        }
+
+        private void SetToggleTimerBtnLabel()
+        {
+            if (timerActive == true)
+            {
+                toggleTimerBtn.Text = "Stop";
+            }
+            else
+            {
+                toggleTimerBtn.Text = "Start";
+            }
+        }
+
+        private void HandleTimer()
+        {
+            if (timerActive)
+            {
+                timer.Start();
+            }
+            else if (!timerActive)
+            {
+                timer.Stop();
+            }
+        }
+
+        private void OnTimerTick(object sender, EventArgs e)
+        {
+            currentSecs++;
+            UpdateTimeLbl();
+        }
+
+        private void UpdateTimeLbl()
+        {
+            int elapsedMins = currentSecs / 60;
+            int elapsedSecs = currentSecs % 60;
+            string minsText = elapsedMins.ToString();
+            string secsText = elapsedSecs.ToString();
+
+            if (elapsedMins < 10)
+            {
+                minsText = "0" + elapsedMins;
+            }
+            if (elapsedSecs < 10)
+            {
+                secsText = "0" + elapsedSecs;
+            }
+
+            timeLbl.Text = minsText + " : " + secsText;
         }
     }
 }

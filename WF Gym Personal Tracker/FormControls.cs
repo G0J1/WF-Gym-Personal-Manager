@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WF_Gym_Personal_Tracker.Models
+namespace WF_Gym_Personal_Tracker
 {
     public static class FormControls
     {
