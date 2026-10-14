@@ -30,6 +30,8 @@
         {
             grpStats = new GroupBox();
             tableLayoutPanel1 = new TableLayoutPanel();
+            lblMaxWeight = new Label();
+            lblMaxWeightCaption = new Label();
             lblBestSetCaption = new Label();
             lblSessionsCaption = new Label();
             lblTotalVolumeCaption = new Label();
@@ -45,13 +47,17 @@
             lblWorkout = new Label();
             lblExercise = new Label();
             grpProgress = new GroupBox();
+            progressGraph = new ScottPlot.WinForms.FormsPlot();
             grpRecords = new GroupBox();
+            recordsList = new ListBox();
             grpFrequency = new GroupBox();
+            frequencyGraph = new ScottPlot.WinForms.FormsPlot();
             menuBar1 = new WF_Gym_Personal_Tracker.UI.MenuBar();
-            lblMaxWeightCaption = new Label();
-            lblMaxWeight = new Label();
             grpStats.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
+            grpProgress.SuspendLayout();
+            grpRecords.SuspendLayout();
+            grpFrequency.SuspendLayout();
             SuspendLayout();
             // 
             // grpStats
@@ -92,6 +98,24 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 64F));
             tableLayoutPanel1.Size = new Size(420, 427);
             tableLayoutPanel1.TabIndex = 0;
+            // 
+            // lblMaxWeight
+            // 
+            lblMaxWeight.AutoSize = true;
+            lblMaxWeight.Location = new Point(213, 0);
+            lblMaxWeight.Name = "lblMaxWeight";
+            lblMaxWeight.Size = new Size(140, 25);
+            lblMaxWeight.TabIndex = 13;
+            lblMaxWeight.Text = "Heaviest Weight";
+            // 
+            // lblMaxWeightCaption
+            // 
+            lblMaxWeightCaption.AutoSize = true;
+            lblMaxWeightCaption.Location = new Point(3, 0);
+            lblMaxWeightCaption.Name = "lblMaxWeightCaption";
+            lblMaxWeightCaption.Size = new Size(140, 25);
+            lblMaxWeightCaption.TabIndex = 12;
+            lblMaxWeightCaption.Text = "Heaviest Weight";
             // 
             // lblBestSetCaption
             // 
@@ -221,6 +245,7 @@
             // 
             // grpProgress
             // 
+            grpProgress.Controls.Add(progressGraph);
             grpProgress.Location = new Point(26, 151);
             grpProgress.Name = "grpProgress";
             grpProgress.Size = new Size(461, 471);
@@ -229,8 +254,17 @@
             grpProgress.Text = "Progress over time";
             grpProgress.Enter += grpProgress_Enter;
             // 
+            // progressGraph
+            // 
+            progressGraph.Dock = DockStyle.Fill;
+            progressGraph.Location = new Point(3, 27);
+            progressGraph.Name = "progressGraph";
+            progressGraph.Size = new Size(455, 441);
+            progressGraph.TabIndex = 0;
+            // 
             // grpRecords
             // 
+            grpRecords.Controls.Add(recordsList);
             grpRecords.Location = new Point(493, 622);
             grpRecords.Name = "grpRecords";
             grpRecords.Size = new Size(431, 233);
@@ -238,14 +272,31 @@
             grpRecords.TabStop = false;
             grpRecords.Text = "Recent personal records";
             // 
+            // recordsList
+            // 
+            recordsList.FormattingEnabled = true;
+            recordsList.Location = new Point(6, 48);
+            recordsList.Name = "recordsList";
+            recordsList.Size = new Size(420, 179);
+            recordsList.TabIndex = 0;
+            // 
             // grpFrequency
             // 
+            grpFrequency.Controls.Add(frequencyGraph);
             grpFrequency.Location = new Point(16, 622);
             grpFrequency.Name = "grpFrequency";
             grpFrequency.Size = new Size(470, 233);
             grpFrequency.TabIndex = 8;
             grpFrequency.TabStop = false;
             grpFrequency.Text = "Workouts per week (last 4 weeks)";
+            // 
+            // frequencyGraph
+            // 
+            frequencyGraph.Dock = DockStyle.Fill;
+            frequencyGraph.Location = new Point(3, 27);
+            frequencyGraph.Name = "frequencyGraph";
+            frequencyGraph.Size = new Size(464, 203);
+            frequencyGraph.TabIndex = 0;
             // 
             // menuBar1
             // 
@@ -255,29 +306,11 @@
             menuBar1.Size = new Size(943, 60);
             menuBar1.TabIndex = 9;
             // 
-            // lblMaxWeightCaption
-            // 
-            lblMaxWeightCaption.AutoSize = true;
-            lblMaxWeightCaption.Location = new Point(3, 0);
-            lblMaxWeightCaption.Name = "lblMaxWeightCaption";
-            lblMaxWeightCaption.Size = new Size(140, 25);
-            lblMaxWeightCaption.TabIndex = 12;
-            lblMaxWeightCaption.Text = "Heaviest Weight";
-            // 
-            // lblMaxWeight
-            // 
-            lblMaxWeight.AutoSize = true;
-            lblMaxWeight.Location = new Point(213, 0);
-            lblMaxWeight.Name = "lblMaxWeight";
-            lblMaxWeight.Size = new Size(140, 25);
-            lblMaxWeight.TabIndex = 13;
-            lblMaxWeight.Text = "Heaviest Weight";
-            // 
             // ProgressTracker
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(940, 915);
+            ClientSize = new Size(944, 915);
             Controls.Add(menuBar1);
             Controls.Add(grpFrequency);
             Controls.Add(grpRecords);
@@ -292,6 +325,9 @@
             grpStats.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
+            grpProgress.ResumeLayout(false);
+            grpRecords.ResumeLayout(false);
+            grpFrequency.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -320,5 +356,8 @@
         private Label lblTotalVolumeCaption;
         private Label lblMaxWeight;
         private Label lblMaxWeightCaption;
+        private ListBox recordsList;
+        private ScottPlot.WinForms.FormsPlot progressGraph;
+        private ScottPlot.WinForms.FormsPlot frequencyGraph;
     }
 }
