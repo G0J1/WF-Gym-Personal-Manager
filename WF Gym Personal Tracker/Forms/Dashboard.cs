@@ -69,6 +69,7 @@ namespace WF_Gym_Personal_Tracker
             todaysWorkoutTable.DataSource = null;
             todaysWorkoutTable.AutoGenerateColumns = false;
             todaysWorkoutTable.DataSource = dataRows2;
+            todaysWorkoutTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         public void NextPage()
