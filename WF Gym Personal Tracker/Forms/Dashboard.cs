@@ -83,7 +83,7 @@ namespace WF_Gym_Personal_Tracker
                 return;
             }
 
-                PreviousPage();
+            PreviousPage();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -137,7 +137,7 @@ namespace WF_Gym_Personal_Tracker
                 DataGridViewAutoSizeColumnsMode.Fill;
 
             RefreshProgressBar();
-            
+
         }
 
         public void NextPage()
@@ -187,6 +187,11 @@ namespace WF_Gym_Personal_Tracker
             }
 
             quoteLabel.Text = FormControls.GetRandomQuote(workoutProgressBar);
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
