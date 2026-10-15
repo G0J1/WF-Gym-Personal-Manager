@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using WF_Gym_Personal_Tracker.Forms;
 
 namespace WF_Gym_Personal_Tracker
 {
@@ -15,6 +9,41 @@ namespace WF_Gym_Personal_Tracker
         public WorkoutBuilder()
         {
             InitializeComponent();
+
+            button1.Click -= btnArmDay_Click;
+            button1.Click += btnArmDay_Click;
+
+            button2.Click -= btnLegDay_Click;
+            button2.Click += btnLegDay_Click;
+
+            button3.Click -= btnFullBody_Click;
+            button3.Click += btnFullBody_Click;
+        }
+
+        private void btnArmDay_Click(object? sender, EventArgs e)
+        {
+            OpenWorkout(0);
+        }
+
+        private void btnLegDay_Click(object? sender, EventArgs e)
+        {
+            OpenWorkout(1);
+        }
+
+        private void btnFullBody_Click(object? sender, EventArgs e)
+        {
+            OpenWorkout(2);
+        }
+
+        private void OpenWorkout(int workoutIndex)
+        {
+            FormControls.currentWorkoutIndex = workoutIndex;
+            WorkoutService.currentDashboardWIndex = workoutIndex;
+
+            using ExerciseSelector selector =
+                new ExerciseSelector(workoutIndex);
+
+            selector.ShowDialog(this);
         }
     }
 }
