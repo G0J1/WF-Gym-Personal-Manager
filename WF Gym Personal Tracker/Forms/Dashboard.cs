@@ -75,14 +75,12 @@ namespace WF_Gym_Personal_Tracker
 
         public void RefreshScreen()
         {
-            var dataRows = WorkoutService.GetExercises(WorkoutService.currentDashboardWIndex).OfType<StrengthExercise>().ToList();
-            
-            var dataRows2 = WorkoutService.GetExercises(WorkoutService.currentDashboardWIndex).Select(e => new DashboardRow(e, WorkoutService.GetWorkouts()[currentWorkoutIndex])).ToList();
+            var dataRows = WorkoutService.GetExercises(WorkoutService.currentDashboardWIndex).Select(e => new DashboardRow(e, WorkoutService.GetWorkouts()[WorkoutService.currentDashboardWIndex])).ToList();
 
             setWorkoutNameText(WorkoutService.GetWorkoutName(WorkoutService.currentDashboardWIndex));
             todaysWorkoutTable.DataSource = null;
             todaysWorkoutTable.AutoGenerateColumns = false;
-            todaysWorkoutTable.DataSource = dataRows2;
+            todaysWorkoutTable.DataSource = dataRows;
             todaysWorkoutTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 

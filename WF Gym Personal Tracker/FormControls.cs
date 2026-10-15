@@ -16,6 +16,7 @@ namespace WF_Gym_Personal_Tracker
         {
             child.Show();
             parent.Hide();
+            /*parent.Close();*/
         }
 
         public static int ReturnTextBoxInt(TextBox tb)
