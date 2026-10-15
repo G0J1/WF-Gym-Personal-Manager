@@ -14,6 +14,8 @@ namespace WF_Gym_Personal_Tracker
         private static List<Exercise> exercises = new List<Exercise>();
         private static List<WorkoutLog> workoutLogs = new List<WorkoutLog>();
 
+        public static int currentDashboardWIndex { get; set; } = 0;
+
         public static int maxIndex => workouts.Count - 1;
 
         static WorkoutService()

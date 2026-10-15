@@ -6,7 +6,6 @@ namespace WF_Gym_Personal_Tracker
 {
     public partial class Dashboard : Form, INavigateable
     {
-        private int currentWorkoutIndex = 0;
 
         public Dashboard()
         {
@@ -70,17 +69,17 @@ namespace WF_Gym_Personal_Tracker
                 MessageBox.Show("Today's workout already completed!");
                 return;
             }
-            Workout w = WorkoutService.GetWorkouts()[currentWorkoutIndex];
+            Workout w = WorkoutService.GetWorkouts()[WorkoutService.currentDashboardWIndex];
             FormControls.OpenNewForm(this, new ActiveWorkout(w));
         }
 
         public void RefreshScreen()
         {
-            var dataRows = WorkoutService.GetExercises(currentWorkoutIndex).OfType<StrengthExercise>().ToList();
+            var dataRows = WorkoutService.GetExercises(WorkoutService.currentDashboardWIndex).OfType<StrengthExercise>().ToList();
             
-            var dataRows2 = WorkoutService.GetExercises(currentWorkoutIndex).Select(e => new DashboardRow(e, WorkoutService.GetWorkouts()[currentWorkoutIndex])).ToList();
+            var dataRows2 = WorkoutService.GetExercises(WorkoutService.currentDashboardWIndex).Select(e => new DashboardRow(e, WorkoutService.GetWorkouts()[currentWorkoutIndex])).ToList();
 
-            setWorkoutNameText(WorkoutService.GetWorkoutName(currentWorkoutIndex));
+            setWorkoutNameText(WorkoutService.GetWorkoutName(WorkoutService.currentDashboardWIndex));
             todaysWorkoutTable.DataSource = null;
             todaysWorkoutTable.AutoGenerateColumns = false;
             todaysWorkoutTable.DataSource = dataRows2;
@@ -89,20 +88,20 @@ namespace WF_Gym_Personal_Tracker
 
         public void NextPage()
         {
-            currentWorkoutIndex++;
-            if (currentWorkoutIndex > (WorkoutService.maxIndex))
+            WorkoutService.currentDashboardWIndex++;
+            if (WorkoutService.currentDashboardWIndex > (WorkoutService.maxIndex))
             {
-                currentWorkoutIndex = 0;
+                WorkoutService.currentDashboardWIndex = 0;
             }
             RefreshScreen();
         }
 
         public void PreviousPage()
         {
-            currentWorkoutIndex--;
-            if (currentWorkoutIndex < 0)
+            WorkoutService.currentDashboardWIndex--;
+            if (WorkoutService.currentDashboardWIndex < 0)
             {
-                currentWorkoutIndex = WorkoutService.maxIndex;
+                WorkoutService.currentDashboardWIndex = WorkoutService.maxIndex;
             }
             RefreshScreen();
         }
