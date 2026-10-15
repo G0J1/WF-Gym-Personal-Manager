@@ -185,6 +185,8 @@ namespace WF_Gym_Personal_Tracker
                 workoutProgressBar.Maximum = 1;
                 workoutProgressBar.Value = 1;
             }
+
+            quoteLabel.Text = FormControls.GetRandomQuote(workoutProgressBar);
         }
     }
 }

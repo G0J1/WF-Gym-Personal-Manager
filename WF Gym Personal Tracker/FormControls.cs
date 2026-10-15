@@ -11,6 +11,26 @@ namespace WF_Gym_Personal_Tracker
     {
         public static int currentWorkoutIndex = 0;
 
+        public static List<string> noProgressQuotes = new List<string>();
+        public static List<string> quarterProgressQuotes = new List<string>();
+        public static List<string> halfProgressQuotes = new List<string>();
+        public static List<string> fullProgressQuotes = new List<string>();
+
+        static FormControls()
+        {
+            noProgressQuotes.Add("Let's get started!");
+            noProgressQuotes.Add("Don't be lazy!");
+            noProgressQuotes.Add("Rest is for the weak");
+
+            quarterProgressQuotes.Add("Keep going!");
+            quarterProgressQuotes.Add("You can do better!");
+
+            halfProgressQuotes.Add("So close!");
+            halfProgressQuotes.Add("More than half way!");
+
+            fullProgressQuotes.Add("Well done!");
+            fullProgressQuotes.Add("You did it!");
+        }
 
         public static void OpenNewForm(Form parent, Form child)
         {
@@ -72,6 +92,30 @@ namespace WF_Gym_Personal_Tracker
         public static DateOnly GetTodaysDate()
         {
             return DateOnly.FromDateTime(DateTime.Now);
+        }
+
+        public static string GetRandomQuote(ProgressBar pb)
+        {
+            double percentage = (double)pb.Value / (double)pb.Maximum;
+            Random rand = new Random();
+            if (percentage <= 0)
+            {
+                return noProgressQuotes[rand.Next(0, noProgressQuotes.Count)];
+            }
+            else if (percentage <= 0.5)
+            {
+                return quarterProgressQuotes[rand.Next(0, quarterProgressQuotes.Count)];
+            }
+            else if (percentage < 1)
+            {
+                return halfProgressQuotes[rand.Next(0, halfProgressQuotes.Count)];
+            }
+            else if (percentage >= 1)
+            {
+                return fullProgressQuotes[rand.Next(0, fullProgressQuotes.Count)];
+            }
+
+            return "How did we get here?";
         }
     }
 }

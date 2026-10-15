@@ -31,7 +31,7 @@
             components = new System.ComponentModel.Container();
             welcomeTxt = new Label();
             workoutProgressBar = new ProgressBar();
-            label1 = new Label();
+            quoteLabel = new Label();
             menuBar1 = new WF_Gym_Personal_Tracker.UI.MenuBar();
             nextBtn = new Button();
             previousBtn = new Button();
@@ -66,20 +66,20 @@
             // workoutProgressBar
             // 
             workoutProgressBar.Location = new Point(307, 424);
-            workoutProgressBar.Margin = new Padding(2, 2, 2, 2);
+            workoutProgressBar.Margin = new Padding(2);
             workoutProgressBar.Name = "workoutProgressBar";
             workoutProgressBar.Size = new Size(253, 15);
             workoutProgressBar.TabIndex = 4;
             // 
-            // label1
+            // quoteLabel
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(426, 440);
-            label1.Margin = new Padding(2, 0, 2, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(38, 15);
-            label1.TabIndex = 5;
-            label1.Text = "quote";
+            quoteLabel.AutoSize = true;
+            quoteLabel.Location = new Point(426, 440);
+            quoteLabel.Margin = new Padding(2, 0, 2, 0);
+            quoteLabel.Name = "quoteLabel";
+            quoteLabel.Size = new Size(38, 15);
+            quoteLabel.TabIndex = 5;
+            quoteLabel.Text = "quote";
             // 
             // menuBar1
             // 
@@ -203,9 +203,9 @@
             groupBox1.Controls.Add(WorkoutNameLabel);
             groupBox1.Controls.Add(todaysWorkoutTable);
             groupBox1.Location = new Point(118, 87);
-            groupBox1.Margin = new Padding(2, 2, 2, 2);
+            groupBox1.Margin = new Padding(2);
             groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new Padding(2, 2, 2, 2);
+            groupBox1.Padding = new Padding(2);
             groupBox1.Size = new Size(658, 269);
             groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
@@ -233,7 +233,7 @@
             Controls.Add(previousBtn);
             Controls.Add(nextBtn);
             Controls.Add(menuBar1);
-            Controls.Add(label1);
+            Controls.Add(quoteLabel);
             Controls.Add(workoutProgressBar);
             Controls.Add(welcomeTxt);
             Controls.Add(groupBox1);
@@ -253,7 +253,7 @@
 
         private Label welcomeTxt;
         private ProgressBar workoutProgressBar;
-        private Label label1;
+        private Label quoteLabel;
         private UI.MenuBar menuBar1;
         private Button nextBtn;
         private Button previousBtn;
