@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.37628.2 d17.14
+VisualStudioVersion = 17.14.37628.2
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WF Gym Personal Tracker", "WF Gym Personal Tracker.csproj", "{891587F6-B38B-437A-A1BD-FE1EF61032EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WF Gym Personal Tracker.Tests", "..\WF Gym Personal Tracker.Tests\WF Gym Personal Tracker.Tests.csproj", "{FBD8B6D6-1669-4080-B6CC-755953AECE0C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{891587F6-B38B-437A-A1BD-FE1EF61032EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{891587F6-B38B-437A-A1BD-FE1EF61032EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{891587F6-B38B-437A-A1BD-FE1EF61032EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBD8B6D6-1669-4080-B6CC-755953AECE0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBD8B6D6-1669-4080-B6CC-755953AECE0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBD8B6D6-1669-4080-B6CC-755953AECE0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBD8B6D6-1669-4080-B6CC-755953AECE0C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
