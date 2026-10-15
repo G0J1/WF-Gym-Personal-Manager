@@ -43,6 +43,11 @@ namespace WF_Gym_Personal_Tracker
 
         public bool refreshCompleted()
         {
+            if (WorkoutService.IsWorkoutActive())
+            {
+                return WorkoutService.activeWorkoutLog.exerciseLogs
+                    .Any(eL => eL.loggedExercise.name == name && eL.completed);
+            }
 
             return WorkoutService.GetWorkoutLogs()
                             .Where(w => w.completed && w.workout.name == workout.name && w.completionDate == FormControls.GetTodaysDate())

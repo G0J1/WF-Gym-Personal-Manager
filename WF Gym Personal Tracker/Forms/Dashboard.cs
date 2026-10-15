@@ -61,6 +61,11 @@ namespace WF_Gym_Personal_Tracker
                 MessageBox.Show("Today's workout already completed!");
                 return;
             }
+            else if (WorkoutService.IsWorkoutActive())
+            {
+                MessageBox.Show("Workout already started, cannot change!");
+                return;
+            }
 
             NextPage();
         }
@@ -72,8 +77,13 @@ namespace WF_Gym_Personal_Tracker
                 MessageBox.Show("Today's workout already completed!");
                 return;
             }
+            else if (WorkoutService.IsWorkoutActive())
+            {
+                MessageBox.Show("Workout already started, cannot change!");
+                return;
+            }
 
-            PreviousPage();
+                PreviousPage();
         }
 
         private void button3_Click(object sender, EventArgs e)
