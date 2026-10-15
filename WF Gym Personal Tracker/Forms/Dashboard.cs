@@ -6,34 +6,45 @@ namespace WF_Gym_Personal_Tracker
 {
     public partial class Dashboard : Form, INavigateable
     {
-        private int currentWorkoutIndex = 0;
-
         public Dashboard()
         {
             InitializeComponent();
-            // Return to the day most recently saved in the Workout Builder.
-            currentWorkoutIndex = Math.Clamp(FormControls.currentWorkoutIndex, 0, WorkoutService.maxIndex);
+
+            WorkoutService.currentDashboardWIndex = Math.Clamp(
+                FormControls.currentWorkoutIndex,
+                0,
+                WorkoutService.maxIndex);
+
             RefreshScreen();
             Activated += (sender, e) => RefreshScreen();
-            dateLabel.Text = DateOnly.FromDateTime(DateTime.Now).ToString();
+
+            dateLabel.Text = FormControls.GetTodaysDate().ToString();
+
+            string userName = Environment.UserName;
+            welcomeTxt.Text = "Welcome " + userName + "!";
         }
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
-
         }
 
-        private void workoutBuilderToolStripMenuItem_Click(object sender, EventArgs e)
+        private void workoutBuilderToolStripMenuItem_Click(
+            object sender,
+            EventArgs e)
         {
             FormControls.OpenNewForm(this, new WorkoutBuilder());
         }
 
-        private void dashboardToolStripMenuItem_Click(object sender, EventArgs e)
+        private void dashboardToolStripMenuItem_Click(
+            object sender,
+            EventArgs e)
         {
             FormControls.OpenNewForm(this, new Dashboard());
         }
 
-        private void progressTrackerMenuItem_Click(object sender, EventArgs e)
+        private void progressTrackerMenuItem_Click(
+            object sender,
+            EventArgs e)
         {
             FormControls.OpenNewForm(this, new ProgressTracker());
         }
@@ -45,53 +56,106 @@ namespace WF_Gym_Personal_Tracker
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (WorkoutService.IsWorkoutCompleted())
+            {
+                MessageBox.Show("Today's workout already completed!");
+                return;
+            }
+
             NextPage();
         }
 
         private void previousBtn_Click(object sender, EventArgs e)
         {
+            if (WorkoutService.IsWorkoutCompleted())
+            {
+                MessageBox.Show("Today's workout already completed!");
+                return;
+            }
+
             PreviousPage();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Workout w = WorkoutService.GetWorkouts()[currentWorkoutIndex];
-            if (w.exercises.Count == 0)
+            if (WorkoutService.IsWorkoutCompleted())
             {
-                MessageBox.Show("Add at least one exercise before starting a workout.");
+                MessageBox.Show("Today's workout already completed!");
                 return;
             }
-            FormControls.OpenNewForm(this, new ActiveWorkout(w));
+
+            Workout workout =
+                WorkoutService.GetWorkouts()[
+                    WorkoutService.currentDashboardWIndex];
+
+            if (workout.exercises.Count == 0)
+            {
+                MessageBox.Show(
+                    "Add at least one exercise before starting a workout.");
+
+                return;
+            }
+
+            FormControls.OpenNewForm(
+                this,
+                new ActiveWorkout(workout));
         }
 
         public void RefreshScreen()
         {
-            FormControls.currentWorkoutIndex = currentWorkoutIndex;
-            var dataRows2 = WorkoutService.GetExercises(currentWorkoutIndex).Select(e => new DashboardRow(e, currentWorkoutIndex)).ToList();
+            int workoutIndex =
+                WorkoutService.currentDashboardWIndex;
 
-            setWorkoutNameText(WorkoutService.GetWorkoutName(currentWorkoutIndex));
+            FormControls.currentWorkoutIndex = workoutIndex;
+
+            Workout workout =
+                WorkoutService.GetWorkouts()[workoutIndex];
+
+            var dataRows = WorkoutService
+                .GetExercises(workoutIndex)
+                .Select(exercise =>
+                    new DashboardRow(exercise, workout))
+                .ToList();
+
+            setWorkoutNameText(
+                WorkoutService.GetWorkoutName(workoutIndex));
+
             todaysWorkoutTable.DataSource = null;
             todaysWorkoutTable.AutoGenerateColumns = false;
-            todaysWorkoutTable.DataSource = dataRows2;
+            todaysWorkoutTable.DataSource = dataRows;
+            todaysWorkoutTable.AutoSizeColumnsMode =
+                DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         public void NextPage()
         {
-            currentWorkoutIndex++;
-            if (currentWorkoutIndex > (WorkoutService.maxIndex))
+            WorkoutService.currentDashboardWIndex++;
+
+            if (WorkoutService.currentDashboardWIndex >
+                WorkoutService.maxIndex)
             {
-                currentWorkoutIndex = 0;
+                WorkoutService.currentDashboardWIndex = 0;
             }
+
+            FormControls.currentWorkoutIndex =
+                WorkoutService.currentDashboardWIndex;
+
             RefreshScreen();
         }
 
         public void PreviousPage()
         {
-            currentWorkoutIndex--;
-            if (currentWorkoutIndex < 0)
+            WorkoutService.currentDashboardWIndex--;
+
+            if (WorkoutService.currentDashboardWIndex < 0)
             {
-                currentWorkoutIndex = WorkoutService.maxIndex;
+                WorkoutService.currentDashboardWIndex =
+                    WorkoutService.maxIndex;
             }
+
+            FormControls.currentWorkoutIndex =
+                WorkoutService.currentDashboardWIndex;
+
             RefreshScreen();
         }
     }

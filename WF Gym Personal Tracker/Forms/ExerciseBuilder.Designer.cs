@@ -120,6 +120,8 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSize = true;
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
             ClientSize = new Size(800, 450);
             Controls.Add(menuBar1);
             Controls.Add(button2);
@@ -132,7 +134,6 @@
             Controls.Add(textBox1);
             Name = "ExerciseBuilder";
             Text = "ExerciseBuilder";
-            Load += ExerciseBuilder_Load;
             ResumeLayout(false);
             PerformLayout();
         }

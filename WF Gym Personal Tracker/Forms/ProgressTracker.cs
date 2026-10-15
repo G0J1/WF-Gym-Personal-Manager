@@ -15,7 +15,11 @@ namespace WF_Gym_Personal_Tracker
 {
     public partial class ProgressTracker : Form
     {
-        private List<WorkoutLog> workoutLogs;
+        private List<ExerciseLog> selectedLogs = new List<ExerciseLog>();
+
+        private bool isLoading = true;
+
+        //         private List<WorkoutLog> workoutLogs;
 
         public ProgressTracker()
         {
@@ -24,6 +28,9 @@ namespace WF_Gym_Personal_Tracker
             //workoutLogs = new List<WorkoutLog>();
             LoadWorkoutNames();
             LoadExerciseNames();
+
+            isLoading = false;
+            UpdateAllResults();
         }
 
         private void LoadWorkoutNames()
@@ -54,68 +61,246 @@ namespace WF_Gym_Personal_Tracker
             cmbExercise.DataSource = exerciseNames;
         }
 
-        private void UpdateStatistics()
+        private void UpdateAllResults()
         {
-            if (cmbExercise.SelectedItem == null)
+            UpdateStatistics();
+            UpdatePersonalRecords();
+            UpdateProgressGraph();
+            UpdateFrequencyGraph();
+        }
+
+        private void UpdateProgressGraph()
+        {
+            progressGraph.Plot.Clear();
+
+            var dailyWeights = selectedLogs
+            .GroupBy(e => e.completionDate)
+            .OrderBy(group => group.Key)
+            .Select(group => new
             {
-                return;
+                Date = group.Key,
+                Weight = group.Max(e => e.recordedWeight)
+            })
+            .ToList();
+
+            if (dailyWeights.Count > 0)
+            {
+                double[] dates = dailyWeights
+                    .Select(e => e.Date
+                        .ToDateTime(TimeOnly.MinValue)
+                        .ToOADate())
+                    .ToArray();
+
+                double[] weights = dailyWeights
+                    .Select(e => e.Weight)
+                    .ToArray();
+
+                progressGraph.Plot.Add.Scatter(dates, weights);
+
+                progressGraph.Plot.Axes.DateTimeTicksBottom();
             }
 
-            string selectedExercise = cmbExercise.SelectedItem.ToString();
+            progressGraph.Plot.Title("Weight Progress");
+            progressGraph.Plot.XLabel("Date");
+            progressGraph.Plot.YLabel("Weight (kg)");
 
-            var exerciseLogs = WorkoutService.GetWorkoutLogs()
-                .SelectMany(w => w.exerciseLogs)
-                .Where(e => e.loggedExercise.name == selectedExercise)
-                .Where(e => e.completed)
+            progressGraph.Plot.Axes.AutoScale();
+            progressGraph.Refresh();
+
+        }
+
+        private void UpdateFrequencyGraph()
+        {
+            frequencyGraph.Plot.Clear();
+
+            DateOnly today = DateOnly.FromDateTime(DateTime.Today);
+
+            int daysfromMonday = ((int)today.DayOfWeek + 6) % 7;
+
+            DateOnly firstMonday = today.AddDays(-daysfromMonday - 21);
+
+            var completedWorkouts = WorkoutService.GetWorkoutLogs()
+                .Where(w => w.completed)
                 .ToList();
 
-            if (exerciseLogs.Count == 0)
-            {
-                lblMaxWeight.Text = "-";
-                lblMaxReps.Text = "-";
-                lblAverageReps.Text = "-";
-                lblTotalVolume.Text = "-"; 
-                lblSessions.Text = "-";
-                lblBestSet.Text = "-";
+            double[] counts = Enumerable.Range(0, 4)
+                .Select(week =>
+                {
+                    DateOnly start = firstMonday.AddDays(week * 7);
+                    DateOnly end = start.AddDays(7);
 
+                    return (double)completedWorkouts.Count(w =>
+                    w.completionDate >= start && w.completionDate < end);
+                })
+                .ToArray();
+
+            var bars = frequencyGraph.Plot.Add.Bars(counts);
+
+            bars.ValueLabelStyle.IsVisible = true;
+
+            frequencyGraph.Plot.Title("Workouts Per Week");
+            frequencyGraph.Plot.XLabel("Week");
+            frequencyGraph.Plot.YLabel("Completed Workouts");
+
+            frequencyGraph.Plot.Axes.AutoScale();
+            frequencyGraph.Refresh();
+
+        }
+
+
+        private void UpdateStatistics()
+        {
+            if (cmbWorkout.SelectedItem == null || cmbExercise.SelectedItem == null)
+            {
+                selectedLogs.Clear();
+                ClearStatistics();
                 return;
             }
 
-            double maxWeight = exerciseLogs.Max(e => e.recordedWeight);
-            int maxReps = exerciseLogs.Max(e => e.recordedReps);
-            double averageReps = exerciseLogs.Average(e => e.recordedReps);
+            string selectedWorkout = cmbWorkout.SelectedItem.ToString() ?? "";
 
-            double totalVolume = exerciseLogs
+            string selectedExercise = cmbExercise.SelectedItem.ToString() ?? "";
+
+            selectedLogs = WorkoutService.GetWorkoutLogs()
+                .Where(w => w.completed && w.workout.name == selectedWorkout)
+                .SelectMany(w => w.exerciseLogs)
+                .Where(e => e.completed && e.loggedExercise.name == selectedExercise)
+                .OrderBy(e => e.completionDate)
+                .ToList();
+
+            if (selectedLogs.Count == 0)
+            {
+                ClearStatistics();
+                return;
+            }
+
+            //var exerciseLogs = WorkoutService.GetWorkoutLogs()
+            //    .SelectMany(w => w.exerciseLogs)
+            //    .Where(e => e.loggedExercise.name == selectedExercise)
+            //    .Where(e => e.completed)
+            //    .ToList();
+
+            //if (exerciseLogs.Count == 0)
+            //{
+            //    lblMaxWeight.Text = "-";
+            //    lblMaxReps.Text = "-";
+            //    lblAverageReps.Text = "-";
+            //    lblTotalVolume.Text = "-"; 
+            //    lblSessions.Text = "-";
+            //    lblBestSet.Text = "-";
+
+            //    return;
+            //}
+
+            double maxWeight = selectedLogs.Max(e => e.recordedWeight);
+            int maxReps = selectedLogs.Max(e => e.recordedReps);
+            double averageReps = selectedLogs.Average(e => e.recordedReps);
+
+            double totalVolume = selectedLogs
                 .Sum(e => e.recordedWeight * e.recordedReps * e.recordedSets);
 
-            int sessions = exerciseLogs
+            int sessions = selectedLogs
                 .Select(e => e.completionDate)
                 .Distinct()
                 .Count();
 
-            var bestSet = exerciseLogs
+            var bestSet = selectedLogs
                 .OrderByDescending(e => e.recordedWeight)
                 .ThenByDescending(e => e.recordedReps)
                 .First();
 
-            lblMaxWeight.Text = maxWeight.ToString("0.0" + " kg");
+            lblMaxWeight.Text = maxWeight.ToString("0.0") + " kg";
             lblMaxReps.Text = maxReps.ToString();
             lblAverageReps.Text = averageReps.ToString("0.0");
             lblTotalVolume.Text = totalVolume.ToString("0.0") + " kg";
             lblSessions.Text = sessions.ToString();
 
             lblBestSet.Text = bestSet.recordedWeight.ToString("0.0") + " kg x " + bestSet.recordedReps;
+        }
 
+        private void ClearStatistics()
+        {
+            lblMaxWeight.Text = "-";
+            lblMaxReps.Text = "-";
+            lblAverageReps.Text = "-";
+            lblTotalVolume.Text = "-";
+            lblSessions.Text = "0";
+            lblBestSet.Text = "-";
+        }
+
+        private void UpdatePersonalRecords()
+        {
+            recordsList.Items.Clear();
+
+            var records = WorkoutService.GetWorkoutLogs()
+                .Where(w => w.completed)
+                .SelectMany(w => w.exerciseLogs)
+                .Where(e => e.completed)
+                .GroupBy(e => e.loggedExercise.name)
+                .Select(group => group
+                    .OrderByDescending(e => e.recordedWeight)
+                    .ThenByDescending(e => e.recordedReps)
+                    .First())
+                .OrderByDescending(e => e.completionDate)
+                .Take(10)
+                .ToList();
+
+            if (records.Count == 0)
+            {
+                recordsList.Items.Add("No records yet.");
+                return;
+            }
+
+            foreach (ExerciseLog log in records)
+            {
+                recordsList.Items.Add(
+                    log.loggedExercise.name + " - " +
+                    log.recordedWeight.ToString("0.0") +
+                    " kg x " + log.recordedReps);
+            }
+        }
+
+        private void ProgressGraph_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            g.Clear(Color.White);
+
+            var points = selectedLogs
+                .GroupBy(log => log.completionDate)
+                .OrderBy(group => group.Key)
+                .Select(group => new
+                {
+                    Date = group.Key,
+                    Weight = group.Max(log => log.recordedWeight)
+                })
+                .ToList();
+
+            if (points.Count == 0)
+            {
+                g.DrawString("No workout data yet.",
+                    Font,
+                    Brushes.Gray,
+                    15,
+                    15);
+                return;
+            }
 
         }
+
         private void cmbWorkout_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (isLoading) return;
+
             LoadExerciseNames();
+            UpdateAllResults();
         }
 
         private void cmbExercise_SelectedIndexChanged(object sender, EventArgs e)
         {
-            UpdateStatistics();
+            if (isLoading) return;
+
+            UpdateAllResults();
+            //UpdateStatistics();
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)

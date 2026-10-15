@@ -57,7 +57,7 @@
             welcomeTxt.AutoSize = true;
             welcomeTxt.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             welcomeTxt.ForeColor = Color.FromArgb(64, 64, 64);
-            welcomeTxt.Location = new Point(575, 48);
+            welcomeTxt.Location = new Point(574, 48);
             welcomeTxt.Margin = new Padding(4, 0, 4, 0);
             welcomeTxt.Name = "welcomeTxt";
             welcomeTxt.Size = new Size(147, 41);
@@ -66,7 +66,7 @@
             // 
             // progressBar1
             // 
-            progressBar1.Location = new Point(438, 706);
+            progressBar1.Location = new Point(439, 707);
             progressBar1.Name = "progressBar1";
             progressBar1.Size = new Size(361, 25);
             progressBar1.TabIndex = 4;
@@ -74,7 +74,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(609, 734);
+            label1.Location = new Point(609, 733);
             label1.Name = "label1";
             label1.Size = new Size(59, 25);
             label1.TabIndex = 5;
@@ -101,7 +101,7 @@
             // 
             // previousBtn
             // 
-            previousBtn.Location = new Point(42, 383);
+            previousBtn.Location = new Point(41, 383);
             previousBtn.Margin = new Padding(4, 5, 4, 5);
             previousBtn.Name = "previousBtn";
             previousBtn.Size = new Size(107, 38);
@@ -123,14 +123,17 @@
             // 
             // todaysWorkoutTable
             // 
+            todaysWorkoutTable.AllowUserToAddRows = false;
+            todaysWorkoutTable.AllowUserToDeleteRows = false;
             todaysWorkoutTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             todaysWorkoutTable.Columns.AddRange(new DataGridViewColumn[] { ExerciseName, Sets, Reps, Weight, Duration, Completed });
-            todaysWorkoutTable.Location = new Point(7, 92);
+            todaysWorkoutTable.Dock = DockStyle.Bottom;
+            todaysWorkoutTable.Location = new Point(3, 112);
             todaysWorkoutTable.Margin = new Padding(4, 5, 4, 5);
             todaysWorkoutTable.Name = "todaysWorkoutTable";
             todaysWorkoutTable.ReadOnly = true;
             todaysWorkoutTable.RowHeadersWidth = 62;
-            todaysWorkoutTable.Size = new Size(919, 272);
+            todaysWorkoutTable.Size = new Size(934, 333);
             todaysWorkoutTable.TabIndex = 0;
             // 
             // ExerciseName
@@ -213,7 +216,7 @@
             // dateLabel
             // 
             dateLabel.AutoSize = true;
-            dateLabel.Location = new Point(609, 106);
+            dateLabel.Location = new Point(609, 107);
             dateLabel.Name = "dateLabel";
             dateLabel.Size = new Size(59, 25);
             dateLabel.TabIndex = 10;
@@ -223,6 +226,8 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSize = true;
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
             ClientSize = new Size(1291, 1043);
             Controls.Add(dateLabel);
             Controls.Add(button3);
@@ -235,6 +240,7 @@
             Controls.Add(groupBox1);
             Margin = new Padding(4, 5, 4, 5);
             Name = "Dashboard";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Dashboard";
             Load += Dashboard_Load;
             ((System.ComponentModel.ISupportInitialize)todaysWorkoutTable).EndInit();

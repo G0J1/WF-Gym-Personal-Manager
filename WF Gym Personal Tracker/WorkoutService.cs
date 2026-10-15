@@ -14,6 +14,10 @@ namespace WF_Gym_Personal_Tracker
         private static List<Exercise> exercises = new List<Exercise>();
         private static List<WorkoutLog> workoutLogs = new List<WorkoutLog>();
 
+        public static WorkoutLog activeWorkoutLog;
+
+        public static int currentDashboardWIndex { get; set; } = 0;
+
         public static int maxIndex => workouts.Count - 1;
 
         static WorkoutService()
@@ -213,5 +217,33 @@ namespace WF_Gym_Personal_Tracker
             workoutLogs.Add(log);
         }
 
+        public static bool IsWorkoutCompleted()
+        {
+            return workoutLogs
+                    .Where(w => w.completionDate == FormControls.GetTodaysDate())
+                    .Any(w => w.completed);
+        }
+
+        public static void StartActiveWorkout(Workout w)
+        {
+            activeWorkoutLog = new WorkoutLog(w);
+        }
+
+        public static void FinishActiveWorkout()
+        {
+            if (activeWorkoutLog == null)
+            {
+                return;
+            }
+            activeWorkoutLog.completed = true;
+            activeWorkoutLog.completionDate = DateOnly.FromDateTime(DateTime.Now);
+            AddWorkLog(activeWorkoutLog);
+            activeWorkoutLog = null;
+        }
+
+        public static bool IsWorkoutActive()
+        {
+            return activeWorkoutLog != null;
+        }
     }
 }

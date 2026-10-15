@@ -40,6 +40,11 @@ namespace WF_Gym_Personal_Tracker.Forms
             strengthPanel.Visible = false;
             timeBasedPanel.Visible = false;
 
+            if (!(WorkoutService.IsWorkoutActive()))
+            {
+                WorkoutService.StartActiveWorkout(w);
+            }
+
             SetToggleTimerBtnLabel();
 
 
@@ -56,10 +61,17 @@ namespace WF_Gym_Personal_Tracker.Forms
         {
             exerciseLabel.Text = activeWorkout.exercises[currentExerciseIndex].name;
 
-            ExerciseLog log = GetCurrentExercise();
+            // progress bar
+            progressBar1.Maximum = Math.Max(1, WorkoutService.activeWorkoutLog.exerciseLogs.Count);
+
+            progressBar1.Value = WorkoutService.activeWorkoutLog.exerciseLogs
+                .Count(e => e.completed);
+
+            ExerciseLog log = GetCurrentExerciseActive();
             if (log.loggedExercise is StrengthExercise)
             {
                 strengthPanel.Visible = true;
+                timeBasedPanel.Visible = false;
                 if (log.recordedReps >= 0)
                 {
                     setsBox.Text = log.recordedSets.ToString();
@@ -90,6 +102,7 @@ namespace WF_Gym_Personal_Tracker.Forms
             }
             else if (log.loggedExercise is TimedExercise)
             {
+                strengthPanel.Visible = false;
                 timeBasedPanel.Visible = true;
                 timer = new System.Windows.Forms.Timer();
                 timer.Interval= 1000;
@@ -141,9 +154,9 @@ namespace WF_Gym_Personal_Tracker.Forms
         {
             PreviousPage();
         }
-        private ExerciseLog GetCurrentExercise()
+        private ExerciseLog GetCurrentExerciseActive()
         {
-            return loggedWorkout.exerciseLogs[currentExerciseIndex];
+            return WorkoutService.activeWorkoutLog.exerciseLogs[currentExerciseIndex];
         }
 
         private void setsBox_TextChanged(object sender, EventArgs e)
@@ -165,27 +178,27 @@ namespace WF_Gym_Personal_Tracker.Forms
         {
             loggedWorkout.completed = true;
             loggedWorkout.completionDate = DateOnly.FromDateTime(DateTime.Now);
-            WorkoutService.AddWorkLog(loggedWorkout);
+            WorkoutService.FinishActiveWorkout();
         }
 
         private bool LogExercise()
         {
-            if (GetCurrentExercise().loggedExercise is StrengthExercise)
+            if (GetCurrentExerciseActive().loggedExercise is StrengthExercise)
             {
                 if (LogStrengthExercise() == false)
                 {
                     return false;
                 }
             }
-            else if (GetCurrentExercise().loggedExercise is TimedExercise)
+            else if (GetCurrentExerciseActive().loggedExercise is TimedExercise)
             {
                 if (LogTimeExercise() == false)
                 {
                     return false;
                 }
             }
-            GetCurrentExercise().completionDate = DateOnly.FromDateTime(DateTime.Now);
-            GetCurrentExercise().completed = true;
+            GetCurrentExerciseActive().completionDate = DateOnly.FromDateTime(DateTime.Now);
+            GetCurrentExerciseActive().completed = true;
             return true;
         }
 
@@ -200,11 +213,11 @@ namespace WF_Gym_Personal_Tracker.Forms
                 MessageBox.Show("Invalid Input!");
                 return false;
             }
-            GetCurrentExercise().completionDate = DateOnly.FromDateTime(DateTime.Now);
-            GetCurrentExercise().recordedSets = enteredSets;
-            GetCurrentExercise().recordedReps = enteredReps;
-            GetCurrentExercise().recordedWeight = enteredWeight;
-            GetCurrentExercise().completed = true;
+            GetCurrentExerciseActive().completionDate = FormControls.GetTodaysDate();
+            GetCurrentExerciseActive().recordedSets = enteredSets;
+            GetCurrentExerciseActive().recordedReps = enteredReps;
+            GetCurrentExerciseActive().recordedWeight = enteredWeight;
+            GetCurrentExerciseActive().completed = true;
             return true;
         }
 
@@ -216,7 +229,7 @@ namespace WF_Gym_Personal_Tracker.Forms
                 return false;
             }
 
-            GetCurrentExercise().recordedTime = TimeSpan.FromSeconds(currentSecs);
+            GetCurrentExerciseActive().recordedTime = TimeSpan.FromSeconds(currentSecs);
             return true;
         }
 
