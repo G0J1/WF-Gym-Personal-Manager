@@ -4,7 +4,7 @@ using WF_Gym_Personal_Tracker.Models.Interfaces;
 
 namespace WF_Gym_Personal_Tracker
 {
-    public partial class Dashboard : Form, INavigateable
+    public partial class Dashboard : Form, INavigateable, IProgressBar
     {
         public Dashboard()
         {
@@ -135,6 +135,9 @@ namespace WF_Gym_Personal_Tracker
             todaysWorkoutTable.DataSource = dataRows;
             todaysWorkoutTable.AutoSizeColumnsMode =
                 DataGridViewAutoSizeColumnsMode.Fill;
+
+            RefreshProgressBar();
+            
         }
 
         public void NextPage()
@@ -167,6 +170,21 @@ namespace WF_Gym_Personal_Tracker
                 WorkoutService.currentDashboardWIndex;
 
             RefreshScreen();
+        }
+
+        public void RefreshProgressBar()
+        {
+            if (WorkoutService.IsWorkoutActive())
+            {
+                workoutProgressBar.Maximum = Math.Max(1, WorkoutService.activeWorkoutLog.exerciseLogs.Count);
+                workoutProgressBar.Value = WorkoutService.activeWorkoutLog.exerciseLogs
+                .Count(e => e.completed);
+            }
+            else if (WorkoutService.IsWorkoutCompleted())
+            {
+                workoutProgressBar.Maximum = 1;
+                workoutProgressBar.Value = 1;
+            }
         }
     }
 }

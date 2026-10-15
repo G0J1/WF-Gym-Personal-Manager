@@ -14,7 +14,7 @@ using WF_Gym_Personal_Tracker.Models.Logs;
 
 namespace WF_Gym_Personal_Tracker.Forms
 {
-    public partial class ActiveWorkout : Form, INavigateable
+    public partial class ActiveWorkout : Form, INavigateable, IProgressBar
     {
         private Workout activeWorkout;
         private WorkoutLog loggedWorkout;
@@ -61,11 +61,7 @@ namespace WF_Gym_Personal_Tracker.Forms
         {
             exerciseLabel.Text = activeWorkout.exercises[currentExerciseIndex].name;
 
-            // progress bar
-            progressBar1.Maximum = Math.Max(1, WorkoutService.activeWorkoutLog.exerciseLogs.Count);
-
-            progressBar1.Value = WorkoutService.activeWorkoutLog.exerciseLogs
-                .Count(e => e.completed);
+            RefreshProgressBar();
 
             ExerciseLog log = GetCurrentExerciseActive();
             if (log.loggedExercise is StrengthExercise)
@@ -289,6 +285,15 @@ namespace WF_Gym_Personal_Tracker.Forms
             }
 
             timeLbl.Text = minsText + " : " + secsText;
+        }
+
+        public void RefreshProgressBar()
+        {
+            // progress bar
+            progressBar1.Maximum = Math.Max(1, WorkoutService.activeWorkoutLog.exerciseLogs.Count);
+
+            progressBar1.Value = WorkoutService.activeWorkoutLog.exerciseLogs
+                .Count(e => e.completed);
         }
     }
 }
