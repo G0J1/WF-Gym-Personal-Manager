@@ -45,16 +45,31 @@ namespace WF_Gym_Personal_Tracker
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (WorkoutService.IsWorkoutCompleted())
+            {
+                MessageBox.Show("Today's workout already completed!");
+                return;
+            }
             NextPage();
         }
 
         private void previousBtn_Click(object sender, EventArgs e)
         {
+            if (WorkoutService.IsWorkoutCompleted())
+            {
+                MessageBox.Show("Today's workout already completed!");
+                return;
+            }
             PreviousPage();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
+            if (WorkoutService.IsWorkoutCompleted())
+            {
+                MessageBox.Show("Today's workout already completed!");
+                return;
+            }
             Workout w = WorkoutService.GetWorkouts()[currentWorkoutIndex];
             FormControls.OpenNewForm(this, new ActiveWorkout(w));
         }

@@ -108,5 +108,11 @@ namespace WF_Gym_Personal_Tracker
             workoutLogs.Add(log);
         }
 
+        public static bool IsWorkoutCompleted()
+        {
+            return workoutLogs
+                    .Where(w => w.completionDate == FormControls.GetTodaysDate())
+                    .Any(w => w.completed);
+        }
     }
 }
