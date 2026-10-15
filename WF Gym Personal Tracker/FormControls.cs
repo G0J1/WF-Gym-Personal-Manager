@@ -11,6 +11,7 @@ namespace WF_Gym_Personal_Tracker
     {
         public static int currentWorkoutIndex = 0;
 
+
         public static void OpenNewForm(Form parent, Form child)
         {
             child.Show();
@@ -43,6 +44,11 @@ namespace WF_Gym_Personal_Tracker
                 /*MessageBox.Show("Invalid Input!");*/
             }
             return -1;
+        }
+
+        public static DateOnly GetTodaysDate()
+        {
+            return DateOnly.FromDateTime(DateTime.Now);
         }
     }
 }

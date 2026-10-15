@@ -206,7 +206,7 @@ namespace WF_Gym_Personal_Tracker.Forms
                 MessageBox.Show("Invalid Input!");
                 return false;
             }
-            GetCurrentExercise().completionDate = DateOnly.FromDateTime(DateTime.Now);
+            GetCurrentExercise().completionDate = FormControls.GetTodaysDate();
             GetCurrentExercise().recordedSets = enteredSets;
             GetCurrentExercise().recordedReps = enteredReps;
             GetCurrentExercise().recordedWeight = enteredWeight;

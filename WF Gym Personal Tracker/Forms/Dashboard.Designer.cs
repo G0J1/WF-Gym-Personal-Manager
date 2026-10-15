@@ -66,7 +66,7 @@
             // progressBar1
             // 
             progressBar1.Location = new Point(307, 424);
-            progressBar1.Margin = new Padding(2, 2, 2, 2);
+            progressBar1.Margin = new Padding(2);
             progressBar1.Name = "progressBar1";
             progressBar1.Size = new Size(253, 15);
             progressBar1.TabIndex = 4;
@@ -129,7 +129,7 @@
             todaysWorkoutTable.Name = "todaysWorkoutTable";
             todaysWorkoutTable.ReadOnly = true;
             todaysWorkoutTable.RowHeadersWidth = 62;
-            todaysWorkoutTable.Size = new Size(643, 163);
+            todaysWorkoutTable.Size = new Size(643, 200);
             todaysWorkoutTable.TabIndex = 0;
             // 
             // ExerciseName
@@ -202,9 +202,9 @@
             groupBox1.Controls.Add(WorkoutNameLabel);
             groupBox1.Controls.Add(todaysWorkoutTable);
             groupBox1.Location = new Point(118, 87);
-            groupBox1.Margin = new Padding(2, 2, 2, 2);
+            groupBox1.Margin = new Padding(2);
             groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new Padding(2, 2, 2, 2);
+            groupBox1.Padding = new Padding(2);
             groupBox1.Size = new Size(658, 269);
             groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;

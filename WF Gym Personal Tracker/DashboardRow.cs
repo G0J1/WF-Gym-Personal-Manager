@@ -16,12 +16,13 @@ namespace WF_Gym_Personal_Tracker
         public TimeSpan duration { get; set; }
         public bool completed { get; set; }
 
-        public int workoutIndex;
 
-        public DashboardRow(Exercise e, int w)
+        public Workout workout;
+
+        public DashboardRow(Exercise e, Workout wrk)
         {
             name = e.name;
-            workoutIndex = w;
+            workout = wrk;
             if (e is StrengthExercise)
             {
                 StrengthExercise se = (StrengthExercise)e;
@@ -42,15 +43,11 @@ namespace WF_Gym_Personal_Tracker
 
         public bool refreshCompleted()
         {
-            if (workoutIndex < 0 || workoutIndex >= WorkoutService.GetWorkoutLogs().Count)
-            {
-                return false;
-            }
 
-            return WorkoutService.GetWorkoutLogs()[workoutIndex].exerciseLogs
-                            .Where(eL => eL.loggedExercise.name == name)
-                            .Select(eL => eL.completed)
-                            .FirstOrDefault();
+            return WorkoutService.GetWorkoutLogs()
+                            .Where(w => w.completed && w.workout.name == workout.name && w.completionDate == FormControls.GetTodaysDate())
+                            .SelectMany(w => w.exerciseLogs)
+                            .Any(eL => eL.loggedExercise.name == name && eL.completed);
         }
     }
 }

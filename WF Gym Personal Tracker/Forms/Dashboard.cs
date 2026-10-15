@@ -12,7 +12,7 @@ namespace WF_Gym_Personal_Tracker
         {
             InitializeComponent();
             RefreshScreen();
-            dateLabel.Text = DateOnly.FromDateTime(DateTime.Now).ToString();
+            dateLabel.Text = FormControls.GetTodaysDate().ToString();
 
             string userName = Environment.UserName;
             welcomeTxt.Text = "Welcome " + userName + "!";
@@ -63,7 +63,7 @@ namespace WF_Gym_Personal_Tracker
         {
             var dataRows = WorkoutService.GetExercises(currentWorkoutIndex).OfType<StrengthExercise>().ToList();
             
-            var dataRows2 = WorkoutService.GetExercises(currentWorkoutIndex).Select(e => new DashboardRow(e, currentWorkoutIndex)).ToList();
+            var dataRows2 = WorkoutService.GetExercises(currentWorkoutIndex).Select(e => new DashboardRow(e, WorkoutService.GetWorkouts()[currentWorkoutIndex])).ToList();
 
             setWorkoutNameText(WorkoutService.GetWorkoutName(currentWorkoutIndex));
             todaysWorkoutTable.DataSource = null;
