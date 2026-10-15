@@ -11,7 +11,10 @@ namespace WF_Gym_Personal_Tracker
         public Dashboard()
         {
             InitializeComponent();
+            // Return to the day most recently saved in the Workout Builder.
+            currentWorkoutIndex = Math.Clamp(FormControls.currentWorkoutIndex, 0, WorkoutService.maxIndex);
             RefreshScreen();
+            Activated += (sender, e) => RefreshScreen();
             dateLabel.Text = DateOnly.FromDateTime(DateTime.Now).ToString();
         }
 
@@ -53,13 +56,17 @@ namespace WF_Gym_Personal_Tracker
         private void button3_Click(object sender, EventArgs e)
         {
             Workout w = WorkoutService.GetWorkouts()[currentWorkoutIndex];
+            if (w.exercises.Count == 0)
+            {
+                MessageBox.Show("Add at least one exercise before starting a workout.");
+                return;
+            }
             FormControls.OpenNewForm(this, new ActiveWorkout(w));
         }
 
         public void RefreshScreen()
         {
-            var dataRows = WorkoutService.GetExercises(currentWorkoutIndex).OfType<StrengthExercise>().ToList();
-            
+            FormControls.currentWorkoutIndex = currentWorkoutIndex;
             var dataRows2 = WorkoutService.GetExercises(currentWorkoutIndex).Select(e => new DashboardRow(e, currentWorkoutIndex)).ToList();
 
             setWorkoutNameText(WorkoutService.GetWorkoutName(currentWorkoutIndex));

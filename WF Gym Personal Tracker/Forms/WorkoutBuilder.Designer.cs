@@ -81,6 +81,7 @@
             Controls.Add(btnArmDay);
             Name = "WorkoutBuilder";
             Text = "WorkoutBuilder";
+            Load += WorkoutBuilder_Load;
             ResumeLayout(false);
         }
 
