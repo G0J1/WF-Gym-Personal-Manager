@@ -50,7 +50,7 @@ namespace WF_Gym_Personal_Tracker
             }
 
             return WorkoutService.GetWorkoutLogs()
-                            .Where(w => w.completed && w.workout.name == workout.name && w.completionDate == FormControls.GetTodaysDate())
+                            .Where(w => w.completed && w.workout.name == workout.name && w.completionDate == WorkoutService.activeDate)
                             .SelectMany(w => w.exerciseLogs)
                             .Any(eL => eL.loggedExercise.name == name && eL.completed);
         }

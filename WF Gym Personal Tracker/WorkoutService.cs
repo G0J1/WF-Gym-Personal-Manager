@@ -20,9 +20,13 @@ namespace WF_Gym_Personal_Tracker
 
         public static int maxIndex => workouts.Count - 1;
 
+        public static DateOnly activeDate;
+
         static WorkoutService()
         {
             CreateDefaultWorkouts();
+
+            activeDate = DateOnly.FromDateTime(DateTime.Now);
 
             // Separate live workouts from each other and from catalog templates.
             foreach (Workout workout in workouts)
@@ -220,7 +224,7 @@ namespace WF_Gym_Personal_Tracker
         public static bool IsWorkoutCompleted()
         {
             return workoutLogs
-                    .Where(w => w.completionDate == FormControls.GetTodaysDate())
+                    .Where(w => w.completionDate == activeDate)
                     .Any(w => w.completed);
         }
 
@@ -236,7 +240,7 @@ namespace WF_Gym_Personal_Tracker
                 return;
             }
             activeWorkoutLog.completed = true;
-            activeWorkoutLog.completionDate = DateOnly.FromDateTime(DateTime.Now);
+            activeWorkoutLog.completionDate = activeDate;
             AddWorkLog(activeWorkoutLog);
             activeWorkoutLog = null;
         }
@@ -244,6 +248,12 @@ namespace WF_Gym_Personal_Tracker
         public static bool IsWorkoutActive()
         {
             return activeWorkoutLog != null;
+        }
+
+        public static void SetActiveDate(DateOnly date)
+        {
+            activeDate = date;
+            /*MessageBox.Show(activeDate.ToLongDateString());*/
         }
     }
 }

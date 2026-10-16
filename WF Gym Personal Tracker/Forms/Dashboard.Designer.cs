@@ -46,8 +46,8 @@
             WorkoutNameLabel = new Label();
             groupBox1 = new GroupBox();
             workoutLogBindingSource = new BindingSource(components);
-            dateLabel = new Label();
             tableLayoutPanel1 = new TableLayoutPanel();
+            datePicker = new DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)todaysWorkoutTable).BeginInit();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)workoutLogBindingSource).BeginInit();
@@ -69,7 +69,7 @@
             // workoutProgressBar
             // 
             workoutProgressBar.Anchor = AnchorStyles.None;
-            workoutProgressBar.Location = new Point(307, 435);
+            workoutProgressBar.Location = new Point(307, 380);
             workoutProgressBar.Margin = new Padding(2);
             workoutProgressBar.Name = "workoutProgressBar";
             workoutProgressBar.Size = new Size(253, 15);
@@ -79,7 +79,7 @@
             // 
             quoteLabel.Anchor = AnchorStyles.None;
             quoteLabel.AutoSize = true;
-            quoteLabel.Location = new Point(415, 465);
+            quoteLabel.Location = new Point(415, 416);
             quoteLabel.Margin = new Padding(2, 0, 2, 0);
             quoteLabel.Name = "quoteLabel";
             quoteLabel.Size = new Size(38, 15);
@@ -119,7 +119,7 @@
             // button3
             // 
             button3.Anchor = AnchorStyles.None;
-            button3.Location = new Point(384, 358);
+            button3.Location = new Point(384, 327);
             button3.Name = "button3";
             button3.Size = new Size(100, 34);
             button3.TabIndex = 9;
@@ -221,17 +221,6 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Today's Workout";
             // 
-            // dateLabel
-            // 
-            dateLabel.Anchor = AnchorStyles.None;
-            dateLabel.AutoSize = true;
-            dateLabel.Location = new Point(415, 36);
-            dateLabel.Margin = new Padding(2, 0, 2, 0);
-            dateLabel.Name = "dateLabel";
-            dateLabel.Size = new Size(38, 15);
-            dateLabel.TabIndex = 10;
-            dateLabel.Text = "label2";
-            // 
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.AutoSize = true;
@@ -244,8 +233,8 @@
             tableLayoutPanel1.Controls.Add(nextBtn, 2, 2);
             tableLayoutPanel1.Controls.Add(previousBtn, 0, 2);
             tableLayoutPanel1.Controls.Add(button3, 1, 3);
-            tableLayoutPanel1.Controls.Add(dateLabel, 1, 1);
             tableLayoutPanel1.Controls.Add(groupBox1, 1, 2);
+            tableLayoutPanel1.Controls.Add(datePicker, 1, 1);
             tableLayoutPanel1.Controls.Add(workoutProgressBar, 1, 4);
             tableLayoutPanel1.Controls.Add(quoteLabel, 1, 5);
             tableLayoutPanel1.Dock = DockStyle.Fill;
@@ -255,13 +244,22 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 263F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 108F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 28F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 31F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 138F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 47F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 32F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 186F));
             tableLayoutPanel1.Size = new Size(909, 626);
             tableLayoutPanel1.TabIndex = 11;
             tableLayoutPanel1.Paint += tableLayoutPanel1_Paint;
+            // 
+            // datePicker
+            // 
+            datePicker.Anchor = AnchorStyles.None;
+            datePicker.Location = new Point(334, 32);
+            datePicker.Name = "datePicker";
+            datePicker.Size = new Size(200, 23);
+            datePicker.TabIndex = 12;
+            datePicker.ValueChanged += datePicker_ValueChanged;
             // 
             // Dashboard
             // 
@@ -304,7 +302,7 @@
         private DataGridViewTextBoxColumn Weight;
         private DataGridViewTextBoxColumn Duration;
         private DataGridViewCheckBoxColumn Completed;
-        private Label dateLabel;
         private TableLayoutPanel tableLayoutPanel1;
+        private DateTimePicker datePicker;
     }
 }

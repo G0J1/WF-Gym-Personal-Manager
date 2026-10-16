@@ -19,10 +19,11 @@ namespace WF_Gym_Personal_Tracker
             RefreshScreen();
             Activated += (sender, e) => RefreshScreen();
 
-            dateLabel.Text = FormControls.GetTodaysDate().ToString();
 
             string userName = Environment.UserName;
             welcomeTxt.Text = "Welcome " + userName + "!";
+
+            datePicker.Value = WorkoutService.activeDate.ToDateTime(TimeOnly.MinValue);
         }
 
         private void Dashboard_Load(object sender, EventArgs e)
@@ -186,13 +187,23 @@ namespace WF_Gym_Personal_Tracker
                 workoutProgressBar.Maximum = 1;
                 workoutProgressBar.Value = 1;
             }
+            else
+            {
+                workoutProgressBar.Value = 0;
+            }
 
-            quoteLabel.Text = FormControls.GetRandomQuote(workoutProgressBar);
+                quoteLabel.Text = FormControls.GetRandomQuote(workoutProgressBar);
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void datePicker_ValueChanged(object sender, EventArgs e)
+        {
+            WorkoutService.SetActiveDate(DateOnly.FromDateTime(datePicker.Value));
+            RefreshScreen();
         }
     }
 }

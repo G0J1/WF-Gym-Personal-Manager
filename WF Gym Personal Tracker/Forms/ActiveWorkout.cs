@@ -175,7 +175,7 @@ namespace WF_Gym_Personal_Tracker.Forms
         private void LogWorkout()
         {
             loggedWorkout.completed = true;
-            loggedWorkout.completionDate = DateOnly.FromDateTime(DateTime.Now);
+            loggedWorkout.completionDate = WorkoutService.activeDate;
             WorkoutService.FinishActiveWorkout();
         }
 
@@ -195,7 +195,7 @@ namespace WF_Gym_Personal_Tracker.Forms
                     return false;
                 }
             }
-            GetCurrentExerciseActive().completionDate = DateOnly.FromDateTime(DateTime.Now);
+            GetCurrentExerciseActive().completionDate = WorkoutService.activeDate;
             GetCurrentExerciseActive().completed = true;
             return true;
         }
@@ -216,7 +216,7 @@ namespace WF_Gym_Personal_Tracker.Forms
                 MessageBox.Show("Exercise not started yet!");
                 return false;
             }
-            GetCurrentExerciseActive().completionDate = FormControls.GetTodaysDate();
+            GetCurrentExerciseActive().completionDate = WorkoutService.activeDate;
             GetCurrentExerciseActive().recordedSets = enteredSets;
             GetCurrentExerciseActive().recordedReps = enteredReps;
             GetCurrentExerciseActive().recordedWeight = enteredWeight;
