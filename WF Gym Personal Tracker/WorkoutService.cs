@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -253,7 +254,13 @@ namespace WF_Gym_Personal_Tracker
         public static void SetActiveDate(DateOnly date)
         {
             activeDate = date;
+
             /*MessageBox.Show(activeDate.ToLongDateString());*/
+            if (IsWorkoutCompleted())
+            {
+                WorkoutLog completedLog = workoutLogs.FirstOrDefault(w => w.completionDate == activeDate);
+                currentDashboardWIndex = workouts.FindLastIndex(w => w.name == completedLog.workout.name);
+            }
         }
     }
 }

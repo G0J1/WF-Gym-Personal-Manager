@@ -202,6 +202,11 @@ namespace WF_Gym_Personal_Tracker
 
         private void datePicker_ValueChanged(object sender, EventArgs e)
         {
+            if (WorkoutService.IsWorkoutActive() && WorkoutService.activeDate != DateOnly.FromDateTime(datePicker.Value))
+            {
+                MessageBox.Show("Cannot change date when workout active!");
+                return;
+            }
             WorkoutService.SetActiveDate(DateOnly.FromDateTime(datePicker.Value));
             RefreshScreen();
         }
