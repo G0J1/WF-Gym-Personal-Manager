@@ -211,6 +211,11 @@ namespace WF_Gym_Personal_Tracker.Forms
                 MessageBox.Show("Invalid Input!");
                 return false;
             }
+            else if (enteredSets == 0 || enteredReps == 0)
+            {
+                MessageBox.Show("Exercise not started yet!");
+                return false;
+            }
             GetCurrentExerciseActive().completionDate = FormControls.GetTodaysDate();
             GetCurrentExerciseActive().recordedSets = enteredSets;
             GetCurrentExerciseActive().recordedReps = enteredReps;
