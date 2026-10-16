@@ -34,6 +34,8 @@ namespace WF_Gym_Personal_Tracker.Forms
         public ActiveWorkout(Workout w)
         {
             InitializeComponent();
+            FormControls.SetupNavigationLayout(menuBar1, tableLayoutPanel1);
+
             activeWorkout = w;
             workoutName.Text = activeWorkout.name;
             loggedWorkout = new WorkoutLog(w);
@@ -101,7 +103,7 @@ namespace WF_Gym_Personal_Tracker.Forms
                 strengthPanel.Visible = false;
                 timeBasedPanel.Visible = true;
                 timer = new System.Windows.Forms.Timer();
-                timer.Interval= 1000;
+                timer.Interval = 1000;
                 timer.Tick += OnTimerTick;
                 UpdateTimeLbl();
                 currentSecs = 0;
@@ -294,6 +296,16 @@ namespace WF_Gym_Personal_Tracker.Forms
 
             progressBar1.Value = WorkoutService.activeWorkoutLog.exerciseLogs
                 .Count(e => e.completed);
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void workoutName_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

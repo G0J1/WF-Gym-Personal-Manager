@@ -56,10 +56,11 @@
             // 
             // welcomeTxt
             // 
+            welcomeTxt.Anchor = AnchorStyles.None;
             welcomeTxt.AutoSize = true;
             welcomeTxt.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             welcomeTxt.ForeColor = Color.FromArgb(64, 64, 64);
-            welcomeTxt.Location = new Point(85, 0);
+            welcomeTxt.Location = new Point(384, 0);
             welcomeTxt.Name = "welcomeTxt";
             welcomeTxt.Size = new Size(99, 28);
             welcomeTxt.TabIndex = 0;
@@ -67,7 +68,8 @@
             // 
             // workoutProgressBar
             // 
-            workoutProgressBar.Location = new Point(84, 384);
+            workoutProgressBar.Anchor = AnchorStyles.None;
+            workoutProgressBar.Location = new Point(307, 435);
             workoutProgressBar.Margin = new Padding(2);
             workoutProgressBar.Name = "workoutProgressBar";
             workoutProgressBar.Size = new Size(253, 15);
@@ -75,8 +77,9 @@
             // 
             // quoteLabel
             // 
+            quoteLabel.Anchor = AnchorStyles.None;
             quoteLabel.AutoSize = true;
-            quoteLabel.Location = new Point(84, 416);
+            quoteLabel.Location = new Point(415, 465);
             quoteLabel.Margin = new Padding(2, 0, 2, 0);
             quoteLabel.Name = "quoteLabel";
             quoteLabel.Size = new Size(38, 15);
@@ -93,7 +96,8 @@
             // 
             // nextBtn
             // 
-            nextBtn.Location = new Point(787, 59);
+            nextBtn.Anchor = AnchorStyles.None;
+            nextBtn.Location = new Point(810, 178);
             nextBtn.Name = "nextBtn";
             nextBtn.Size = new Size(75, 23);
             nextBtn.TabIndex = 7;
@@ -103,7 +107,8 @@
             // 
             // previousBtn
             // 
-            previousBtn.Location = new Point(3, 59);
+            previousBtn.Anchor = AnchorStyles.None;
+            previousBtn.Location = new Point(3, 178);
             previousBtn.Name = "previousBtn";
             previousBtn.Size = new Size(75, 23);
             previousBtn.TabIndex = 8;
@@ -113,7 +118,8 @@
             // 
             // button3
             // 
-            button3.Location = new Point(85, 338);
+            button3.Anchor = AnchorStyles.None;
+            button3.Location = new Point(384, 358);
             button3.Name = "button3";
             button3.Size = new Size(100, 34);
             button3.TabIndex = 9;
@@ -128,7 +134,7 @@
             todaysWorkoutTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             todaysWorkoutTable.Columns.AddRange(new DataGridViewColumn[] { ExerciseName, Sets, Reps, Weight, Duration, Completed });
             todaysWorkoutTable.Dock = DockStyle.Bottom;
-            todaysWorkoutTable.Location = new Point(2, 67);
+            todaysWorkoutTable.Location = new Point(2, 57);
             todaysWorkoutTable.Name = "todaysWorkoutTable";
             todaysWorkoutTable.ReadOnly = true;
             todaysWorkoutTable.RowHeadersWidth = 62;
@@ -202,21 +208,24 @@
             // 
             // groupBox1
             // 
+            groupBox1.Anchor = AnchorStyles.None;
+            groupBox1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             groupBox1.Controls.Add(WorkoutNameLabel);
             groupBox1.Controls.Add(todaysWorkoutTable);
-            groupBox1.Location = new Point(84, 58);
+            groupBox1.Location = new Point(85, 60);
             groupBox1.Margin = new Padding(2);
             groupBox1.Name = "groupBox1";
             groupBox1.Padding = new Padding(2);
-            groupBox1.Size = new Size(698, 269);
+            groupBox1.Size = new Size(698, 259);
             groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
             groupBox1.Text = "Today's Workout";
             // 
             // dateLabel
             // 
+            dateLabel.Anchor = AnchorStyles.None;
             dateLabel.AutoSize = true;
-            dateLabel.Location = new Point(84, 28);
+            dateLabel.Location = new Point(415, 36);
             dateLabel.Margin = new Padding(2, 0, 2, 0);
             dateLabel.Name = "dateLabel";
             dateLabel.Size = new Size(38, 15);
@@ -237,18 +246,20 @@
             tableLayoutPanel1.Controls.Add(button3, 1, 3);
             tableLayoutPanel1.Controls.Add(dateLabel, 1, 1);
             tableLayoutPanel1.Controls.Add(groupBox1, 1, 2);
-            tableLayoutPanel1.Controls.Add(quoteLabel, 1, 5);
             tableLayoutPanel1.Controls.Add(workoutProgressBar, 1, 4);
-            tableLayoutPanel1.Location = new Point(0, 24);
+            tableLayoutPanel1.Controls.Add(quoteLabel, 1, 5);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 6;
+            tableLayoutPanel1.RowCount = 7;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 279F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 47F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 34F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 204F));
-            tableLayoutPanel1.Size = new Size(907, 620);
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 263F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 108F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 28F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 31F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 138F));
+            tableLayoutPanel1.Size = new Size(909, 626);
             tableLayoutPanel1.TabIndex = 11;
             tableLayoutPanel1.Paint += tableLayoutPanel1_Paint;
             // 

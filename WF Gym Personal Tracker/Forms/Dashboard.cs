@@ -9,6 +9,7 @@ namespace WF_Gym_Personal_Tracker
         public Dashboard()
         {
             InitializeComponent();
+            FormControls.SetupNavigationLayout(menuBar1, tableLayoutPanel1);
 
             WorkoutService.currentDashboardWIndex = Math.Clamp(
                 FormControls.currentWorkoutIndex,

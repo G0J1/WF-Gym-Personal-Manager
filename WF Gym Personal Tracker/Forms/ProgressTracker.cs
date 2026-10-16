@@ -21,22 +21,13 @@ namespace WF_Gym_Personal_Tracker
         public ProgressTracker()
         {
             InitializeComponent();
-            SetupNavigationLayout();
+            FormControls.SetupNavigationLayout(menuBar1, tableLayoutPanel2);
 
             LoadWorkoutNames();
             LoadExerciseNames();
 
             isLoading = false;
             UpdateAllResults();
-        }
-
-        private void SetupNavigationLayout()
-        {
-            menuBar1.Dock = DockStyle.Top;
-            tableLayoutPanel2.Padding =
-                new Padding(0, menuBar1.Height, 0, 0);
-
-            menuBar1.BringToFront();
         }
 
         private void LoadWorkoutNames()

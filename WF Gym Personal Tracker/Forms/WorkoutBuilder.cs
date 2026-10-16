@@ -9,7 +9,7 @@ namespace WF_Gym_Personal_Tracker
         public WorkoutBuilder()
         {
             InitializeComponent();
-            SetupNavigationLayout();
+            FormControls.SetupNavigationLayout(menuBar1, tableLayoutPanel1);
 
             button1.Click -= btnArmDay_Click;
             button1.Click += btnArmDay_Click;
@@ -19,15 +19,6 @@ namespace WF_Gym_Personal_Tracker
 
             button3.Click -= btnFullBody_Click;
             button3.Click += btnFullBody_Click;
-        }
-
-        private void SetupNavigationLayout()
-        {
-            menuBar1.Dock = DockStyle.Top;
-            tableLayoutPanel1.Padding =
-                new Padding(0, menuBar1.Height, 0, 0);
-
-            menuBar1.BringToFront();
         }
 
         private void btnArmDay_Click(object? sender, EventArgs e)

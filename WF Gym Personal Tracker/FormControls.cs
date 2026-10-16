@@ -4,6 +4,8 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using WF_Gym_Personal_Tracker.UI;
 
 namespace WF_Gym_Personal_Tracker
 {
@@ -116,6 +118,15 @@ namespace WF_Gym_Personal_Tracker
             }
 
             return "How did we get here?";
+        }
+
+        public static void SetupNavigationLayout(MenuBar menuBar, TableLayoutPanel tableLayoutPanel)
+        {
+            menuBar.Dock = DockStyle.Top;
+            tableLayoutPanel.Padding =
+                new Padding(0, menuBar.Height, 0, 0);
+
+            menuBar.BringToFront();
         }
     }
 }
