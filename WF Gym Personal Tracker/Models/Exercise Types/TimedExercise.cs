@@ -10,6 +10,11 @@ namespace WF_Gym_Personal_Tracker.Models
     {
         public TimeSpan targetedTime { get; set; }
 
+        public TimedExercise() : base()
+        {
+
+        }
+
         public TimedExercise(string n, TimeSpan t): base(n)
         {
             targetedTime = t;

@@ -69,7 +69,7 @@
             // grpStats
             // 
             grpStats.Controls.Add(tableLayoutPanel1);
-            grpStats.Location = new Point(572, 70);
+            grpStats.Location = new Point(572, 78);
             grpStats.Name = "grpStats";
             grpStats.Size = new Size(431, 471);
             grpStats.TabIndex = 1;
@@ -217,7 +217,7 @@
             // cmbWorkout
             // 
             cmbWorkout.FormattingEnabled = true;
-            cmbWorkout.Location = new Point(163, 3);
+            cmbWorkout.Location = new Point(161, 3);
             cmbWorkout.Name = "cmbWorkout";
             cmbWorkout.Size = new Size(224, 33);
             cmbWorkout.TabIndex = 2;
@@ -226,7 +226,7 @@
             // cmbExercise
             // 
             cmbExercise.FormattingEnabled = true;
-            cmbExercise.Location = new Point(162, 3);
+            cmbExercise.Location = new Point(159, 3);
             cmbExercise.Name = "cmbExercise";
             cmbExercise.Size = new Size(224, 33);
             cmbExercise.TabIndex = 3;
@@ -253,7 +253,7 @@
             // grpProgress
             // 
             grpProgress.Controls.Add(progressGraph);
-            grpProgress.Location = new Point(3, 70);
+            grpProgress.Location = new Point(13, 78);
             grpProgress.Name = "grpProgress";
             grpProgress.Size = new Size(471, 471);
             grpProgress.TabIndex = 6;
@@ -272,7 +272,7 @@
             // grpRecords
             // 
             grpRecords.Controls.Add(recordsList);
-            grpRecords.Location = new Point(572, 648);
+            grpRecords.Location = new Point(572, 588);
             grpRecords.Name = "grpRecords";
             grpRecords.Size = new Size(431, 233);
             grpRecords.TabIndex = 7;
@@ -291,7 +291,7 @@
             // grpFrequency
             // 
             grpFrequency.Controls.Add(frequencyGraph);
-            grpFrequency.Location = new Point(3, 648);
+            grpFrequency.Location = new Point(13, 588);
             grpFrequency.Name = "grpFrequency";
             grpFrequency.Size = new Size(470, 233);
             grpFrequency.TabIndex = 8;
@@ -328,10 +328,11 @@
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(0, 0);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.Padding = new Padding(10);
             tableLayoutPanel2.RowCount = 3;
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 7.200987F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 61.86601F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 30.9330044F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 65F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 60F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 40F));
             tableLayoutPanel2.Size = new Size(1139, 935);
             tableLayoutPanel2.TabIndex = 10;
             // 
@@ -343,11 +344,11 @@
             tableLayoutPanel4.Controls.Add(lblWorkout, 0, 0);
             tableLayoutPanel4.Controls.Add(cmbWorkout, 1, 0);
             tableLayoutPanel4.Dock = DockStyle.Fill;
-            tableLayoutPanel4.Location = new Point(3, 3);
+            tableLayoutPanel4.Location = new Point(13, 13);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
             tableLayoutPanel4.RowCount = 1;
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel4.Size = new Size(563, 61);
+            tableLayoutPanel4.Size = new Size(553, 59);
             tableLayoutPanel4.TabIndex = 12;
             // 
             // tableLayoutPanel3
@@ -358,11 +359,11 @@
             tableLayoutPanel3.Controls.Add(cmbExercise, 1, 0);
             tableLayoutPanel3.Controls.Add(lblExercise, 0, 0);
             tableLayoutPanel3.Dock = DockStyle.Fill;
-            tableLayoutPanel3.Location = new Point(572, 3);
+            tableLayoutPanel3.Location = new Point(572, 13);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 1;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel3.Size = new Size(564, 61);
+            tableLayoutPanel3.Size = new Size(554, 59);
             tableLayoutPanel3.TabIndex = 11;
             // 
             // ProgressTracker

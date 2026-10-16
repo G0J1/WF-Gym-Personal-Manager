@@ -8,9 +8,17 @@ namespace WF_Gym_Personal_Tracker.Models
 {
     public class StrengthExercise : Exercise
     {
+
         public int targetedSets { get; set; }
         public int targetedReps { get; set; }
         public double targetedWeight { get; set; }
+
+        // EF constructor
+        public StrengthExercise() : base()
+        {
+            // empty
+        }
+
 
         public StrengthExercise(string n, int s, int r, double w) : base(n) 
         {

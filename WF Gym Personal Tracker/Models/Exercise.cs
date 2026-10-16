@@ -10,8 +10,17 @@ namespace WF_Gym_Personal_Tracker.Models
 
     public abstract class Exercise
     {
+        // EF
+        public int ExerciseId { get; set; }
+
         public string name { get; set; }
 
+
+        // EF
+        public Exercise()
+        {
+            name = string.Empty;
+        }
 
         public Exercise(string n)
         {
