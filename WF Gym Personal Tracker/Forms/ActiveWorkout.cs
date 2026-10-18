@@ -43,6 +43,7 @@ namespace WF_Gym_Personal_Tracker.Forms
             strengthPanel.Visible = false;
             timeBasedPanel.Visible = false;
 
+            // if a workout has not been started (this page is opened for the first time on the active date), create a new active workout
             if (!(WorkoutService.IsWorkoutActive()))
             {
                 WorkoutService.StartActiveWorkout(w);
@@ -52,8 +53,6 @@ namespace WF_Gym_Personal_Tracker.Forms
 
 
             RefreshScreen();
-            int countactive = activeWorkout.exercises.Count;
-            int countlog = WorkoutService.activeWorkoutLog.exerciseLogs.Count;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -64,19 +63,17 @@ namespace WF_Gym_Personal_Tracker.Forms
 
         public void RefreshScreen()
         {
-            int countactive = activeWorkout.exercises.Count;
-            int countlog = WorkoutService.activeWorkoutLog.exerciseLogs.Count;
-
-
             exerciseLabel.Text = activeWorkout.exercises[currentExerciseIndex].name;
 
             RefreshProgressBar();
 
             ExerciseLog log = GetCurrentExerciseActive();
+            // set fields depending on type of exercise
             if (log.loggedExercise is StrengthExercise)
             {
                 strengthPanel.Visible = true;
                 timeBasedPanel.Visible = false;
+                //if there are recorded fields greater than 0, load them up (allows progress to save if active window closed before workout complete)
                 if (log.recordedReps >= 0)
                 {
                     setsBox.Text = log.recordedSets.ToString();
@@ -109,6 +106,7 @@ namespace WF_Gym_Personal_Tracker.Forms
             {
                 strengthPanel.Visible = false;
                 timeBasedPanel.Visible = true;
+                // creates a new timer, sets its interval as 1 second and binds the it's tick function
                 timer = new System.Windows.Forms.Timer();
                 timer.Interval = 1000;
                 timer.Tick += OnTimerTick;
@@ -122,16 +120,19 @@ namespace WF_Gym_Personal_Tracker.Forms
 
         public void NextPage()
         {
+            // returns early if error in logging exercise
             if (LogExercise() == false)
             {
                 return;
             }
 
+            // if checks to make sure index not invalid
             if (currentExerciseIndex < (activeWorkout.exercises.Count - 1))
             {
                 currentExerciseIndex++;
                 RefreshScreen();
             }
+            // after the final exercise is logged, log the full workout and open the dashboard
             else
             {
                 LogWorkout();
@@ -181,6 +182,7 @@ namespace WF_Gym_Personal_Tracker.Forms
 
         private void LogWorkout()
         {
+            // set completion status to true and date to active date and then call the function to save the log to the database
             loggedWorkout.completed = true;
             loggedWorkout.completionDate = WorkoutService.activeDate;
             WorkoutService.FinishActiveWorkout();
@@ -188,6 +190,7 @@ namespace WF_Gym_Personal_Tracker.Forms
 
         private bool LogExercise()
         {
+            // if checks to generate and save correct fields depending on subclass of exercise
             if (GetCurrentExerciseActive().loggedExercise is StrengthExercise)
             {
                 if (LogStrengthExercise() == false)
@@ -209,10 +212,12 @@ namespace WF_Gym_Personal_Tracker.Forms
 
         private bool LogStrengthExercise()
         {
+            // saves fields to instance of this form
             enteredSets = FormControls.ReturnTextBoxInt(setsBox);
             enteredReps = FormControls.ReturnTextBoxInt(repsBox);
             enteredWeight = FormControls.ReturnTextBoxDoub(weightBox);
 
+            // check invalid input
             if (enteredWeight == -1 || enteredSets == -1 || enteredReps == -1)
             {
                 MessageBox.Show("Invalid Input!");
@@ -247,6 +252,7 @@ namespace WF_Gym_Personal_Tracker.Forms
 
         private void toggleTimerBtn_Click(object sender, EventArgs e)
         {
+            // toggle the timer
             timerActive = !timerActive;
             SetToggleTimerBtnLabel();
             HandleTimer();
@@ -266,6 +272,7 @@ namespace WF_Gym_Personal_Tracker.Forms
 
         private void HandleTimer()
         {
+            //if the timer is active, start it, if inactive, stop it
             if (timerActive)
             {
                 timer.Start();
@@ -278,6 +285,7 @@ namespace WF_Gym_Personal_Tracker.Forms
 
         private void OnTimerTick(object sender, EventArgs e)
         {
+            // increment the recorded seconds and update the label
             currentSecs++;
             UpdateTimeLbl();
         }

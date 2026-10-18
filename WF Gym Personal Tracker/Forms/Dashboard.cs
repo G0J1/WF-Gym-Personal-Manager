@@ -58,6 +58,7 @@ namespace WF_Gym_Personal_Tracker
 
         private void button1_Click(object sender, EventArgs e)
         {
+            // if checks to ensure workout is not active or completed before switching pages
             if (WorkoutService.IsWorkoutCompleted())
             {
                 MessageBox.Show("Today's workout already completed!");
@@ -99,7 +100,6 @@ namespace WF_Gym_Personal_Tracker
             Workout workout =
                 WorkoutService.GetWorkouts()[
                     WorkoutService.currentDashboardWIndex];
-
             if (workout.exercises.Count == 0)
             {
                 MessageBox.Show(
@@ -122,12 +122,14 @@ namespace WF_Gym_Personal_Tracker
 
             Workout workout =
                 WorkoutService.GetWorkouts()[workoutIndex];
+            //LINQ query gets each exercise from the workout and creates a DashboardRow object for it
             var dataRows = WorkoutService
                 .GetExercises(workoutIndex)
                 .Select(exercise =>
                     new DashboardRow(exercise, workout))
                 .ToList();
 
+            // if workout is complete, change DashboardRows to be created from the completed workout log rather than the planned to avoid conflicts
             if (WorkoutService.IsWorkoutCompleted())
             {
                 dataRows = WorkoutService.GetWorkoutLogs()

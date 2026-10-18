@@ -346,6 +346,7 @@ namespace WF_Gym_Personal_Tracker
         {
             using var db = new WorkoutDbContext();
 
+            // return complete if there is a log marked complete with the same active date
             return db.WorkoutLogs
                 .Any(w => w.completionDate == activeDate
                         && w.completed);
@@ -358,10 +359,12 @@ namespace WF_Gym_Personal_Tracker
 
         public static void FinishActiveWorkout()
         {
+            // if there is no recorded active log, return early
             if (activeWorkoutLog == null)
             {
                 return;
             }
+            // otherwise mark the log as complete, save it and set the active log to be null
             activeWorkoutLog.completed = true;
             activeWorkoutLog.completionDate = activeDate;
             AddWorkLog(activeWorkoutLog);
