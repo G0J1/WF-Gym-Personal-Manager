@@ -1,10 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using WF_Gym_Personal_Tracker.Database;
 using WF_Gym_Personal_Tracker.Models;
 using WF_Gym_Personal_Tracker.Models.Logs;
@@ -29,37 +25,6 @@ namespace WF_Gym_Personal_Tracker.Database
             optionsBuilder.UseSqlite($"Data Source={databasePath}");
         }
 
-        // not yet implemented, just base for later on
-        // if implementing the models have to be persist
-
-        // change the variable names with database id
-
-        // public int WorkoutLogID { get; set; }
-        // public int WorkoutID { get; set; }
-        // public int ExerciseLogID { get; set; }
-        // public int WorkoutLogId { get; set; }
-        // public int ExerciseId { get; set; }
-
-        public static void AddWorkLog(WorkoutLog log)
-        {
-            using var db = new WorkoutDbContext();
-
-            db.WorkoutLogs.Add(log);
-            db.SaveChanges();
-        }
-
-        public static List<WorkoutLog> GetWorkoutLogs()
-        {
-            using var db = new WorkoutDbContext();
-
-            return db.WorkoutLogs
-                .Include(w => w.workout)
-                .Include(w => w.exerciseLogs)
-                    .ThenInclude(e => e.loggedExercise)
-                .AsNoTracking()
-                .ToList();
-        }
-
         // creating the db
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -79,7 +44,8 @@ namespace WF_Gym_Personal_Tracker.Database
                 entity.HasMany(w => w.exercises)
                     .WithOne()
                     .HasForeignKey("WorkoutId")
-                    .OnDelete(DeleteBehavior.Cascade);
+                    .IsRequired(false)
+                    .OnDelete(DeleteBehavior.SetNull);
             });
 
             // exercise inheritance
@@ -125,32 +91,6 @@ namespace WF_Gym_Personal_Tracker.Database
                       .OnDelete(DeleteBehavior.Restrict);
             });
         }
-
-        // temporary test
-        public static void TestDatabaseModel()
-        {
-            try
-            {
-                using var db = new WorkoutDbContext();
-
-                var model = db.Model;
-
-                MessageBox.Show(
-                    "EFC model loaded successfully.",
-                    "Database Validation.",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(
-                    ex.ToString(),
-                    "Database Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
-        }
-
     }
 
 }

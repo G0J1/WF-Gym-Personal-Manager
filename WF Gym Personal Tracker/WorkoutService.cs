@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using WF_Gym_Personal_Tracker.Models;
 using WF_Gym_Personal_Tracker.Models.Logs;
+using WF_Gym_Personal_Tracker.Database;
+using Microsoft.EntityFrameworkCore;
 
 namespace WF_Gym_Personal_Tracker
 {
@@ -13,7 +15,7 @@ namespace WF_Gym_Personal_Tracker
     {
         private static List<Workout> workouts = new List<Workout>();
         private static List<Exercise> exercises = new List<Exercise>();
-        private static List<WorkoutLog> workoutLogs = new List<WorkoutLog>();
+        //private static List<WorkoutLog> workoutLogs = new List<WorkoutLog>();
 
         public static WorkoutLog activeWorkoutLog;
 
@@ -45,6 +47,31 @@ namespace WF_Gym_Personal_Tracker
             exercises.Add(new StrengthExercise("Hamstring Curls", 3, 10, 0));
             exercises.Add(new StrengthExercise("Step Ups", 3, 10, 0));
             exercises.Add(new TimedExercise("Plank", TimeSpan.FromSeconds(30)));
+
+            // connect to sqlite
+            using var db = new WorkoutDbContext();
+
+            db.Database.EnsureCreated();
+
+            // retrieve saved workouts and exercises
+            List<Workout> savedWorkouts = db.Workouts
+                .Include(w => w.exercises)
+                .AsNoTracking()
+                .ToList();
+
+            if (savedWorkouts.Count == 0)
+            {
+                // initial run - inster default workouts
+                db.Workouts.AddRange(workouts);
+                db.SaveChanges();
+            }                
+            else
+            {
+                // next runs - use existing saved workouts
+                workouts = savedWorkouts;
+            }
+
+
         }
 
         private static readonly HashSet<string> upperBodyNames = new HashSet<string>(
@@ -126,7 +153,55 @@ namespace WF_Gym_Personal_Tracker
                     throw new ArgumentException("This builder supports strength and timed exercises.");
             }
 
-            workouts[workoutIndex].exercises = chosen.Select(CloneExercise).ToList();
+            //workouts[workoutIndex].exercises = chosen.Select(CloneExercise).ToList();
+
+
+            // EF database saving
+            // get the id of the selected workout
+            int workoutId = workouts[workoutIndex].WorkoutId;
+
+            using (var db = new WorkoutDbContext())
+            {
+                // retrive the existing workout and its exercises
+                Workout savedWorkout = db.Workouts
+                    .Include(w => w.exercises)
+                    .Single(w => w.WorkoutId == workoutId);
+
+                // clone the selected exercise so each workout has its own independent exercise objects
+                List<Exercise> newExercises = chosen
+                    .Select(CloneExercise)
+                    .ToList();
+
+                // remove old exercises from the workout
+                // without explicitly deleting historical records
+                foreach (Exercise oldExercise
+                    in savedWorkout.exercises.ToList())
+                {
+                    savedWorkout.exercises.Remove(oldExercise);
+                }
+
+                // add the newly selected exercise
+                foreach (Exercise newExercise in newExercises)
+                {
+                    savedWorkout.exercises.Add(newExercise);
+                }
+
+                // save changes to sqlite
+                db.SaveChanges();
+
+            }
+            
+            // reload the updated workout
+                using (var db = new WorkoutDbContext())
+                {
+                    Workout updatedWorkout = db.Workouts
+                        .Include(w => w.exercises)
+                        .AsNoTracking()
+                        .Single(w => w.WorkoutId == workoutId);
+
+                    // update in memory workout used by winforms
+                    workouts[workoutIndex] = updatedWorkout;
+                }
         }
 
         private static void ValidateWorkoutIndex(int index)
@@ -214,19 +289,66 @@ namespace WF_Gym_Personal_Tracker
 
         public static List<WorkoutLog> GetWorkoutLogs()
         {
-            return workoutLogs;
+            using var db = new WorkoutDbContext();
+
+            return db.WorkoutLogs
+                .Include(w => w.workout)
+                .Include(w => w.exerciseLogs)
+                    .ThenInclude(e => e.loggedExercise)
+                    .AsNoTracking()
+                    .ToList();
         }
 
         public static void AddWorkLog(WorkoutLog log)
         {
-            workoutLogs.Add(log);
+            using var db = new WorkoutDbContext();
+
+            // find existing workout in sqlite
+            Workout? savedWorkout = db.Workouts
+                .FirstOrDefault(w => w.WorkoutId == log.workout.WorkoutId);
+
+            if (savedWorkout == null)
+            {
+                throw new InvalidOperationException(
+                    "The workout must be saved before logging a session.");
+            }
+
+
+            // link the log to the existing workout
+            log.WorkoutId = savedWorkout.WorkoutId;
+            log.workout = savedWorkout;
+
+            // link each exercise log to an existing exercise
+            foreach (ExerciseLog exerciseLog in log.exerciseLogs)
+            {
+                int exerciseId = exerciseLog.loggedExercise.ExerciseId;
+
+                Exercise? savedExercise = db.Exercises
+                    .FirstOrDefault(e => e.ExerciseId == exerciseId);
+
+                if (savedExercise == null)
+                {
+                    throw new InvalidOperationException(
+                        $"Exercise '{exerciseLog.loggedExercise.name}' " +
+                        "was not found in the database.");
+                }
+
+                exerciseLog.ExerciseId = savedExercise.ExerciseId;
+                exerciseLog.loggedExercise = savedExercise;
+            }
+
+            // save completed session and its logs
+            db.WorkoutLogs.Add(log);
+            db.SaveChanges();
         }
 
         public static bool IsWorkoutCompleted()
         {
-            return workoutLogs
-                    .Where(w => w.completionDate == activeDate)
-                    .Any(w => w.completed);
+            using var db = new WorkoutDbContext();
+
+            return db.WorkoutLogs
+                .Any(w => w.completionDate == activeDate
+                        && w.completed);
         }
 
         public static void StartActiveWorkout(Workout w)
@@ -253,14 +375,32 @@ namespace WF_Gym_Personal_Tracker
 
         public static void SetActiveDate(DateOnly date)
         {
+            // update the selected date on the dashboard
             activeDate = date;
 
-            /*MessageBox.Show(activeDate.ToLongDateString());*/
-            if (IsWorkoutCompleted())
+            // find a completed workout for the selected date
+            WorkoutLog? completedlog = GetWorkoutLogs()
+                .FirstOrDefault(w => w.completionDate == activeDate
+                                    && w.completed);
+
+            // if a completed workout exists, select it
+            if (completedlog != null)
             {
-                WorkoutLog completedLog = workoutLogs.FirstOrDefault(w => w.completionDate == activeDate);
-                currentDashboardWIndex = workouts.FindLastIndex(w => w.name == completedLog.workout.name);
+                int workoutIndex = workouts.FindIndex(
+                    w => w.WorkoutId == completedlog.WorkoutId);
+
+                if (workoutIndex >= 0)
+                {
+                    currentDashboardWIndex = workoutIndex;
+                }
             }
+
+            ///*MessageBox.Show(activeDate.ToLongDateString());*/
+            //if (IsWorkoutCompleted())
+            //{
+            //    WorkoutLog completedLog = workoutLogs.FirstOrDefault(w => w.completionDate == activeDate);
+            //    currentDashboardWIndex = workouts.FindLastIndex(w => w.name == completedLog.workout.name);
+            //}
         }
     }
 }
