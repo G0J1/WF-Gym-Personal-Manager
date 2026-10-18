@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Interop;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,6 +52,8 @@ namespace WF_Gym_Personal_Tracker.Forms
 
 
             RefreshScreen();
+            int countactive = activeWorkout.exercises.Count;
+            int countlog = WorkoutService.activeWorkoutLog.exerciseLogs.Count;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -61,6 +64,10 @@ namespace WF_Gym_Personal_Tracker.Forms
 
         public void RefreshScreen()
         {
+            int countactive = activeWorkout.exercises.Count;
+            int countlog = WorkoutService.activeWorkoutLog.exerciseLogs.Count;
+
+
             exerciseLabel.Text = activeWorkout.exercises[currentExerciseIndex].name;
 
             RefreshProgressBar();

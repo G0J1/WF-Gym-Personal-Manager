@@ -122,12 +122,20 @@ namespace WF_Gym_Personal_Tracker
 
             Workout workout =
                 WorkoutService.GetWorkouts()[workoutIndex];
-
             var dataRows = WorkoutService
                 .GetExercises(workoutIndex)
                 .Select(exercise =>
                     new DashboardRow(exercise, workout))
                 .ToList();
+
+            if (WorkoutService.IsWorkoutCompleted())
+            {
+                dataRows = WorkoutService.GetWorkoutLogs()
+                    .Where(eL => eL.completionDate == WorkoutService.activeDate && eL.completed && eL.workout.name == workout.name)
+                    .SelectMany(eL => eL.exerciseLogs)
+                    .Select(exercise => new DashboardRow (exercise.loggedExercise, workout))
+                    .ToList();
+            }
 
             setWorkoutNameText(
                 WorkoutService.GetWorkoutName(workoutIndex));

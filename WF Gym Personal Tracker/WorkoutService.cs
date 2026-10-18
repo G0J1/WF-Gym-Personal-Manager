@@ -64,7 +64,7 @@ namespace WF_Gym_Personal_Tracker
                 // initial run - inster default workouts
                 db.Workouts.AddRange(workouts);
                 db.SaveChanges();
-            }                
+            }
             else
             {
                 // next runs - use existing saved workouts
@@ -190,18 +190,18 @@ namespace WF_Gym_Personal_Tracker
                 db.SaveChanges();
 
             }
-            
-            // reload the updated workout
-                using (var db = new WorkoutDbContext())
-                {
-                    Workout updatedWorkout = db.Workouts
-                        .Include(w => w.exercises)
-                        .AsNoTracking()
-                        .Single(w => w.WorkoutId == workoutId);
 
-                    // update in memory workout used by winforms
-                    workouts[workoutIndex] = updatedWorkout;
-                }
+            // reload the updated workout
+            using (var db = new WorkoutDbContext())
+            {
+                Workout updatedWorkout = db.Workouts
+                    .Include(w => w.exercises)
+                    .AsNoTracking()
+                    .Single(w => w.WorkoutId == workoutId);
+
+                // update in memory workout used by winforms
+                workouts[workoutIndex] = updatedWorkout;
+            }
         }
 
         private static void ValidateWorkoutIndex(int index)
@@ -402,5 +402,6 @@ namespace WF_Gym_Personal_Tracker
             //    currentDashboardWIndex = workouts.FindLastIndex(w => w.name == completedLog.workout.name);
             //}
         }
+
     }
 }

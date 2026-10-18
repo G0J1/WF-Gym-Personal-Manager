@@ -25,6 +25,11 @@ namespace WF_Gym_Personal_Tracker.UI
 
         private void workoutBuilderToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (WorkoutService.IsWorkoutActive())
+            {
+                MessageBox.Show("Cannot edit workout when workout active!");
+                return;
+            }
             FormControls.OpenNewForm(this.FindForm(), new WorkoutBuilder());
         }
 
