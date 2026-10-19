@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WF_Gym_Personal_Tracker.Models;
 using WF_Gym_Personal_Tracker.Models.Logs;
 
 namespace WF_Gym_Personal_Tracker
@@ -71,6 +72,8 @@ namespace WF_Gym_Personal_Tracker
         {
             progressGraph.Plot.Clear();
 
+            var exerciseType = selectedLogs.FirstOrDefault()?.loggedExercise;
+
             var dailyWeights = selectedLogs
                 .GroupBy(e => e.completionDate)
                 .OrderBy(group => group.Key)
@@ -81,7 +84,35 @@ namespace WF_Gym_Personal_Tracker
                 })
                 .ToList();
 
-            if (dailyWeights.Count > 0)
+            var dailyTime = selectedLogs
+                .GroupBy(e => e.completionDate)
+                .OrderBy(group => group.Key)
+                .Select(group => new
+                {
+                    Date = group.Key,
+                    Time = group.Max(e => e.recordedTime)
+                })
+                .ToList();
+
+            if (dailyTime.Count > 0 && exerciseType is TimedExercise)
+            {
+                double[] dates = dailyTime
+                    .Select(e => e.Date
+                        .ToDateTime(TimeOnly.MinValue)
+                        .ToOADate())
+                    .ToArray();
+
+                double[] time = dailyTime
+                    .Select(e => e.Time.TotalSeconds)
+                    .ToArray();
+
+                progressGraph.Plot.Add.Scatter(dates, time);
+                progressGraph.Plot.Axes.DateTimeTicksBottom();
+
+                progressGraph.Plot.Title("Time Progress");
+                progressGraph.Plot.YLabel("Time (s)");
+            }
+            else if (dailyWeights.Count > 0 && exerciseType is StrengthExercise)
             {
                 double[] dates = dailyWeights
                     .Select(e => e.Date
@@ -95,11 +126,16 @@ namespace WF_Gym_Personal_Tracker
 
                 progressGraph.Plot.Add.Scatter(dates, weights);
                 progressGraph.Plot.Axes.DateTimeTicksBottom();
-            }
 
-            progressGraph.Plot.Title("Weight Progress");
+                progressGraph.Plot.Title("Weight Progress");
+                progressGraph.Plot.YLabel("Weight (kg)");
+            }
+            
+
+
+            
             progressGraph.Plot.XLabel("Date");
-            progressGraph.Plot.YLabel("Weight (kg)");
+            
 
             progressGraph.Plot.Axes.AutoScale();
             progressGraph.Refresh();

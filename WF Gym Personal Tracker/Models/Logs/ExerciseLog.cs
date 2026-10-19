@@ -7,6 +7,7 @@ using WF_Gym_Personal_Tracker.Forms;
 
 namespace WF_Gym_Personal_Tracker.Models.Logs
 {
+
     public class ExerciseLog
     {
 
@@ -31,6 +32,7 @@ namespace WF_Gym_Personal_Tracker.Models.Logs
         public TimeSpan recordedTime { get; set; }
         public bool completed { get; set; }
         public DateOnly completionDate { get; set; }
+
 
         public ExerciseLog()
         {
